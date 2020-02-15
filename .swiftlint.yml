@@ -1,0 +1,16 @@
+excluded:
+  - Carthage
+  - Pods/
+  - Podfile
+  - Podfile.lock
+  - vendor
+  - R.generated.swift
+  - TrainingNote/AppDelegate.swift
+  - TrainingNote/SceneDelegate.swift
+
+# swiftlintがfastlaneのswiftコードを見に行ってしまうので、vendorをlint対象外としている。
+disabled_rules:
+- line_length
+- trailing_whitespace
+- empty_enum_arguments # enumの引数を省略したいため
+- trailing_closure # RxSwiftのOnNextでwarningが出るため

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		D31FAFFE23F7639C00CECCC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31FAFFC23F7639C00CECCC5 /* LaunchScreen.storyboard */; };
 		D31FB00923F7639C00CECCC5 /* TrainingNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB00823F7639C00CECCC5 /* TrainingNoteTests.swift */; };
 		D31FB01423F7639C00CECCC5 /* TrainingNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */; };
+		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D31FB00F23F7639C00CECCC5 /* TrainingNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainingNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNoteUITests.swift; sourceTree = "<group>"; };
 		D31FB01523F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,13 +113,13 @@
 				D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */,
 				E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		D31FAFE523F7639B00CECCC5 = {
 			isa = PBXGroup;
 			children = (
+				D348949A23F77A8F00E4D758 /* R.generated.swift */,
 				D31FAFF023F7639B00CECCC5 /* TrainingNote */,
 				D31FB00723F7639C00CECCC5 /* TrainingNoteTests */,
 				D31FB01223F7639C00CECCC5 /* TrainingNoteUITests */,
@@ -177,10 +179,12 @@
 			buildConfigurationList = D31FB01823F7639C00CECCC5 /* Build configuration list for PBXNativeTarget "TrainingNote" */;
 			buildPhases = (
 				D323DE3273B327D17169DD81 /* [CP] Check Pods Manifest.lock */,
+				D348949923F779FF00E4D758 /* Run Script(R.swift) */,
 				D31FAFEA23F7639B00CECCC5 /* Sources */,
 				D31FAFEB23F7639B00CECCC5 /* Frameworks */,
 				D31FAFEC23F7639B00CECCC5 /* Resources */,
 				95AC61E267AE8C84DF4EE658 /* [CP] Embed Pods Frameworks */,
+				D348949C23F77C7B00E4D758 /* Run Script(SwiftLint) */,
 			);
 			buildRules = (
 			);
@@ -397,6 +401,44 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D348949923F779FF00E4D758 /* Run Script(R.swift) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "Run Script(R.swift)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		D348949C23F77C7B00E4D758 /* Run Script(SwiftLint) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script(SwiftLint)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    ${PODS_ROOT}/SwiftLint/swiftlint  autocorrect --format\n    ${PODS_ROOT}/SwiftLint/swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		FCF07613F54C1C5114794BAC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,6 +471,7 @@
 				D31FAFF623F7639B00CECCC5 /* ViewController.swift in Sources */,
 				D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */,
 				D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */,
+				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
