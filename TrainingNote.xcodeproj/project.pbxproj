@@ -12,13 +12,17 @@
 		B01FC99B81681064DD93D58B /* Pods_TrainingNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFD0126A6E828644F4D8E4E0 /* Pods_TrainingNote.framework */; };
 		D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FAFF123F7639B00CECCC5 /* AppDelegate.swift */; };
 		D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */; };
-		D31FAFF623F7639B00CECCC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FAFF523F7639B00CECCC5 /* ViewController.swift */; };
-		D31FAFF923F7639B00CECCC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31FAFF723F7639B00CECCC5 /* Main.storyboard */; };
 		D31FAFFB23F7639C00CECCC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */; };
-		D31FAFFE23F7639C00CECCC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31FAFFC23F7639C00CECCC5 /* LaunchScreen.storyboard */; };
 		D31FB00923F7639C00CECCC5 /* TrainingNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB00823F7639C00CECCC5 /* TrainingNoteTests.swift */; };
 		D31FB01423F7639C00CECCC5 /* TrainingNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */; };
 		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
+		D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34894A523F789E200E4D758 /* LaunchScreen.storyboard */; };
+		D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B123F79B4F00E4D758 /* CalenderViewController.swift */; };
+		D34894B423F79B4F00E4D758 /* CalenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894B223F79B4F00E4D758 /* CalenderViewController.xib */; };
+		D34894B723F79F7500E4D758 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B523F79F7500E4D758 /* SettingViewController.swift */; };
+		D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894B623F79F7500E4D758 /* SettingViewController.xib */; };
+		D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B923F7A54700E4D758 /* NoteViewController.swift */; };
+		D34894BC23F7A54700E4D758 /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894BA23F7A54700E4D758 /* NoteViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,10 +53,7 @@
 		D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FAFF123F7639B00CECCC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D31FAFF523F7639B00CECCC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D31FAFF823F7639B00CECCC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D31FAFFD23F7639C00CECCC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D31FAFFF23F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D31FB00423F7639C00CECCC5 /* TrainingNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainingNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FB00823F7639C00CECCC5 /* TrainingNoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNoteTests.swift; sourceTree = "<group>"; };
@@ -61,6 +62,13 @@
 		D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNoteUITests.swift; sourceTree = "<group>"; };
 		D31FB01523F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		D34894A523F789E200E4D758 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D34894B123F79B4F00E4D758 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		D34894B223F79B4F00E4D758 /* CalenderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderViewController.xib; sourceTree = "<group>"; };
+		D34894B523F79F7500E4D758 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		D34894B623F79F7500E4D758 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		D34894B923F7A54700E4D758 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		D34894BA23F7A54700E4D758 /* NoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,13 +150,17 @@
 		D31FAFF023F7639B00CECCC5 /* TrainingNote */ = {
 			isa = PBXGroup;
 			children = (
+				D34894A523F789E200E4D758 /* LaunchScreen.storyboard */,
 				D31FAFF123F7639B00CECCC5 /* AppDelegate.swift */,
 				D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */,
-				D31FAFF523F7639B00CECCC5 /* ViewController.swift */,
-				D31FAFF723F7639B00CECCC5 /* Main.storyboard */,
 				D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */,
-				D31FAFFC23F7639C00CECCC5 /* LaunchScreen.storyboard */,
 				D31FAFFF23F7639C00CECCC5 /* Info.plist */,
+				D34894B123F79B4F00E4D758 /* CalenderViewController.swift */,
+				D34894B223F79B4F00E4D758 /* CalenderViewController.xib */,
+				D34894B523F79F7500E4D758 /* SettingViewController.swift */,
+				D34894B623F79F7500E4D758 /* SettingViewController.xib */,
+				D34894B923F7A54700E4D758 /* NoteViewController.swift */,
+				D34894BA23F7A54700E4D758 /* NoteViewController.xib */,
 			);
 			path = TrainingNote;
 			sourceTree = "<group>";
@@ -283,9 +295,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FAFFE23F7639C00CECCC5 /* LaunchScreen.storyboard in Resources */,
+				D34894B423F79B4F00E4D758 /* CalenderViewController.xib in Resources */,
+				D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */,
+				D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */,
+				D34894BC23F7A54700E4D758 /* NoteViewController.xib in Resources */,
 				D31FAFFB23F7639C00CECCC5 /* Assets.xcassets in Resources */,
-				D31FAFF923F7639B00CECCC5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,10 +482,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FAFF623F7639B00CECCC5 /* ViewController.swift in Sources */,
+				D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */,
 				D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */,
 				D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
+				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
+				D34894B723F79F7500E4D758 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,25 +521,6 @@
 			targetProxy = D31FB01023F7639C00CECCC5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D31FAFF723F7639B00CECCC5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D31FAFF823F7639B00CECCC5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D31FAFFC23F7639C00CECCC5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D31FAFFD23F7639C00CECCC5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D31FB01623F7639C00CECCC5 /* Debug */ = {

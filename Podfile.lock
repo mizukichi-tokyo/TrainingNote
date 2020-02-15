@@ -2,6 +2,45 @@ PODS:
   - Differentiator (4.0.1)
   - FSCalendar (2.8.1)
   - IQKeyboardManagerSwift (6.5.5)
+  - MaterialComponents/AnimationTiming (104.0.0)
+  - MaterialComponents/Availability (104.0.0)
+  - MaterialComponents/Buttons (104.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Elevation (104.0.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (104.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Application (104.0.0)
+  - MaterialComponents/private/Color (104.0.0)
+  - MaterialComponents/private/Math (104.0.0)
+  - MaterialComponents/Ripple (104.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (104.0.0)
+  - MaterialComponents/ShadowLayer (104.0.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Shapes (104.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Typography (104.0.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
@@ -30,6 +69,7 @@ PODS:
 DEPENDENCIES:
   - FSCalendar
   - IQKeyboardManagerSwift
+  - MaterialComponents/Buttons
   - R.swift
   - RealmSwift
   - RxBlocking
@@ -45,6 +85,9 @@ SPEC REPOS:
     - Differentiator
     - FSCalendar
     - IQKeyboardManagerSwift
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - R.swift
     - R.swift.Library
     - Realm
@@ -62,6 +105,9 @@ SPEC CHECKSUMS:
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  MaterialComponents: c220527ebde19e53b3efc22eca7ade9ab6a76bd4
+  MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
@@ -75,6 +121,6 @@ SPEC CHECKSUMS:
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: 489442e1a04a0e0caa28a5a00bbde8e1b4e7bf8d
+PODFILE CHECKSUM: 2c58efa6c92ed06c7bbad702b0be687013662b1e
 
 COCOAPODS: 1.8.3

@@ -15,6 +15,7 @@ target 'TrainingNote' do
   pod 'FSCalendar'
   pod 'IQKeyboardManagerSwift'
   pod 'RxDataSources'
+  pod 'MaterialComponents/Buttons'
 
   target 'TrainingNoteTests' do
     inherit! :search_paths
