@@ -2,9 +2,9 @@ PODS:
   - Differentiator (4.0.1)
   - FSCalendar (2.8.1)
   - IQKeyboardManagerSwift (6.5.5)
-  - MaterialComponents/AnimationTiming (104.0.0)
-  - MaterialComponents/Availability (104.0.0)
-  - MaterialComponents/Buttons (104.0.0):
+  - MaterialComponents/AnimationTiming (104.0.1)
+  - MaterialComponents/Availability (104.0.1)
+  - MaterialComponents/Buttons (104.0.1):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -15,28 +15,28 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Elevation (104.0.0):
+  - MaterialComponents/Elevation (104.0.1):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (104.0.0):
+  - MaterialComponents/Ink (104.0.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/private/Application (104.0.0)
-  - MaterialComponents/private/Color (104.0.0)
-  - MaterialComponents/private/Math (104.0.0)
-  - MaterialComponents/Ripple (104.0.0):
+  - MaterialComponents/private/Application (104.0.1)
+  - MaterialComponents/private/Color (104.0.1)
+  - MaterialComponents/private/Math (104.0.1)
+  - MaterialComponents/Ripple (104.0.1):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (104.0.0)
-  - MaterialComponents/ShadowLayer (104.0.0):
+  - MaterialComponents/ShadowElevations (104.0.1)
+  - MaterialComponents/ShadowLayer (104.0.1):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (104.0.0):
+  - MaterialComponents/Shapes (104.0.1):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (104.0.0):
+  - MaterialComponents/Typography (104.0.1):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -105,7 +105,7 @@ SPEC CHECKSUMS:
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
-  MaterialComponents: c220527ebde19e53b3efc22eca7ade9ab6a76bd4
+  MaterialComponents: 5f68750c41b8c191c605a9296586717b2f92da93
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
