@@ -23,13 +23,13 @@
 		D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894B623F79F7500E4D758 /* SettingViewController.xib */; };
 		D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B923F7A54700E4D758 /* NoteViewController.swift */; };
 		D34894BC23F7A54700E4D758 /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894BA23F7A54700E4D758 /* NoteViewController.xib */; };
+		D349B1E123FA9BF7005F7C56 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D349B1E023FA9BF7005F7C56 /* SettingModel.swift */; };
 		D362296D23F7E9B9005A610A /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296B23F7E9B9005A610A /* SettingTableViewCell.swift */; };
 		D362296E23F7E9B9005A610A /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D362296C23F7E9B9005A610A /* SettingTableViewCell.xib */; };
 		D362297023F7EA3F005A610A /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296F23F7EA3F005A610A /* Injectable.swift */; };
 		D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297123F7EB4D005A610A /* SettingViewModel.swift */; };
 		D362297523F7FFB7005A610A /* SettingView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D362297423F7FFB7005A610A /* SettingView.strings */; };
 		D362297823F8006E005A610A /* UserDefaults+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297723F8006E005A610A /* UserDefaults+Additions.swift */; };
-		D362297A23F801D6005A610A /* SectionOfExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297923F801D6005A610A /* SectionOfExercise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,13 +76,13 @@
 		D34894B623F79F7500E4D758 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		D34894B923F7A54700E4D758 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		D34894BA23F7A54700E4D758 /* NoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
+		D349B1E023FA9BF7005F7C56 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		D362296B23F7E9B9005A610A /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		D362296C23F7E9B9005A610A /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		D362296F23F7EA3F005A610A /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		D362297123F7EB4D005A610A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D362297423F7FFB7005A610A /* SettingView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingView.strings; sourceTree = "<group>"; };
 		D362297723F8006E005A610A /* UserDefaults+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Additions.swift"; sourceTree = "<group>"; };
-		D362297923F801D6005A610A /* SectionOfExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfExercise.swift; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,7 +208,7 @@
 		D362296423F7DC37005A610A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D362297923F801D6005A610A /* SectionOfExercise.swift */,
+				D349B1E023FA9BF7005F7C56 /* SettingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -593,8 +593,8 @@
 				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
 				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
+				D349B1E123FA9BF7005F7C56 /* SettingModel.swift in Sources */,
 				D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */,
-				D362297A23F801D6005A610A /* SectionOfExercise.swift in Sources */,
 				D34894B723F79F7500E4D758 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

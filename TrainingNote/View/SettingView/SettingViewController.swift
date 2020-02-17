@@ -15,12 +15,12 @@ class SettingViewController: UIViewController, Injectable {
     typealias Dependency = SettingViewModel
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var plusButton: UIBarButtonItem!
 
     private let disposeBag = DisposeBag()
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfExerciseData>!
     private let viewModel: SettingViewModel
 
-    // 初期化時にViewModelを設定できるようにする
     required init(with dependency: Dependency) {
         viewModel = dependency
         super.init(nibName: nil, bundle: nil)
@@ -37,31 +37,31 @@ class SettingViewController: UIViewController, Injectable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: R.reuseIdentifier.settingTableViewCell.identifier)
+        registerTableViewCell()
+        setRxPlusButton()
         setupDataSource()
         bindModels()
-        tableView.rx.itemDeleted
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let strongSelf = self else { return }
-
-                // ViewModelにテーブルビューの行を削除操作を伝える
-                Observable.just(indexPath)
-                    .bind(to: strongSelf.viewModel.requestDeleteRecordStream)
-                    .disposed(by: strongSelf.disposeBag)
-            })
-            .disposed(by: disposeBag)
     }
 
 }
 
 extension SettingViewController {
 
+    private func registerTableViewCell() {
+        tableView.register(
+            SettingTableViewCell.self,
+            forCellReuseIdentifier: R.reuseIdentifier.settingTableViewCell.identifier
+        )
+    }
+
     private func setupDataSource() {
         dataSource = RxTableViewSectionedReloadDataSource<SectionOfExerciseData>(
             configureCell: { ( _, tableView: UITableView, indexPath: IndexPath, model: ExerciseData
                 ) -> UITableViewCell in
-                let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.settingTableViewCell.identifier, for: indexPath)
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: R.reuseIdentifier.settingTableViewCell.identifier,
+                    for: indexPath
+                )
                 cell.textLabel?.text = model.exerciseName
                 return cell
         }, canEditRowAtIndexPath: { _, _ in
@@ -70,15 +70,15 @@ extension SettingViewController {
     }
 
     private func bindModels() {
-        //        viewModel.dataRelay
-        //            .bind(to: tableView.rx.items(dataSource: dataSource))
-        //            .disposed(by: disposeBag)
-
-        //using Driver
         viewModel.dataDriver
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
 
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.viewModel.removeItem(at: indexPath)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -90,4 +90,43 @@ extension SettingViewController {
         let viewControler = SettingViewController(with: viewModel)
         return viewControler
     }
+}
+
+extension SettingViewController {
+
+    func setRxPlusButton() {
+        plusButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.showAlert()
+        }
+        .disposed(by: disposeBag)
+    }
+
+    func showAlert() {
+        var uiTextField = UITextField()
+
+        let alertController = UIAlertController(
+            title: R.string.settingView.alertTitle(),
+            message: R.string.settingView.alertMessage(),
+            preferredStyle: .alert
+        )
+
+        let addAction = UIAlertAction(title: R.string.settingView.alertAdd(), style: .default) { _ in
+            self.viewModel.addItem(uiTextField: uiTextField)
+        }
+
+        let cancelAction = UIAlertAction(title: R.string.settingView.alertCancel(), style: .cancel) { _ in
+            return
+        }
+
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+        alertController.addTextField { textField in
+            uiTextField = textField
+            textField.placeholder = R.string.settingView.placeholder()
+        }
+
+        present(alertController, animated: true, completion: nil)
+    }
+
 }

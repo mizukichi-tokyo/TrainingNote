@@ -19,44 +19,36 @@ final class SettingViewModel: Injectable {
     let requestDeleteRecordStream = PublishRelay<IndexPath>()
     var dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
     var dataDriver: Driver<[SectionOfExerciseData]> = Driver.never()
+    let model = SettingModel()
 
     init(with dependency: Dependency) {
         updataItems()
-        setRequestDeleteRecordStream()
     }
 
-    func setSectionModels() {
-        guard let userDefaultsExercises = UserDefaults.standard.array(forKey: UserDefaults.Key.exercise.rawValue) as? [String] else { return }
+    func updataItems() {
+        dataRelay.accept(makeSectionModels())
+        dataDriver = dataRelay.asDriver()
+    }
 
+    func removeItem(at indexPath: IndexPath) {
+        model.removeExerciseFromUserDefaults(at: indexPath)
+        self.updataItems()
+    }
+
+    func addItem(uiTextField: UITextField) {
+        model.addExerciseToUserDefaults(uiTextField: uiTextField)
+        self.updataItems()
+    }
+
+    func makeSectionModels() -> [SectionOfExerciseData] {
+
+        let userDefaultsExercises: [String] = model.getUserDefaultsExercises()
         var items: [ExerciseData] = []
         for exercise in userDefaultsExercises {
             items.append(ExerciseData(exerciseName: exercise))
         }
-        sectionModels = [
-            SectionOfExerciseData(items: items)
-        ]
-    }
-
-    func updataItems() {
-        setSectionModels()
-        dataRelay.accept(sectionModels)
-        //driver Using
-        dataDriver = dataRelay.asDriver()
-    }
-
-    func setRequestDeleteRecordStream() {
-        requestDeleteRecordStream
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let strongSelf = self else { return }
-
-                guard var userDefaultsExercises = UserDefaults.standard.array(forKey: UserDefaults.Key.exercise.rawValue) as? [String] else { return }
-                
-                userDefaultsExercises.remove(at: indexPath.row)
-                UserDefaults.standard.set(userDefaultsExercises, forKey: UserDefaults.Key.exercise.rawValue)
-
-                strongSelf.updataItems()
-            })
-            .disposed(by: disposeBag)
+        let sectionModels: [SectionOfExerciseData] = [SectionOfExerciseData(items: items)]
+        return sectionModels
     }
 
 }
