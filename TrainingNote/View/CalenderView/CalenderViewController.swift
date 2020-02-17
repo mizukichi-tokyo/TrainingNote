@@ -11,9 +11,7 @@ import UIKit
 class CalenderViewController: UIViewController {
 
     @IBAction func moveToSetting(_ sender: Any) {
-        let settingVC = SettingViewController()
-        settingVC.modalPresentationStyle = .fullScreen
-        present(settingVC, animated: true, completion: nil)
+        calenderToSetting()
     }
 
     @IBAction func moveToNote(_ sender: Any) {
@@ -38,5 +36,15 @@ class CalenderViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+
+}
+
+extension CalenderViewController {
+
+    private func calenderToSetting() {
+        let viewContoller = SettingViewController.makeVC()
+        viewContoller.modalPresentationStyle = .fullScreen
+        present(viewContoller, animated: true, completion: nil)
+    }
 
 }
