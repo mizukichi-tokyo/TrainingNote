@@ -29,7 +29,6 @@
 		D362297023F7EA3F005A610A /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296F23F7EA3F005A610A /* Injectable.swift */; };
 		D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297123F7EB4D005A610A /* SettingViewModel.swift */; };
 		D362297523F7FFB7005A610A /* SettingView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D362297423F7FFB7005A610A /* SettingView.strings */; };
-		D362297823F8006E005A610A /* UserDefaults+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297723F8006E005A610A /* UserDefaults+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +81,6 @@
 		D362296F23F7EA3F005A610A /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		D362297123F7EB4D005A610A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D362297423F7FFB7005A610A /* SettingView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingView.strings; sourceTree = "<group>"; };
-		D362297723F8006E005A610A /* UserDefaults+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Additions.swift"; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				D362297323F7FF7B005A610A /* Strings */,
-				D362297623F8004A005A610A /* Extension */,
 				D362296323F7DC06005A610A /* Protocol */,
 				D362296423F7DC37005A610A /* Model */,
 				D362296523F7DC3D005A610A /* ViewModel */,
@@ -274,14 +271,6 @@
 				D362297423F7FFB7005A610A /* SettingView.strings */,
 			);
 			path = Strings;
-			sourceTree = "<group>";
-		};
-		D362297623F8004A005A610A /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				D362297723F8006E005A610A /* UserDefaults+Additions.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -585,7 +574,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D362297823F8006E005A610A /* UserDefaults+Additions.swift in Sources */,
 				D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */,
 				D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */,
 				D362296D23F7E9B9005A610A /* SettingTableViewCell.swift in Sources */,

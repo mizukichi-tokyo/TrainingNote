@@ -5,49 +5,79 @@
 //  Created by Mizuki Kubota on 2020/02/15.
 //  Copyright © 2020 MizukiKubota. All rights reserved.
 //
-
 import Foundation
 import RxSwift
 import RxCocoa
 
-final class SettingViewModel: Injectable {
+struct SettingViewModelInput {
+    let swipeCell: ControlEvent<IndexPath>
+}
+
+protocol SettingViewModelOutput {
+    var sectionDataDriver: Driver<[SectionOfExerciseData]> { get }
+}
+
+protocol CounterViewModelType {
+    var outputs: SettingViewModelOutput? { get }
+    func setup(input: SettingViewModelInput)
+}
+
+final class SettingViewModel: Injectable, CounterViewModelType {
     struct Dependency {
     }
 
+    var outputs: SettingViewModelOutput?
+
+    private var dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
     private let disposeBag = DisposeBag()
-    private var sectionModels: [SectionOfExerciseData]!
-    let requestDeleteRecordStream = PublishRelay<IndexPath>()
-    var dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
-    var dataDriver: Driver<[SectionOfExerciseData]> = Driver.never()
-    let model = SettingModel()
 
     init(with dependency: Dependency) {
-        updataItems()
+        self.outputs = self
     }
 
-    func updataItems() {
-        dataRelay.accept(makeSectionModels())
-        dataDriver = dataRelay.asDriver()
+    func setup(input: SettingViewModelInput) {
+        input.swipeCell.subscribe(onNext: { [weak self] indexPath in
+            guard let self = self else { return }
+            self.remove(at: indexPath)
+        })
+            .disposed(by: disposeBag)
+
     }
 
-    func removeItem(at indexPath: IndexPath) {
-        model.removeExerciseFromUserDefaults(at: indexPath)
-        self.updataItems()
+    func add(uiTextField: UITextField) {
+        var userDefaultsExercises = SettingConfig.exercises
+        userDefaultsExercises.append(uiTextField.text!)
+        SettingConfig.exercises = userDefaultsExercises
     }
 
-    func addItem(uiTextField: UITextField) {
-        model.addExerciseToUserDefaults(uiTextField: uiTextField)
-        self.updataItems()
+    func remove(at indexPath: IndexPath) {
+        var userDefaultsExercises = SettingConfig.exercises
+        userDefaultsExercises.remove(at: indexPath.row)
+        SettingConfig.exercises = userDefaultsExercises
     }
 
-    func makeSectionModels() -> [SectionOfExerciseData] {
+}
 
-        let userDefaultsExercises: [String] = model.getUserDefaultsExercises()
+extension SettingViewModel: SettingViewModelOutput {
+
+    var sectionDataDriver: Driver<[SectionOfExerciseData]> {
+        UserDefaults.standard.rx
+            .observe(Array<String>.self, "exercise")
+            .subscribe(onNext: { [weak self] exercises in
+                guard let self = self, let exercises = exercises else { return }
+                self.dataRelay.accept(self.makeSectionModels(exercises: exercises))
+            })
+            .disposed(by: disposeBag)
+        return self.dataRelay.asDriver()
+    }
+
+    private func makeSectionModels(exercises: [String]) -> [SectionOfExerciseData] {
         var items: [ExerciseData] = []
-        for exercise in userDefaultsExercises {
+        for exercise in exercises {
             items.append(ExerciseData(exerciseName: exercise))
         }
         let sectionModels: [SectionOfExerciseData] = [SectionOfExerciseData(items: items)]
+
         return sectionModels
     }
 

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 import RxDataSources
 
 struct ExerciseData {
@@ -26,21 +28,22 @@ extension SectionOfExerciseData: SectionModelType {
     }
 }
 
-final class SettingModel {
-    func getUserDefaultsExercises() -> [String] {
-        guard let userDefaultsExercises = UserDefaults.standard.array(forKey: UserDefaults.Key.exercise.rawValue) as? [String] else { return [String]() }
-        return userDefaultsExercises
+struct SettingConfig {
+    static let userDefault = UserDefaults.standard
+
+    struct Key {
+        static let exercise = "exercise"
+    }
+}
+
+extension SettingConfig {
+    static var exercises: [String] {
+        get {
+            return userDefault.object(forKey: Key.exercise) as? [String] ?? []
+        }
+        set {
+            userDefault.set(newValue, forKey: Key.exercise)
+        }
     }
 
-    func removeExerciseFromUserDefaults(at indexPath: IndexPath) {
-        var userDefaultsExercises = getUserDefaultsExercises()
-        userDefaultsExercises.remove(at: indexPath.row)
-        UserDefaults.standard.set(userDefaultsExercises, forKey: UserDefaults.Key.exercise.rawValue)
-    }
-
-    func addExerciseToUserDefaults(uiTextField: UITextField) {
-        var userDefaultsExercises = getUserDefaultsExercises()
-        userDefaultsExercises.append(uiTextField.text!)
-        UserDefaults.standard.set(userDefaultsExercises, forKey: UserDefaults.Key.exercise.rawValue)
-    }
 }
