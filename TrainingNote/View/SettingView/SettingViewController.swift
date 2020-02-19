@@ -17,18 +17,7 @@ class SettingViewController: UIViewController, Injectable {
     @IBOutlet private weak var tableView: UITableView!
 
     @IBAction func plusButton() {
-        alert(title: "Test", message: "This is a test message.")
-            .addAction(title: "Yes")
-            .addAction(title: "No", style: .destructive)
-            .addTextField {
-                $0.placeholder = "placeholder"
-        }
-        .rx.show()
-        .subscribe(onNext: {
-            print("button: \($0.buttonTitle)")
-            print($0.controller.textFields?.first?.text ?? "")
-        })
-            .disposed(by: disposeBag)
+        showAlert( addItemTextRelay: addItemTextRelay )
     }
 
     @IBAction func moveToCalender(_ sender: Any) {
@@ -38,6 +27,7 @@ class SettingViewController: UIViewController, Injectable {
     private let disposeBag = DisposeBag()
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfExerciseData>!
     private let viewModel: SettingViewModel
+    private let addItemTextRelay = PublishRelay<String>()
 
     required init(with dependency: Dependency) {
         viewModel = dependency
@@ -59,7 +49,8 @@ class SettingViewController: UIViewController, Injectable {
     func setupViewModel() {
 
         let input = SettingViewModelInput(
-            swipeCell: tableView.rx.itemDeleted
+            swipeCell: tableView.rx.itemDeleted,
+            addItemTextRelay: addItemTextRelay
         )
 
         viewModel.setup(input: input)
@@ -67,6 +58,37 @@ class SettingViewController: UIViewController, Injectable {
         viewModel.outputs?.sectionDataDriver
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+
+}
+
+extension SettingViewController {
+
+    func showAlert( addItemTextRelay: PublishRelay<String>) {
+        var uiTextField = UITextField()
+
+        let alertController = UIAlertController(
+            title: R.string.settingView.alertTitle(),
+            message: R.string.settingView.alertMessage(),
+            preferredStyle: .alert
+        )
+
+        let addAction = UIAlertAction(title: R.string.settingView.alertAdd(), style: .default) { _ in
+            addItemTextRelay.accept(uiTextField.text!)
+        }
+
+        let cancelAction = UIAlertAction(title: R.string.settingView.alertCancel(), style: .cancel) { _ in
+            return
+        }
+
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+        alertController.addTextField { textField in
+            uiTextField = textField
+            textField.placeholder = R.string.settingView.placeholder()
+        }
+
+        present(alertController, animated: true, completion: nil)
     }
 
 }

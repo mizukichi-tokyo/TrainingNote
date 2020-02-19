@@ -1,4 +1,5 @@
 PODS:
+  - Alertift (4.1.1)
   - Differentiator (4.0.1)
   - FSCalendar (2.8.1)
   - MaterialComponents/AnimationTiming (104.0.1)
@@ -62,13 +63,11 @@ PODS:
   - RxSwift (5.0.1)
   - RxTest (5.0.1):
     - RxSwift (~> 5)
-  - RxUIAlert (1.2.1):
-    - RxCocoa
-    - RxSwift
   - SwiftDate (6.1.0)
   - SwiftLint (0.39.1)
 
 DEPENDENCIES:
+  - Alertift
   - FSCalendar
   - MaterialComponents/Buttons
   - R.swift
@@ -78,12 +77,12 @@ DEPENDENCIES:
   - RxDataSources
   - RxSwift
   - RxTest
-  - RxUIAlert
   - SwiftDate
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Alertift
     - Differentiator
     - FSCalendar
     - MaterialComponents
@@ -99,11 +98,11 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxTest
-    - RxUIAlert
     - SwiftDate
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Alertift: 950483ca193717cc8bb508a7dbbe34f4af321daf
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   MaterialComponents: 5f68750c41b8c191c605a9296586717b2f92da93
@@ -119,10 +118,9 @@ SPEC CHECKSUMS:
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
-  RxUIAlert: 643caeda578fb05c7ad084a0043ad9065c6210f1
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: 3d994df80f8b5b7fa2ad9af6662a6b487849b477
+PODFILE CHECKSUM: a0d99f92e3a865c117f18276c4747ab817876801
 
 COCOAPODS: 1.8.3

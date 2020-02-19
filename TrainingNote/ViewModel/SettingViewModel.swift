@@ -11,6 +11,7 @@ import RxCocoa
 
 struct SettingViewModelInput {
     let swipeCell: ControlEvent<IndexPath>
+    let addItemTextRelay: PublishRelay<String>
 }
 
 protocol SettingViewModelOutput {
@@ -42,11 +43,17 @@ final class SettingViewModel: Injectable, CounterViewModelType {
         })
             .disposed(by: disposeBag)
 
+        input.addItemTextRelay.subscribe(onNext: { [weak self] addItemText in
+            guard let self = self else { return }
+            self.add(add: addItemText)
+        })
+            .disposed(by: disposeBag)
+
     }
 
-    func add(uiTextField: UITextField) {
+    func add(add addItemText: String) {
         var userDefaultsExercises = SettingConfig.exercises
-        userDefaultsExercises.append(uiTextField.text!)
+        userDefaultsExercises.append(addItemText)
         SettingConfig.exercises = userDefaultsExercises
     }
 

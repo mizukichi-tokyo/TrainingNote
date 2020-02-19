@@ -15,7 +15,7 @@ target 'TrainingNote' do
   pod 'FSCalendar'
   pod 'RxDataSources'
   pod 'MaterialComponents/Buttons'
-  pod 'RxUIAlert'
+  pod 'Alertift'
 
   target 'TrainingNoteTests' do
     inherit! :search_paths
