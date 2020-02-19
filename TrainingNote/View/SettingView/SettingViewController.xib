@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
-                <outlet property="plusButton" destination="rMf-Br-M0Z" id="Dc1-6i-EAx"/>
                 <outlet property="tableView" destination="52S-He-6yv" id="v2M-rO-hdp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,7 +22,11 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
                         <navigationItem title="Exercises" id="TdS-sG-N2a">
-                            <barButtonItem key="leftBarButtonItem" title="Item" image="plus" catalog="system" id="rMf-Br-M0Z"/>
+                            <barButtonItem key="leftBarButtonItem" title="Item" image="plus" catalog="system" id="rMf-Br-M0Z">
+                                <connections>
+                                    <action selector="plusButton" destination="-1" id="5RX-13-BSn"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" title="Item" image="checkmark.circle" catalog="system" id="tUx-WV-nof">
                                 <connections>
                                     <action selector="moveToCalender:" destination="-1" id="i9g-eR-MOm"/>
