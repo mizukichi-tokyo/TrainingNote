@@ -9,71 +9,59 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct SettingViewModelInput {
+struct Input {
     let swipeCell: ControlEvent<IndexPath>
     let addItemTextRelay: PublishRelay<String>
+}
+
+protocol InputFromModel {
+    var exerciseObservable: Observable<[String]?>? {get}
 }
 
 protocol SettingViewModelOutput {
     var sectionDataDriver: Driver<[SectionOfExerciseData]> { get }
 }
 
-protocol CounterViewModelType {
+protocol SettingViewModelType {
     var outputs: SettingViewModelOutput? { get }
-    func setup(input: SettingViewModelInput)
+    func setup(input: Input)
 }
 
-final class SettingViewModel: Injectable, CounterViewModelType {
-    struct Dependency {
-    }
+final class SettingViewModel: Injectable, SettingViewModelType, InputFromModel {
+    typealias Dependency = SettingModel
 
+    private var model: SettingModel
     var outputs: SettingViewModelOutput?
-
+    var exerciseObservable: Observable<[String]?>?
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
+        model = dependency
+        exerciseObservable = model.outputs?.exerciseObservable
         self.outputs = self
     }
 
-    func setup(input: SettingViewModelInput) {
-        input.swipeCell.subscribe(onNext: { [weak self] indexPath in
-            guard let self = self else { return }
-            self.remove(at: indexPath)
-        })
-            .disposed(by: disposeBag)
-
-        input.addItemTextRelay.subscribe(onNext: { [weak self] addItemText in
-            guard let self = self else { return }
-            self.add(add: addItemText)
-        })
-            .disposed(by: disposeBag)
-
+    func setup(input: Input) {
+        let modelInput = SettingModelInput(
+            swipeCell: input.swipeCell,
+            addItemTextRelay: input.addItemTextRelay
+        )
+        model.setup(input: modelInput)
     }
-
-    func add(add addItemText: String) {
-        var userDefaultsExercises = SettingConfig.exercises
-        userDefaultsExercises.append(addItemText)
-        SettingConfig.exercises = userDefaultsExercises
-    }
-
-    func remove(at indexPath: IndexPath) {
-        var userDefaultsExercises = SettingConfig.exercises
-        userDefaultsExercises.remove(at: indexPath.row)
-        SettingConfig.exercises = userDefaultsExercises
-    }
-
 }
 
 extension SettingViewModel: SettingViewModelOutput {
 
     var sectionDataDriver: Driver<[SectionOfExerciseData]> {
+
         let dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
 
-        SettingConfig.userDefault.rx
-            .observe(Array<String>.self, SettingConfig.Key.exercise)
+        exerciseObservable?
             .subscribe(onNext: { [weak self] exercises in
                 guard let self = self, let exercises = exercises else { return }
-                dataRelay.accept(self.makeSectionModels(exercises: exercises))
+                let sectionModel = self.makeSectionModels(exercises: exercises)
+
+                dataRelay.accept(sectionModel)
             })
             .disposed(by: disposeBag)
 

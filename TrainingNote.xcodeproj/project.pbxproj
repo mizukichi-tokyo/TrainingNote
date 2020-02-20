@@ -15,6 +15,7 @@
 		D31FAFFB23F7639C00CECCC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */; };
 		D31FB00923F7639C00CECCC5 /* TrainingNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB00823F7639C00CECCC5 /* TrainingNoteTests.swift */; };
 		D31FB01423F7639C00CECCC5 /* TrainingNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */; };
+		D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */; };
 		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
 		D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34894A523F789E200E4D758 /* LaunchScreen.storyboard */; };
 		D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B123F79B4F00E4D758 /* CalenderViewController.swift */; };
@@ -68,6 +69,7 @@
 		D31FB00F23F7639C00CECCC5 /* TrainingNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainingNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNoteUITests.swift; sourceTree = "<group>"; };
 		D31FB01523F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfExerciseData.swift; sourceTree = "<group>"; };
 		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D34894A523F789E200E4D758 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34894B123F79B4F00E4D758 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		D362296423F7DC37005A610A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */,
 				D349B1E023FA9BF7005F7C56 /* SettingModel.swift */,
 			);
 			path = Model;
@@ -580,6 +583,7 @@
 			files = (
 				D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */,
 				D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */,
+				D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */,
 				D362296D23F7E9B9005A610A /* SettingTableViewCell.swift in Sources */,
 				D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */,
 				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,

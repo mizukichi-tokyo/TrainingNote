@@ -11,24 +11,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-struct ExerciseData {
-    let exerciseName: String
-}
-
-struct SectionOfExerciseData {
-    var items: [Item]
-}
-
-extension SectionOfExerciseData: SectionModelType {
-    typealias Item = ExerciseData
-
-    init(original: SectionOfExerciseData, items: [SectionOfExerciseData.Item]) {
-        self = original
-        self.items = items
-    }
-}
-
-struct SettingConfig {
+struct UserDefault {
     static let userDefault = UserDefaults.standard
 
     struct Key {
@@ -36,7 +19,7 @@ struct SettingConfig {
     }
 }
 
-extension SettingConfig {
+extension UserDefault {
     static var exercises: [String] {
         get {
             return userDefault.object(forKey: Key.exercise) as? [String] ?? []
@@ -45,5 +28,64 @@ extension SettingConfig {
             userDefault.set(newValue, forKey: Key.exercise)
         }
     }
+}
 
+struct SettingModelInput {
+    let swipeCell: ControlEvent<IndexPath>
+    let addItemTextRelay: PublishRelay<String>
+}
+
+protocol SettingModelOutput {
+    var exerciseObservable: Observable<[String]?> {get}
+}
+
+protocol SettingModelType {
+    var outputs: SettingModelOutput? { get }
+    func setup(input: SettingModelInput)
+}
+
+final class SettingModel: Injectable, SettingModelType {
+    struct Dependency {}
+
+    var outputs: SettingModelOutput?
+    private let disposeBag = DisposeBag()
+
+    init(with dependency: Dependency) {
+        self.outputs = self
+    }
+
+    func setup(input: SettingModelInput) {
+        input.swipeCell.subscribe(onNext: { [weak self] indexPath in
+            guard let self = self else { return }
+            self.remove(at: indexPath)
+        })
+            .disposed(by: disposeBag)
+
+        input.addItemTextRelay.subscribe(onNext: { [weak self] addItemText in
+            guard let self = self else { return }
+            self.add(add: addItemText)
+        })
+            .disposed(by: disposeBag)
+
+    }
+
+    func add(add addItemText: String) {
+        var userDefaultsExercises = UserDefault.exercises
+        userDefaultsExercises.append(addItemText)
+        UserDefault.exercises = userDefaultsExercises
+    }
+
+    func remove(at indexPath: IndexPath) {
+        var userDefaultsExercises = UserDefault.exercises
+        userDefaultsExercises.remove(at: indexPath.row)
+        UserDefault.exercises = userDefaultsExercises
+    }
+
+}
+
+extension SettingModel: SettingModelOutput {
+    var exerciseObservable: Observable<[String]?> {
+        return UserDefault.userDefault.rx
+            .observe(Array<String>.self, UserDefault.Key.exercise)
+    }
 }

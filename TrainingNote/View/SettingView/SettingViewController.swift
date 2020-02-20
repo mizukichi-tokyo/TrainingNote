@@ -15,19 +15,17 @@ class SettingViewController: UIViewController, Injectable {
     typealias Dependency = SettingViewModel
 
     @IBOutlet private weak var tableView: UITableView!
-
     @IBAction func plusButton() {
         showAlert( addItemTextRelay: addItemTextRelay )
     }
-
     @IBAction func moveToCalender(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    private let disposeBag = DisposeBag()
-    private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfExerciseData>!
     private let viewModel: SettingViewModel
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfExerciseData>!
     private let addItemTextRelay = PublishRelay<String>()
+    private let disposeBag = DisposeBag()
 
     required init(with dependency: Dependency) {
         viewModel = dependency
@@ -43,16 +41,14 @@ class SettingViewController: UIViewController, Injectable {
 
         setupTableView()
         setupViewModel()
-
     }
 
     func setupViewModel() {
 
-        let input = SettingViewModelInput(
+        let input = Input(
             swipeCell: tableView.rx.itemDeleted,
             addItemTextRelay: addItemTextRelay
         )
-
         viewModel.setup(input: input)
 
         viewModel.outputs?.sectionDataDriver
@@ -126,7 +122,8 @@ extension SettingViewController {
 
 extension SettingViewController {
     static func makeVC () -> SettingViewController {
-        let viewModel = SettingViewModel(with: SettingViewModel.Dependency.init())
+        let model = SettingModel(with: SettingModel.Dependency.init())
+        let viewModel = SettingViewModel(with: model)
         let viewControler = SettingViewController(with: viewModel)
         return viewControler
     }
