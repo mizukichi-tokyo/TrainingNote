@@ -14,40 +14,35 @@ struct Input {
     let addItemTextRelay: PublishRelay<String>
 }
 
-protocol InputFromModel {
-    var exerciseObservable: Observable<[String]?>? {get}
-}
-
 protocol SettingViewModelOutput {
     var sectionDataDriver: Driver<[SectionOfExerciseData]> { get }
 }
 
 protocol SettingViewModelType {
     var outputs: SettingViewModelOutput? { get }
-    func setup(input: Input)
+    func setupViewModel(input: Input)
 }
 
-final class SettingViewModel: Injectable, SettingViewModelType, InputFromModel {
+final class SettingViewModel: Injectable, SettingViewModelType {
     typealias Dependency = SettingModel
 
     private var model: SettingModel
     var outputs: SettingViewModelOutput?
-    var exerciseObservable: Observable<[String]?>?
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
         model = dependency
-        exerciseObservable = model.outputs?.exerciseObservable
         self.outputs = self
     }
 
-    func setup(input: Input) {
+    func setupViewModel(input: Input) {
         let modelInput = SettingModelInput(
             swipeCell: input.swipeCell,
             addItemTextRelay: input.addItemTextRelay
         )
-        model.setup(input: modelInput)
+        model.setupModel(input: modelInput)
     }
+
 }
 
 extension SettingViewModel: SettingViewModelOutput {
@@ -56,7 +51,7 @@ extension SettingViewModel: SettingViewModelOutput {
 
         let dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
 
-        exerciseObservable?
+        model.outputs?.exerciseObservable
             .subscribe(onNext: { [weak self] exercises in
                 guard let self = self, let exercises = exercises else { return }
                 let sectionModel = self.makeSectionModels(exercises: exercises)

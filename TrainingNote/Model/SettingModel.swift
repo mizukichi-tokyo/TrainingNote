@@ -41,7 +41,7 @@ protocol SettingModelOutput {
 
 protocol SettingModelType {
     var outputs: SettingModelOutput? { get }
-    func setup(input: SettingModelInput)
+    func setupModel(input: SettingModelInput)
 }
 
 final class SettingModel: Injectable, SettingModelType {
@@ -54,7 +54,7 @@ final class SettingModel: Injectable, SettingModelType {
         self.outputs = self
     }
 
-    func setup(input: SettingModelInput) {
+    func setupModel(input: SettingModelInput) {
         input.swipeCell.subscribe(onNext: { [weak self] indexPath in
             guard let self = self else { return }
             self.remove(at: indexPath)

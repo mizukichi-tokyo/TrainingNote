@@ -49,7 +49,7 @@ class SettingViewController: UIViewController, Injectable {
             swipeCell: tableView.rx.itemDeleted,
             addItemTextRelay: addItemTextRelay
         )
-        viewModel.setup(input: input)
+        viewModel.setupViewModel(input: input)
 
         viewModel.outputs?.sectionDataDriver
             .drive(tableView.rx.items(dataSource: dataSource))
