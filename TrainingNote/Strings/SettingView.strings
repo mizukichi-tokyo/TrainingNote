@@ -2,5 +2,5 @@
 "alertMessage" = "Input the Exercise you want to add";
 "alertAdd" = "add";
 "alertCancel" = "cancel";
-"placeholder" = "Input The New Move";
+"placeholder" = "Input The New Exercise";
 

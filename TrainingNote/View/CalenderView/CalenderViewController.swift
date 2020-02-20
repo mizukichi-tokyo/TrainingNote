@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import FSCalendar
 
-class CalenderViewController: UIViewController {
-
+class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
+    @IBOutlet weak var dateLabel: UILabel!
     @IBAction func moveToSetting(_ sender: Any) {
         calenderToSetting()
     }
@@ -23,6 +24,13 @@ class CalenderViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let tmpDate = Calendar(identifier: .gregorian)
+        let year = tmpDate.component(.year, from: date)
+        let month = tmpDate.component(.month, from: date)
+        let day = tmpDate.component(.day, from: date)
+        dateLabel.text = "\(year)年\(month)月\(day)日"
+    }
 }
 
 extension CalenderViewController {
