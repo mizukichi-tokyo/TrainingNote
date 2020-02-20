@@ -20,7 +20,7 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txT-UX-3Oy">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
-                        <navigationItem title="NoteView" id="17n-t6-Cdq">
+                        <navigationItem title="Note" id="17n-t6-Cdq">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="9Wl-io-WCQ">
                                 <connections>
                                     <action selector="moveToCalender:" destination="-1" id="NJx-hg-AES"/>
@@ -49,7 +49,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zON-MD-eMb" userLabel="Picker View1">
-                    <rect key="frame" x="20" y="142" width="374" height="103"/>
+                    <rect key="frame" x="20" y="142" width="374" height="102.5"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

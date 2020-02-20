@@ -18,13 +18,16 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         calenderToNote()
     }
 
+    var selectedDate = Date()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLabel.text = todayGet()
-
-        // Do any additional setup after loading the view.
     }
 
+}
+
+extension CalenderViewController {
     func todayGet() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -42,8 +45,11 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         let year = tmpDate.component(.year, from: date)
         let month = tmpDate.component(.month, from: date)
         let day = tmpDate.component(.day, from: date)
+
         dateLabel.text = "\(month)/\(day)/\(year)"
+        selectedDate = date
     }
+
 }
 
 extension CalenderViewController {
@@ -55,6 +61,7 @@ extension CalenderViewController {
 
     private func calenderToNote() {
         let noteVC = NoteViewController()
+        noteVC.selectedDate = selectedDate
         noteVC.modalPresentationStyle = .fullScreen
         present(noteVC, animated: true, completion: nil)
     }
