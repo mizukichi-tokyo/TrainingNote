@@ -20,8 +20,20 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateLabel.text = todayGet()
 
         // Do any additional setup after loading the view.
+    }
+
+    func todayGet() -> String {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        var todayDate = String()
+        // DateFormatter を使用して書式とローカルを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
+        todayDate = dateFormatter.string(from: date)
+
+        return todayDate
     }
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
