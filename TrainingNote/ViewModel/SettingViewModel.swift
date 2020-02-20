@@ -29,7 +29,6 @@ final class SettingViewModel: Injectable, CounterViewModelType {
 
     var outputs: SettingViewModelOutput?
 
-    private var dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -68,18 +67,22 @@ final class SettingViewModel: Injectable, CounterViewModelType {
 extension SettingViewModel: SettingViewModelOutput {
 
     var sectionDataDriver: Driver<[SectionOfExerciseData]> {
-        UserDefaults.standard.rx
-            .observe(Array<String>.self, "exercise")
+        let dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
+
+        SettingConfig.userDefault.rx
+            .observe(Array<String>.self, SettingConfig.Key.exercise)
             .subscribe(onNext: { [weak self] exercises in
                 guard let self = self, let exercises = exercises else { return }
-                self.dataRelay.accept(self.makeSectionModels(exercises: exercises))
+                dataRelay.accept(self.makeSectionModels(exercises: exercises))
             })
             .disposed(by: disposeBag)
-        return self.dataRelay.asDriver()
+
+        return dataRelay.asDriver()
     }
 
     private func makeSectionModels(exercises: [String]) -> [SectionOfExerciseData] {
         var items: [ExerciseData] = []
+
         for exercise in exercises {
             items.append(ExerciseData(exerciseName: exercise))
         }

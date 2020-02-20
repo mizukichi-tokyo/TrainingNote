@@ -32,7 +32,7 @@ struct SettingConfig {
     static let userDefault = UserDefaults.standard
 
     struct Key {
-        static let exercise = "exercise"
+        static let exercise = R.string.settingModel.exercise()
     }
 }
 
