@@ -25,11 +25,12 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     }
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: date)
         let month = tmpDate.component(.month, from: date)
         let day = tmpDate.component(.day, from: date)
-        dateLabel.text = "\(year)年\(month)月\(day)日"
+        dateLabel.text = "\(month)/\(day)/\(year)"
     }
 }
 
