@@ -75,7 +75,7 @@
                     </userDefinedRuntimeAttributes>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nah-ds-MPx" customClass="MDCFloatingButton">
-                    <rect key="frame" x="319" y="572.33333333333337" width="75" height="75"/>
+                    <rect key="frame" x="319" y="751.33333333333337" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="75" id="BRL-wT-QhR"/>
                         <constraint firstAttribute="width" secondItem="Nah-ds-MPx" secondAttribute="height" multiplier="1:1" id="kbj-aI-WeA"/>
@@ -101,7 +101,7 @@
                 <constraint firstItem="7n1-GL-IBF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gMG-CJ-g6J"/>
                 <constraint firstItem="0FV-xe-6l3" firstAttribute="top" secondItem="ITn-cs-R2F" secondAttribute="bottom" constant="8" id="iY5-cq-Srq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0FV-xe-6l3" secondAttribute="trailing" constant="20" id="mr8-C0-ciL"/>
-                <constraint firstItem="Nah-ds-MPx" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.7" constant="20" symbolic="YES" id="nNv-4G-siB"/>
+                <constraint firstItem="Nah-ds-MPx" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.9" constant="20" symbolic="YES" id="nNv-4G-siB"/>
                 <constraint firstItem="7n1-GL-IBF" firstAttribute="top" secondItem="JbT-37-MGK" secondAttribute="bottom" symbolic="YES" id="wgj-7v-U8X"/>
                 <constraint firstAttribute="bottom" secondItem="0FV-xe-6l3" secondAttribute="bottom" constant="20" symbolic="YES" id="wtQ-R3-4vu"/>
             </constraints>
