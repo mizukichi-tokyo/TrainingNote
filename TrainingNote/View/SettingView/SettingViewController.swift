@@ -33,7 +33,7 @@ class SettingViewController: UIViewController, Injectable {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.string.settingView.fatalErrorMessage())
     }
 
     override func viewDidLoad() {
@@ -64,10 +64,23 @@ extension SettingViewController {
         var uiTextField = UITextField()
 
         let alertController = UIAlertController(
-            title: R.string.settingView.alertTitle(),
-            message: R.string.settingView.alertMessage(),
+            title: R.string.settingView.empty(),
+            message: R.string.settingView.empty(),
             preferredStyle: .alert
         )
+
+        let attributedTitle = NSAttributedString(
+            string: R.string.settingView.alertTitle(),
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightText]
+        )
+
+        let attributedMessage = NSAttributedString(
+            string: R.string.settingView.alertMessage(),
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightText]
+        )
+
+        alertController.setValue(attributedTitle, forKey: R.string.settingView.attributedTitle())
+        alertController.setValue(attributedMessage, forKey: R.string.settingView.attributedMessage())
 
         let addAction = UIAlertAction(title: R.string.settingView.alertAdd(), style: .default) { _ in
             addItemTextRelay.accept(uiTextField.text!)

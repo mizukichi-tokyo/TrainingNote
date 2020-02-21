@@ -3,4 +3,7 @@
 "alertAdd" = "add";
 "alertCancel" = "cancel";
 "placeholder" = "Input The New Exercise";
-
+"empty" = "";
+"attributedTitle" = "attributedTitle";
+"attributedMessage" = "attributedMessage";
+"fatalErrorMessage" = "init(coder:) has not been implemented";

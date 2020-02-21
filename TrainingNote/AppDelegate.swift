@@ -13,8 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let defaultsExercise = ["Bench press", "Squat", "Dead lift"]
-        UserDefaults.standard.register(defaults: ["exercise": defaultsExercise])
+        registerUserDefaults()
         // ナビゲーションバーのタイトルの文字色
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.lightText]
         return true
@@ -37,3 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate{
+    private func registerUserDefaults(){
+        let defaultsExercise = [R.string.appDelegate.defaultsExercise1(),
+                               R.string.appDelegate.defaultsExercise2(),
+                               R.string.appDelegate.defaultsExercise3()]
+        UserDefaults.standard.register(defaults: [R.string.appDelegate.exercise(): defaultsExercise])
+    }
+
+}
