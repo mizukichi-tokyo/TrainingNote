@@ -13,20 +13,13 @@ import RxDataSources
 
 struct UserDefault {
     static let userDefault = UserDefaults.standard
-
-    struct Key {
-        static let exercise = R.string.settingModel.exercise()
-    }
+    struct Key { static let exercise = R.string.settingModel.exercise() }
 }
 
 extension UserDefault {
     static var exercises: [String] {
-        get {
-            return userDefault.object(forKey: Key.exercise) as? [String] ?? []
-        }
-        set {
-            userDefault.set(newValue, forKey: Key.exercise)
-        }
+        get { return userDefault.object(forKey: Key.exercise) as? [String] ?? [] }
+        set { userDefault.set(newValue, forKey: Key.exercise) }
     }
 }
 

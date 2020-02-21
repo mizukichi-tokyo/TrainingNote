@@ -60,9 +60,8 @@ extension CalenderViewController {
     }
 
     private func calenderToNote() {
-        let noteVC = NoteViewController()
-        noteVC.selectedDate = selectedDate
-        noteVC.modalPresentationStyle = .fullScreen
-        present(noteVC, animated: true, completion: nil)
+        let viewContoller = NoteViewController.makeVC()
+        viewContoller.modalPresentationStyle = .fullScreen
+        present(viewContoller, animated: true, completion: nil)
     }
 }

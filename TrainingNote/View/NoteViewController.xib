@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
+                <outlet property="pickerView" destination="zON-MD-eMb" id="Oiv-Jd-Kmq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
