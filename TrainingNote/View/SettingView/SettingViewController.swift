@@ -112,6 +112,7 @@ extension SettingViewController {
                     for: indexPath
                 )
                 cell.textLabel?.text = model.exerciseName
+                cell.textLabel?.textColor = UIColor.lightText
                 return cell
         }, canEditRowAtIndexPath: { _, _ in
             return true
