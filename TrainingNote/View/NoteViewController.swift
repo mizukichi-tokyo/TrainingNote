@@ -55,8 +55,8 @@ extension NoteViewController {
         //        )=
         //        viewModel.setupViewModel(input: input)
 
-        viewModel.outputs?.exerciseDataRelay
-            .bind(to: pickerView.rx.itemTitles) { _, title in
+        viewModel.outputs?.exerciseDataDriver
+            .drive(pickerView.rx.itemTitles) { _, title in
                 return title
         }
         .disposed(by: disposeBag)

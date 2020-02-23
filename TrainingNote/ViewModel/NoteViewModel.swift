@@ -16,7 +16,7 @@ struct NoteViewModelInput {
 }
 
 protocol NoteViewModelOutput {
-    var exerciseDataRelay: BehaviorRelay<[String]> { get }
+    var exerciseDataDriver: Driver<[String]> { get }
 }
 
 protocol NoteViewModelType {
@@ -44,7 +44,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
 extension NoteViewModel: NoteViewModelOutput {
 
-    var exerciseDataRelay: BehaviorRelay<[String]> {
+    var exerciseDataDriver: Driver<[String]> {
         let dataRelay = BehaviorRelay<[String]>(value: [])
         model.outputs?.exerciseObservable
             .subscribe(onNext: { exercises in
@@ -53,7 +53,7 @@ extension NoteViewModel: NoteViewModelOutput {
             })
             .disposed(by: disposeBag)
 
-        return dataRelay
+        return dataRelay.asDriver()
     }
 
 }
