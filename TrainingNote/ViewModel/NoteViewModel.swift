@@ -11,17 +11,17 @@ import RxSwift
 import RxCocoa
 
 struct NoteViewModelInput {
-    //    let swipeCell: ControlEvent<IndexPath>
-    //    let addItemTextRelay: PublishRelay<String>
+    let slider: ControlProperty<Float>
 }
 
 protocol NoteViewModelOutput {
     var exerciseDataDriver: Driver<[String]> { get }
+    var weightDriver: Driver<String> { get }
 }
 
 protocol NoteViewModelType {
     var outputs: NoteViewModelOutput? { get }
-    func setup(input: Input)
+    func setup(input: NoteViewModelInput)
 }
 
 final class NoteViewModel: Injectable, NoteViewModelType {
@@ -29,6 +29,8 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     private var model: NoteModel
     var outputs: NoteViewModelOutput?
+
+    private let weightRelay = BehaviorRelay<Float>(value: 100)
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -36,8 +38,15 @@ final class NoteViewModel: Injectable, NoteViewModelType {
         self.outputs = self
     }
 
-    func setup(input: Input) {
-        return
+    func setup(input: NoteViewModelInput) {
+
+        input.slider
+            .subscribe(onNext: { [weak self] slider in
+                guard let self = self else { return }
+                self.weightRelay.accept(slider)
+            })
+            .disposed(by: disposeBag)
+
     }
 
 }
@@ -54,6 +63,11 @@ extension NoteViewModel: NoteViewModelOutput {
             .disposed(by: disposeBag)
 
         return dataRelay.asDriver()
+    }
+
+    var weightDriver: Driver<String> {
+        //四捨五入してStringに変換
+        return weightRelay.asDriver().map{round($0)}.map{"\($0.description) kg"}
     }
 
 }

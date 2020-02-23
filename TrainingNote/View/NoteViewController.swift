@@ -14,6 +14,10 @@ class NoteViewController: UIViewController, Injectable {
     typealias Dependency = NoteViewModel
 
     @IBOutlet weak var pickerView: UIPickerView!
+
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var slider: UISlider!
+
     @IBAction func moveToCalender(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -34,7 +38,31 @@ class NoteViewController: UIViewController, Injectable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+
+        print(String(describing: type(of: slider.rx.value)))
+
     }
+
+    func setup() {
+        let input = NoteViewModelInput(
+            slider: slider.rx.value
+        )
+
+        viewModel.setup(input: input)
+
+        viewModel.outputs?.exerciseDataDriver
+            .drive(pickerView.rx.itemTitles) { _, title in
+                return title
+        }
+        .disposed(by: disposeBag)
+
+        viewModel.outputs?.weightDriver
+            //            .map { $0.description }
+            .drive(weightLabel.rx.text)
+            .disposed(by: disposeBag)
+
+    }
+
 }
 
 extension NoteViewController {
@@ -46,23 +74,6 @@ extension NoteViewController {
     }
 }
 
-extension NoteViewController {
-    func setup() {
-        //        let input = Input(
-        //            swipeCell: tableView.rx.itemDeleted,
-        //ボタンをタッチされたことを伝えるストリームを流す
-        //ボタンをタッチされた時のデータを伝えるストリームを流す
-        //        )=
-        //        viewModel.setupViewModel(input: input)
-
-        viewModel.outputs?.exerciseDataDriver
-            .drive(pickerView.rx.itemTitles) { _, title in
-                return title
-        }
-        .disposed(by: disposeBag)
-
-    }
-}
 //以下　pickerの使用例
 //let number = 2
 //

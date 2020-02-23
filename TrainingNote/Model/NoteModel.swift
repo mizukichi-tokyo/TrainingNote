@@ -21,7 +21,7 @@ protocol NoteModelOutput {
 
 protocol NoteModelType {
     var outputs: NoteModelOutput? { get }
-    func setup(input: Input)
+    func setup(input: NoteModelInput)
 }
 
 final class NoteModel: Injectable, NoteModelType {
@@ -33,7 +33,7 @@ final class NoteModel: Injectable, NoteModelType {
         self.outputs = self
     }
 
-    func setup(input: Input) {
+    func setup(input: NoteModelInput) {
         return
     }
 

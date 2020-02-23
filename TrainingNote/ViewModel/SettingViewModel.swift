@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-struct Input {
+struct SettingViewModelInput {
     let swipeCell: ControlEvent<IndexPath>
     let addItemTextRelay: PublishRelay<String>
 }
@@ -20,7 +20,7 @@ protocol SettingViewModelOutput {
 
 protocol SettingViewModelType {
     var outputs: SettingViewModelOutput? { get }
-    func setup(input: Input)
+    func setup(input: SettingViewModelInput)
 }
 
 final class SettingViewModel: Injectable, SettingViewModelType {
@@ -35,7 +35,7 @@ final class SettingViewModel: Injectable, SettingViewModelType {
         self.outputs = self
     }
 
-    func setup(input: Input) {
+    func setup(input: SettingViewModelInput) {
         let modelInput = SettingModelInput(
             swipeCell: input.swipeCell,
             addItemTextRelay: input.addItemTextRelay

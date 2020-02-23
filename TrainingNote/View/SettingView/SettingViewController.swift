@@ -45,7 +45,7 @@ class SettingViewController: UIViewController, Injectable {
 
     func setup() {
 
-        let input = Input(
+        let input = SettingViewModelInput(
             swipeCell: tableView.rx.itemDeleted,
             addItemTextRelay: addItemTextRelay
         )
