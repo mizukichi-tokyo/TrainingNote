@@ -20,7 +20,7 @@ protocol SettingViewModelOutput {
 
 protocol SettingViewModelType {
     var outputs: SettingViewModelOutput? { get }
-    func setupViewModel(input: Input)
+    func setup(input: Input)
 }
 
 final class SettingViewModel: Injectable, SettingViewModelType {
@@ -35,12 +35,12 @@ final class SettingViewModel: Injectable, SettingViewModelType {
         self.outputs = self
     }
 
-    func setupViewModel(input: Input) {
+    func setup(input: Input) {
         let modelInput = SettingModelInput(
             swipeCell: input.swipeCell,
             addItemTextRelay: input.addItemTextRelay
         )
-        model.setupModel(input: modelInput)
+        model.setup(input: modelInput)
     }
 
 }

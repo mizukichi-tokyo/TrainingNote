@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 struct NoteViewModelInput {
     //    let swipeCell: ControlEvent<IndexPath>
@@ -14,12 +16,12 @@ struct NoteViewModelInput {
 }
 
 protocol NoteViewModelOutput {
-    //    var exerciseObservable: Observable<[String]?> {get}
+    var exerciseDataRelay: BehaviorRelay<[String]> { get }
 }
 
 protocol NoteViewModelType {
     var outputs: NoteViewModelOutput? { get }
-    func setupModel(input: NoteViewModelInput)
+    func setup(input: Input)
 }
 
 final class NoteViewModel: Injectable, NoteViewModelType {
@@ -27,21 +29,31 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     private var model: NoteModel
     var outputs: NoteViewModelOutput?
+    private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
         model = dependency
         self.outputs = self
     }
 
-    func setupModel(input: NoteViewModelInput) {
+    func setup(input: Input) {
         return
     }
 
 }
 
 extension NoteViewModel: NoteViewModelOutput {
-    //    var exerciseObservable: Observable<[String]?> {
-    //        return UserDefault.userDefault.rx
-    //            .observe(Array<String>.self, UserDefault.Key.exercise)
-    //    }
+
+    var exerciseDataRelay: BehaviorRelay<[String]> {
+        let dataRelay = BehaviorRelay<[String]>(value: [])
+        model.outputs?.exerciseObservable
+            .subscribe(onNext: { exercises in
+                guard let exercises = exercises else { return }
+                dataRelay.accept(exercises)
+            })
+            .disposed(by: disposeBag)
+
+        return dataRelay
+    }
+
 }

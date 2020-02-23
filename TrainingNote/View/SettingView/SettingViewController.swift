@@ -33,23 +33,23 @@ class SettingViewController: UIViewController, Injectable {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError(R.string.settingView.fatalErrorMessage())
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupTableView()
-        setupViewModel()
+        setup()
     }
 
-    func setupViewModel() {
+    func setup() {
 
         let input = Input(
             swipeCell: tableView.rx.itemDeleted,
             addItemTextRelay: addItemTextRelay
         )
-        viewModel.setupViewModel(input: input)
+        viewModel.setup(input: input)
 
         viewModel.outputs?.sectionDataDriver
             .drive(tableView.rx.items(dataSource: dataSource))

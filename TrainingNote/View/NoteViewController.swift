@@ -28,14 +28,13 @@ class NoteViewController: UIViewController, Injectable {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError(R.string.settingView.fatalErrorMessage())
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setup()
     }
-
 }
 
 extension NoteViewController {
@@ -47,15 +46,24 @@ extension NoteViewController {
     }
 }
 
+extension NoteViewController {
+    func setup() {
+        //        let input = Input(
+        //            swipeCell: tableView.rx.itemDeleted,
+        //ボタンをタッチされたことを伝えるストリームを流す
+        //ボタンをタッチされた時のデータを伝えるストリームを流す
+        //        )=
+        //        viewModel.setupViewModel(input: input)
+
+        viewModel.outputs?.exerciseDataRelay
+            .bind(to: pickerView.rx.itemTitles) { _, title in
+                return title
+        }
+        .disposed(by: disposeBag)
+
+    }
+}
 //以下　pickerの使用例
-// strsをstrPickerViewのデータ(タイトル)としてバインド
-//let strs = ["abc", "def", "ghi"]
-//Observable.just(strs)
-//    .bind(to: pickerView.rx.itemTitles) { _, str in
-//        return str
-//}
-//.disposed(by: disposeBag)
-//
 //let number = 2
 //
 //Observable.just(number)

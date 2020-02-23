@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 struct NoteModelInput {
     //    let swipeCell: ControlEvent<IndexPath>
@@ -14,12 +16,12 @@ struct NoteModelInput {
 }
 
 protocol NoteModelOutput {
-    //    var exerciseObservable: Observable<[String]?> {get}
+    var exerciseObservable: Observable<[String]?> {get}
 }
 
 protocol NoteModelType {
     var outputs: NoteModelOutput? { get }
-    func setupModel(input: NoteModelInput)
+    func setup(input: Input)
 }
 
 final class NoteModel: Injectable, NoteModelType {
@@ -31,15 +33,15 @@ final class NoteModel: Injectable, NoteModelType {
         self.outputs = self
     }
 
-    func setupModel(input: NoteModelInput) {
+    func setup(input: Input) {
         return
     }
 
 }
 
 extension NoteModel: NoteModelOutput {
-    //    var exerciseObservable: Observable<[String]?> {
-    //        return UserDefault.userDefault.rx
-    //            .observe(Array<String>.self, UserDefault.Key.exercise)
-    //    }
+    var exerciseObservable: Observable<[String]?> {
+        return UserDefault.userDefault.rx
+            .observe(Array<String>.self, UserDefault.Key.exercise)
+    }
 }
