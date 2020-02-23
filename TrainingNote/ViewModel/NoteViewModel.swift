@@ -12,11 +12,13 @@ import RxCocoa
 
 struct NoteViewModelInput {
     let slider: ControlProperty<Float>
+    let stepper: ControlProperty<Double>
 }
 
 protocol NoteViewModelOutput {
     var exerciseDataDriver: Driver<[String]> { get }
     var weightDriver: Driver<String> { get }
+    var repsDriver: Driver<String> { get }
 }
 
 protocol NoteViewModelType {
@@ -31,6 +33,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
     var outputs: NoteViewModelOutput?
 
     private let weightRelay = BehaviorRelay<Float>(value: 100)
+    private let repsRelay = BehaviorRelay<Double>(value: 0)
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -47,8 +50,14 @@ final class NoteViewModel: Injectable, NoteViewModelType {
             })
             .disposed(by: disposeBag)
 
-    }
+        input.stepper
+            .subscribe(onNext: { [weak self] stepper in
+                guard let self = self else { return }
+                self.repsRelay.accept(stepper)
+            })
+            .disposed(by: disposeBag)
 
+    }
 }
 
 extension NoteViewModel: NoteViewModelOutput {
@@ -67,7 +76,11 @@ extension NoteViewModel: NoteViewModelOutput {
 
     var weightDriver: Driver<String> {
         //四捨五入してStringに変換
-        return weightRelay.asDriver().map{round($0)}.map{"\($0.description) kg"}
+        return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
+    }
+
+    var repsDriver: Driver<String> {
+        return repsRelay.asDriver().map {Int($0)}.map {"\($0.description) reps"}
     }
 
 }

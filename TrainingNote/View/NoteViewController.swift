@@ -17,6 +17,8 @@ class NoteViewController: UIViewController, Injectable {
 
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var repsLabel: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
 
     @IBAction func moveToCalender(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -39,13 +41,12 @@ class NoteViewController: UIViewController, Injectable {
         super.viewDidLoad()
         setup()
 
-        print(String(describing: type(of: slider.rx.value)))
-
     }
 
     func setup() {
         let input = NoteViewModelInput(
-            slider: slider.rx.value
+            slider: slider.rx.value,
+            stepper: stepper.rx.value
         )
 
         viewModel.setup(input: input)
@@ -57,8 +58,11 @@ class NoteViewController: UIViewController, Injectable {
         .disposed(by: disposeBag)
 
         viewModel.outputs?.weightDriver
-            //            .map { $0.description }
             .drive(weightLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs?.repsDriver
+            .drive(repsLabel.rx.text)
             .disposed(by: disposeBag)
 
     }
