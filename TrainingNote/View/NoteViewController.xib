@@ -13,6 +13,7 @@
                 <outlet property="repsLabel" destination="bmi-2K-96j" id="VpZ-bp-3i2"/>
                 <outlet property="slider" destination="kRW-Wi-yD6" id="Lsc-P0-Yah"/>
                 <outlet property="stepper" destination="7MG-iG-u0G" id="rIR-Uq-5sv"/>
+                <outlet property="timerLabel" destination="g1f-oE-zFL" id="uU0-CA-iC0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weightLabel" destination="S1T-yZ-ZzZ" id="jfJ-PS-LFd"/>
             </connections>

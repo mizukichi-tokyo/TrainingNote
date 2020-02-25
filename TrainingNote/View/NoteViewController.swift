@@ -15,6 +15,7 @@ class NoteViewController: UIViewController, Injectable {
 
     @IBOutlet weak var pickerView: UIPickerView!
 
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var repsLabel: UILabel!
@@ -40,7 +41,6 @@ class NoteViewController: UIViewController, Injectable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-
     }
 
     func setup() {
@@ -50,6 +50,15 @@ class NoteViewController: UIViewController, Injectable {
         )
 
         viewModel.setup(input: input)
+        bindOutputs()
+
+    }
+
+    func bindOutputs() {
+
+        viewModel.outputs?.secondsDriver
+            .drive(timerLabel.rx.text)
+            .disposed(by: disposeBag)
 
         viewModel.outputs?.exerciseDataDriver
             .drive(pickerView.rx.itemTitles) { _, title in

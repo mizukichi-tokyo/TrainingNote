@@ -19,6 +19,7 @@ protocol NoteViewModelOutput {
     var exerciseDataDriver: Driver<[String]> { get }
     var weightDriver: Driver<String> { get }
     var repsDriver: Driver<String> { get }
+    var secondsDriver: Driver<String> { get }
 }
 
 protocol NoteViewModelType {
@@ -34,6 +35,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     private let weightRelay = BehaviorRelay<Float>(value: 100)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
+
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -83,4 +85,10 @@ extension NoteViewModel: NoteViewModelOutput {
         return repsRelay.asDriver().map {Int($0)}.map {"\($0.description) reps"}
     }
 
+    var secondsDriver: Driver<String> {
+        return Observable<Int>
+            .interval(RxTimeInterval.milliseconds(10), scheduler: MainScheduler.instance)
+            .asDriver(onErrorJustReturn: 0)
+            .map { String(format: "Interval: %02i:%02i:%02i", $0 / 6000, $0 / 100 % 60, $0 % 100) }
+    }
 }

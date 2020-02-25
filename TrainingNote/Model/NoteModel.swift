@@ -25,8 +25,8 @@ protocol NoteModelType {
 }
 
 final class NoteModel: Injectable, NoteModelType {
-
     struct Dependency {}
+
     var outputs: NoteModelOutput?
 
     init(with dependency: Dependency) {
@@ -36,7 +36,6 @@ final class NoteModel: Injectable, NoteModelType {
     func setup(input: NoteModelInput) {
         return
     }
-
 }
 
 extension NoteModel: NoteModelOutput {
