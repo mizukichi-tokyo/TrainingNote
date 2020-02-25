@@ -35,18 +35,18 @@ extension CalenderViewController {
         // DateFormatter を使用して書式とローカルを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
         todayDate = dateFormatter.string(from: date)
-
         return todayDate
     }
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: date)
-        let month = tmpDate.component(.month, from: date)
-        let day = tmpDate.component(.day, from: date)
+        let dateFormatter = DateFormatter()
+        var dateString = String()
+        // DateFormatter を使用して書式とローカルを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
+        dateString = dateFormatter.string(from: date)
 
-        dateLabel.text = "\(month)/\(day)/\(year)"
+        dateLabel.text = dateString
         selectedDate = date
     }
 
@@ -61,6 +61,7 @@ extension CalenderViewController {
 
     private func calenderToNote() {
         let viewContoller = NoteViewController.makeVC()
+        viewContoller.selectedDate = selectedDate
         viewContoller.modalPresentationStyle = .fullScreen
         present(viewContoller, animated: true, completion: nil)
     }

@@ -13,6 +13,7 @@ import RxCocoa
 struct NoteViewModelInput {
     let slider: ControlProperty<Float>
     let stepper: ControlProperty<Double>
+    let selectedDate: Date?
 }
 
 protocol NoteViewModelOutput {
@@ -20,6 +21,7 @@ protocol NoteViewModelOutput {
     var weightDriver: Driver<String> { get }
     var repsDriver: Driver<String> { get }
     var secondsDriver: Driver<String> { get }
+    var dateDriver: Driver<String> { get }
 }
 
 protocol NoteViewModelType {
@@ -35,6 +37,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     private let weightRelay = BehaviorRelay<Float>(value: 100)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
+    private var selectedDate: Date?
 
     private let disposeBag = DisposeBag()
 
@@ -59,6 +62,8 @@ final class NoteViewModel: Injectable, NoteViewModelType {
             })
             .disposed(by: disposeBag)
 
+        selectedDate = input.selectedDate
+
     }
 }
 
@@ -77,7 +82,6 @@ extension NoteViewModel: NoteViewModelOutput {
     }
 
     var weightDriver: Driver<String> {
-        //四捨五入してStringに変換
         return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
     }
 
@@ -91,4 +95,18 @@ extension NoteViewModel: NoteViewModelOutput {
             .asDriver(onErrorJustReturn: 0)
             .map { String(format: "Interval: %02i:%02i:%02i", $0 / 6000, $0 / 100 % 60, $0 % 100) }
     }
+
+    var dateDriver: Driver<String> {
+        let dataRelay = BehaviorRelay<String>(value: "")
+
+        let dateFormatter = DateFormatter()
+        var dateString = String()
+        // DateFormatter を使用して書式とローカルを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
+        dateString = dateFormatter.string(from: selectedDate!)
+
+        dataRelay.accept(dateString)
+        return dataRelay.asDriver()
+    }
+
 }
