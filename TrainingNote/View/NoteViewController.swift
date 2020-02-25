@@ -15,6 +15,7 @@ class NoteViewController: UIViewController, Injectable {
 
     @IBOutlet weak var pickerView: UIPickerView!
 
+    @IBOutlet weak var barItem: UINavigationItem!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
@@ -46,7 +47,8 @@ class NoteViewController: UIViewController, Injectable {
     func setup() {
         let input = NoteViewModelInput(
             slider: slider.rx.value,
-            stepper: stepper.rx.value
+            stepper: stepper.rx.value,
+            selectedDate: selectedDate
         )
 
         viewModel.setup(input: input)
@@ -72,6 +74,10 @@ class NoteViewController: UIViewController, Injectable {
 
         viewModel.outputs?.repsDriver
             .drive(repsLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs?.dateDriver
+            .drive(barItem.rx.title)
             .disposed(by: disposeBag)
 
     }

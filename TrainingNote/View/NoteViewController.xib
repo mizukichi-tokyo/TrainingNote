@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
+                <outlet property="barItem" destination="17n-t6-Cdq" id="WAn-Fv-EgT"/>
                 <outlet property="pickerView" destination="zON-MD-eMb" id="Oiv-Jd-Kmq"/>
                 <outlet property="repsLabel" destination="bmi-2K-96j" id="VpZ-bp-3i2"/>
                 <outlet property="slider" destination="kRW-Wi-yD6" id="Lsc-P0-Yah"/>
@@ -26,7 +27,7 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txT-UX-3Oy">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
-                        <navigationItem title="Note" id="17n-t6-Cdq">
+                        <navigationItem id="17n-t6-Cdq">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="9Wl-io-WCQ">
                                 <connections>
                                     <action selector="moveToCalender:" destination="-1" id="NJx-hg-AES"/>
