@@ -12,11 +12,13 @@ import RxCocoa
 
 struct NoteModelInput {
     let selectedIndex: BehaviorRelay<Int>
+    let weightRelay: BehaviorRelay<Float>
 }
 
 protocol NoteModelOutput {
     var exerciseObservable: Observable<[String]?> {get}
     var selectedIndexObservable: Observable<Int?> {get}
+    var selectedWeightObservable: Observable<Float?> {get}
 }
 
 protocol NoteModelType {
@@ -40,6 +42,12 @@ final class NoteModel: Injectable, NoteModelType {
             UserDefault.selectedIndex = selectedIndex
         })
             .disposed(by: disposeBag)
+
+        input.weightRelay.subscribe(onNext: { weight in
+            UserDefault.weight = weight
+        })
+            .disposed(by: disposeBag)
+
     }
 }
 
@@ -52,6 +60,11 @@ extension NoteModel: NoteModelOutput {
     var selectedIndexObservable: Observable<Int?> {
         return UserDefault.userDefault.rx
             .observe(Int.self, UserDefault.Key.selectedIndex)
+    }
+
+    var selectedWeightObservable: Observable<Float?> {
+        return UserDefault.userDefault.rx
+            .observe(Float.self, UserDefault.Key.weight)
     }
 
 }

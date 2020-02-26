@@ -89,7 +89,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="kRW-Wi-yD6">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="kRW-Wi-yD6">
                     <rect key="frame" x="18" y="386.5" width="378" height="31"/>
                     <color key="thumbTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                 </slider>

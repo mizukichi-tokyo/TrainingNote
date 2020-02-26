@@ -46,7 +46,6 @@ class NoteViewController: UIViewController, Injectable {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-
     }
 
     func setup() {
@@ -77,6 +76,10 @@ class NoteViewController: UIViewController, Injectable {
         .disposed(by: disposeBag)
 
         viewModel.outputs?.weightDriver
+            .drive(slider.rx.value)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs?.weightStringDriver
             .drive(weightLabel.rx.text)
             .disposed(by: disposeBag)
 

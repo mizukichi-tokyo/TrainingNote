@@ -21,7 +21,8 @@ struct NoteViewModelInput {
 
 protocol NoteViewModelOutput {
     var exerciseDataDriver: Driver<[String]> { get }
-    var weightDriver: Driver<String> { get }
+    var weightDriver: Driver<Float> { get }
+    var weightStringDriver: Driver<String> { get }
     var repsDriver: Driver<String> { get }
     var secondsDriver: Driver<String> { get }
     var dateDriver: Driver<String> { get }
@@ -39,7 +40,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
     private var model: NoteModel
     var outputs: NoteViewModelOutput?
 
-    private let weightRelay = BehaviorRelay<Float>(value: 100)
+    private let weightRelay = BehaviorRelay<Float>(value: UserDefault.weight)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
     private var selectedDate: Date?
     private var pickerTitle =  BehaviorRelay<String>(value: "")
@@ -53,11 +54,6 @@ final class NoteViewModel: Injectable, NoteViewModelType {
     }
 
     func setup(input: NoteViewModelInput) {
-
-        let modelInput = NoteModelInput(
-            selectedIndex: selectedIndex
-        )
-        model.setup(input: modelInput)
 
         input.slider
             .subscribe(onNext: { [weak self] slider in
@@ -89,19 +85,26 @@ final class NoteViewModel: Injectable, NoteViewModelType {
             })
             .disposed(by: disposeBag)
 
-        input.addButton
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                print("tap addButton")
+//        input.addButton
+//            .subscribe(onNext: { [weak self] _ in
+//                guard let self = self else { return }
+//                print("tap addButton")
                 //                print(self.selectedDate!)
-                print(self.pickerTitle.value)
-                print(self.selectedIndex.value)
+                //                print(self.pickerTitle.value)
+                //                print(self.selectedIndex.value)
                 //                print(self.weightRelay.value)
                 //                print(self.repsRelay.value)
-            })
-            .disposed(by: disposeBag)
+//            })
+//            .disposed(by: disposeBag)
 
         setDefaultPicker()
+        setDefaultSlider()
+
+        let modelInput = NoteModelInput(
+            selectedIndex: selectedIndex,
+            weightRelay: weightRelay
+        )
+        model.setup(input: modelInput)
 
     }
 
@@ -160,6 +163,15 @@ extension NoteViewModel {
         return returnIndex
     }
 
+    private func setDefaultSlider() {
+        model.outputs?.selectedWeightObservable
+            .subscribe(onNext: { [weak self] weight in
+                guard let self = self, let weight = weight else { return }
+                self.weightRelay.accept(weight)
+            })
+            .disposed(by: disposeBag)
+    }
+
 }
 
 extension NoteViewModel: NoteViewModelOutput {
@@ -176,7 +188,11 @@ extension NoteViewModel: NoteViewModelOutput {
         return dataRelay.asDriver()
     }
 
-    var weightDriver: Driver<String> {
+    var weightDriver: Driver<Float> {
+        return weightRelay.asDriver()
+    }
+
+    var weightStringDriver: Driver<String> {
         return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
     }
 
@@ -206,7 +222,6 @@ extension NoteViewModel: NoteViewModelOutput {
 
     var selectedIndexDriver: Driver<Int> {
         return selectedIndex.asDriver()
-
     }
 
 }
