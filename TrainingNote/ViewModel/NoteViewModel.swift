@@ -55,6 +55,23 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     func setup(input: NoteViewModelInput) {
 
+        subscribeInputs(input: input)
+
+        setDefaultPicker()
+        setDefaultSlider()
+
+        let modelInput = NoteModelInput(
+            selectedIndex: selectedIndex,
+            weightRelay: weightRelay
+        )
+        model.setup(input: modelInput)
+
+    }
+
+}
+extension NoteViewModel {
+
+    private func subscribeInputs(input: NoteViewModelInput) {
         input.slider
             .subscribe(onNext: { [weak self] slider in
                 guard let self = self else { return }
@@ -84,27 +101,19 @@ final class NoteViewModel: Injectable, NoteViewModelType {
                 self.selectedIndex.accept(selected.row)
             })
             .disposed(by: disposeBag)
+        
+        //        input.addButton
+        //            .subscribe(onNext: { [weak self] _ in
+        //                guard let self = self else { return }
+        //                print("tap addButton")
+        //                print(self.selectedDate!)
+        //                print(self.pickerTitle.value)
+        //                print(self.selectedIndex.value)
+        //                print(self.weightRelay.value)
+        //                print(self.repsRelay.value)
+        //            })
+        //            .disposed(by: disposeBag)
 
-//        input.addButton
-//            .subscribe(onNext: { [weak self] _ in
-//                guard let self = self else { return }
-//                print("tap addButton")
-                //                print(self.selectedDate!)
-                //                print(self.pickerTitle.value)
-                //                print(self.selectedIndex.value)
-                //                print(self.weightRelay.value)
-                //                print(self.repsRelay.value)
-//            })
-//            .disposed(by: disposeBag)
-
-        setDefaultPicker()
-        setDefaultSlider()
-
-        let modelInput = NoteModelInput(
-            selectedIndex: selectedIndex,
-            weightRelay: weightRelay
-        )
-        model.setup(input: modelInput)
 
     }
 
