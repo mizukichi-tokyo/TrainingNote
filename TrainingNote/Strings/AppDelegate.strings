@@ -2,3 +2,6 @@
 "defaultsExercise2" = "Squat";
 "defaultsExercise3" = "Dead lift";
 "exercise" = "exercise";
+"selectedIndex" = "selectedIndex";
+"weight" = "weight";
+"reps" = "reps";

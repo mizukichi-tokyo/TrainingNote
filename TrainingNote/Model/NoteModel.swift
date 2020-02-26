@@ -13,10 +13,12 @@ import RxCocoa
 struct NoteModelInput {
     //    let swipeCell: ControlEvent<IndexPath>
     //    let addItemTextRelay: PublishRelay<String>
+    let selectedIndex: BehaviorRelay<Int>
 }
 
 protocol NoteModelOutput {
     var exerciseObservable: Observable<[String]?> {get}
+    var selectedIndexObservable: Observable<Int?> {get}
 }
 
 protocol NoteModelType {
@@ -27,6 +29,7 @@ protocol NoteModelType {
 final class NoteModel: Injectable, NoteModelType {
     struct Dependency {}
 
+    private let disposeBag = DisposeBag()
     var outputs: NoteModelOutput?
 
     init(with dependency: Dependency) {
@@ -34,7 +37,15 @@ final class NoteModel: Injectable, NoteModelType {
     }
 
     func setup(input: NoteModelInput) {
-        return
+
+        input.selectedIndex.subscribe(onNext: { selectedIndex in
+            print("input.selectedIndex.subscribe")
+            print(selectedIndex)
+            UserDefault.selectedIndex = selectedIndex
+            print("UserDefault.selectedIndex")
+            print(UserDefault.selectedIndex)
+        })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -43,4 +54,10 @@ extension NoteModel: NoteModelOutput {
         return UserDefault.userDefault.rx
             .observe(Array<String>.self, UserDefault.Key.exercise)
     }
+
+    var selectedIndexObservable: Observable<Int?> {
+        return UserDefault.userDefault.rx
+            .observe(Int.self, UserDefault.Key.selectedIndex)
+    }
+
 }
