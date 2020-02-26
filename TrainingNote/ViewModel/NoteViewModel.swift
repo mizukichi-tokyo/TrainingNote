@@ -69,6 +69,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
     }
 
 }
+
 extension NoteViewModel {
 
     private func subscribeInputs(input: NoteViewModelInput) {
@@ -113,7 +114,6 @@ extension NoteViewModel {
         //                print(self.repsRelay.value)
         //            })
         //            .disposed(by: disposeBag)
-
 
     }
 
