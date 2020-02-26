@@ -44,7 +44,6 @@ extension AppDelegate{
         UserDefaults.standard.register(defaults: [R.string.appDelegate.exercise(): defaultsExercise])
         UserDefaults.standard.register(defaults: [R.string.appDelegate.selectedIndex(): 0])
         UserDefaults.standard.register(defaults: [R.string.appDelegate.weight(): 100])
-        UserDefaults.standard.register(defaults: [R.string.appDelegate.reps(): 0])
     }
     
 }

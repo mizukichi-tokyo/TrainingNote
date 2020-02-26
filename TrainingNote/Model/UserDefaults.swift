@@ -17,7 +17,6 @@ struct UserDefault {
         static let exercise = R.string.userDefaults.exercise()
         static let selectedIndex = R.string.userDefaults.selectedIndex()
         static let weight = R.string.userDefaults.weight()
-        static let reps = R.string.userDefaults.reps()
     }
 
 }
@@ -36,11 +35,6 @@ extension UserDefault {
     static var weight: Float {
         get { return userDefault.object(forKey: Key.weight) as? Float ?? 100 }
         set { userDefault.set(newValue, forKey: Key.weight) }
-    }
-
-    static var reps: Double {
-        get { return userDefault.object(forKey: Key.reps) as? Double ?? 0 }
-        set { userDefault.set(newValue, forKey: Key.reps) }
     }
 
 }

@@ -11,8 +11,6 @@ import RxSwift
 import RxCocoa
 
 struct NoteModelInput {
-    //    let swipeCell: ControlEvent<IndexPath>
-    //    let addItemTextRelay: PublishRelay<String>
     let selectedIndex: BehaviorRelay<Int>
 }
 
@@ -39,11 +37,7 @@ final class NoteModel: Injectable, NoteModelType {
     func setup(input: NoteModelInput) {
 
         input.selectedIndex.subscribe(onNext: { selectedIndex in
-            print("input.selectedIndex.subscribe")
-            print(selectedIndex)
             UserDefault.selectedIndex = selectedIndex
-            print("UserDefault.selectedIndex")
-            print(UserDefault.selectedIndex)
         })
             .disposed(by: disposeBag)
     }
