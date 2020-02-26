@@ -14,13 +14,17 @@ class NoteViewController: UIViewController, Injectable {
     typealias Dependency = NoteViewModel
 
     @IBOutlet weak var pickerView: UIPickerView!
-
     @IBOutlet weak var barItem: UINavigationItem!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var repsLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var addButton: UIButton!
+
+    @IBAction func addTouched(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     @IBAction func moveToCalender(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -48,7 +52,10 @@ class NoteViewController: UIViewController, Injectable {
         let input = NoteViewModelInput(
             slider: slider.rx.value,
             stepper: stepper.rx.value,
-            selectedDate: selectedDate
+            selectedDate: selectedDate,
+            addButton: addButton.rx.tap,
+            pickerTitle: pickerView.rx.modelSelected(String.self),
+            pickerIndex: pickerView.rx.itemSelected
         )
 
         viewModel.setup(input: input)
@@ -69,6 +76,10 @@ class NoteViewController: UIViewController, Injectable {
         .disposed(by: disposeBag)
 
         viewModel.outputs?.weightDriver
+            .drive(slider.rx.value)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs?.weightStringDriver
             .drive(weightLabel.rx.text)
             .disposed(by: disposeBag)
 
@@ -78,6 +89,12 @@ class NoteViewController: UIViewController, Injectable {
 
         viewModel.outputs?.dateDriver
             .drive(barItem.rx.title)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs?.selectedIndexDriver
+            .drive(onNext: { newValue in
+                self.pickerView.selectRow(newValue, inComponent: 0, animated: true)
+            })
             .disposed(by: disposeBag)
 
     }
@@ -92,14 +109,3 @@ extension NoteViewController {
         return viewControler
     }
 }
-
-//以下　pickerの使用例
-//let number = 2
-//
-//Observable.just(number)
-//    .subscribe(onNext: { newValue in
-//        // 値が設定されたときの処理
-//        self.pickerView.selectRow(newValue, inComponent: 0, animated: true)
-//    })
-//    .disposed(by: disposeBag)
-//

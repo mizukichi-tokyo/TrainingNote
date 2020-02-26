@@ -11,12 +11,14 @@ import RxSwift
 import RxCocoa
 
 struct NoteModelInput {
-    //    let swipeCell: ControlEvent<IndexPath>
-    //    let addItemTextRelay: PublishRelay<String>
+    let selectedIndex: BehaviorRelay<Int>
+    let weightRelay: BehaviorRelay<Float>
 }
 
 protocol NoteModelOutput {
     var exerciseObservable: Observable<[String]?> {get}
+    var selectedIndexObservable: Observable<Int?> {get}
+    var selectedWeightObservable: Observable<Float?> {get}
 }
 
 protocol NoteModelType {
@@ -27,6 +29,7 @@ protocol NoteModelType {
 final class NoteModel: Injectable, NoteModelType {
     struct Dependency {}
 
+    private let disposeBag = DisposeBag()
     var outputs: NoteModelOutput?
 
     init(with dependency: Dependency) {
@@ -34,7 +37,17 @@ final class NoteModel: Injectable, NoteModelType {
     }
 
     func setup(input: NoteModelInput) {
-        return
+
+        input.selectedIndex.subscribe(onNext: { selectedIndex in
+            UserDefault.selectedIndex = selectedIndex
+        })
+            .disposed(by: disposeBag)
+
+        input.weightRelay.subscribe(onNext: { weight in
+            UserDefault.weight = weight
+        })
+            .disposed(by: disposeBag)
+
     }
 }
 
@@ -43,4 +56,15 @@ extension NoteModel: NoteModelOutput {
         return UserDefault.userDefault.rx
             .observe(Array<String>.self, UserDefault.Key.exercise)
     }
+
+    var selectedIndexObservable: Observable<Int?> {
+        return UserDefault.userDefault.rx
+            .observe(Int.self, UserDefault.Key.selectedIndex)
+    }
+
+    var selectedWeightObservable: Observable<Float?> {
+        return UserDefault.userDefault.rx
+            .observe(Float.self, UserDefault.Key.weight)
+    }
+
 }

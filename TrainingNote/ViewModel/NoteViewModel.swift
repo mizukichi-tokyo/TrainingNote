@@ -14,14 +14,19 @@ struct NoteViewModelInput {
     let slider: ControlProperty<Float>
     let stepper: ControlProperty<Double>
     let selectedDate: Date?
+    let addButton: ControlEvent<Void>
+    let pickerTitle: ControlEvent<[String]>
+    let pickerIndex: ControlEvent<(row: Int, component: Int)>
 }
 
 protocol NoteViewModelOutput {
     var exerciseDataDriver: Driver<[String]> { get }
-    var weightDriver: Driver<String> { get }
+    var weightDriver: Driver<Float> { get }
+    var weightStringDriver: Driver<String> { get }
     var repsDriver: Driver<String> { get }
     var secondsDriver: Driver<String> { get }
     var dateDriver: Driver<String> { get }
+    var selectedIndexDriver: Driver<Int> { get }
 }
 
 protocol NoteViewModelType {
@@ -35,9 +40,11 @@ final class NoteViewModel: Injectable, NoteViewModelType {
     private var model: NoteModel
     var outputs: NoteViewModelOutput?
 
-    private let weightRelay = BehaviorRelay<Float>(value: 100)
+    private let weightRelay = BehaviorRelay<Float>(value: UserDefault.weight)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
     private var selectedDate: Date?
+    private var pickerTitle =  BehaviorRelay<String>(value: "")
+    private var selectedIndex = BehaviorRelay<Int>(value: UserDefault.selectedIndex)
 
     private let disposeBag = DisposeBag()
 
@@ -48,6 +55,24 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     func setup(input: NoteViewModelInput) {
 
+        subscribeInputs(input: input)
+
+        setDefaultPicker()
+        setDefaultSlider()
+
+        let modelInput = NoteModelInput(
+            selectedIndex: selectedIndex,
+            weightRelay: weightRelay
+        )
+        model.setup(input: modelInput)
+
+    }
+
+}
+
+extension NoteViewModel {
+
+    private func subscribeInputs(input: NoteViewModelInput) {
         input.slider
             .subscribe(onNext: { [weak self] slider in
                 guard let self = self else { return }
@@ -64,7 +89,98 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
         selectedDate = input.selectedDate
 
+        input.pickerTitle
+            .subscribe(onNext: { [weak self] pickertitle in
+                guard let self = self else { return }
+                self.pickerTitle.accept(pickertitle[0])
+            })
+            .disposed(by: disposeBag)
+
+        input.pickerIndex
+            .subscribe(onNext: { [weak self] selected in
+                guard let self = self else { return }
+                self.selectedIndex.accept(selected.row)
+            })
+            .disposed(by: disposeBag)
+        
+        //        input.addButton
+        //            .subscribe(onNext: { [weak self] _ in
+        //                guard let self = self else { return }
+        //                print("tap addButton")
+        //                print(self.selectedDate!)
+        //                print(self.pickerTitle.value)
+        //                print(self.selectedIndex.value)
+        //                print(self.weightRelay.value)
+        //                print(self.repsRelay.value)
+        //            })
+        //            .disposed(by: disposeBag)
+
     }
+
+}
+
+extension NoteViewModel {
+
+    private func setDefaultPicker() {
+        setDefaultSelectedIndex()
+        setDefaultPickerTitle()
+    }
+
+    private func setDefaultPickerTitle() {
+        setDefaultSelectedIndex()
+
+        model.outputs?.exerciseObservable
+            .subscribe(onNext: { [weak self] exercises in
+                guard let self = self, let exercises = exercises, exercises != [] else { return }
+                let index = self.compareDefaultExersiceCount(index: self.selectedIndex.value)
+                self.pickerTitle.accept(exercises[index])
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func setDefaultSelectedIndex() {
+        model.outputs?.selectedIndexObservable
+            .subscribe(onNext: { [weak self] index in
+                guard let self = self, var index = index else { return }
+                index = self.compareDefaultExersiceCount(index: index)
+                self.selectedIndex.accept(index)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func defaultExersiceCount() -> Int {
+        var exersiceCount: Int = 0
+        model.outputs?.exerciseObservable
+            .subscribe(onNext: { exercises in
+                guard let exercises = exercises else { return }
+                exersiceCount = exercises.count
+            })
+            .disposed(by: disposeBag)
+        return exersiceCount
+    }
+
+    private func compareDefaultExersiceCount(index: Int) -> Int {
+        var returnIndex: Int = 0
+        model.outputs?.exerciseObservable
+            .subscribe(onNext: { exercises in
+                guard let exercises = exercises else { return }
+                if index < exercises.count {
+                    returnIndex = index
+                }
+            })
+            .disposed(by: disposeBag)
+        return returnIndex
+    }
+
+    private func setDefaultSlider() {
+        model.outputs?.selectedWeightObservable
+            .subscribe(onNext: { [weak self] weight in
+                guard let self = self, let weight = weight else { return }
+                self.weightRelay.accept(weight)
+            })
+            .disposed(by: disposeBag)
+    }
+
 }
 
 extension NoteViewModel: NoteViewModelOutput {
@@ -81,7 +197,11 @@ extension NoteViewModel: NoteViewModelOutput {
         return dataRelay.asDriver()
     }
 
-    var weightDriver: Driver<String> {
+    var weightDriver: Driver<Float> {
+        return weightRelay.asDriver()
+    }
+
+    var weightStringDriver: Driver<String> {
         return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
     }
 
@@ -107,6 +227,10 @@ extension NoteViewModel: NoteViewModelOutput {
 
         dataRelay.accept(dateString)
         return dataRelay.asDriver()
+    }
+
+    var selectedIndexDriver: Driver<Int> {
+        return selectedIndex.asDriver()
     }
 
 }

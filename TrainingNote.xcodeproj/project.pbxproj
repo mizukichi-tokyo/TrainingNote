@@ -30,10 +30,11 @@
 		D362297023F7EA3F005A610A /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296F23F7EA3F005A610A /* Injectable.swift */; };
 		D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297123F7EB4D005A610A /* SettingViewModel.swift */; };
 		D362297523F7FFB7005A610A /* SettingView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D362297423F7FFB7005A610A /* SettingView.strings */; };
-		D39AC62523FE4B5D00DCC185 /* SettingModel.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39AC62423FE4B5D00DCC185 /* SettingModel.strings */; };
+		D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */; };
 		D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */; };
 		D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */; };
 		D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF723FFF44E00E88993 /* NoteModel.swift */; };
+		D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5E3422405E45E00D73CEB /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,10 +88,11 @@
 		D362296F23F7EA3F005A610A /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		D362297123F7EB4D005A610A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D362297423F7FFB7005A610A /* SettingView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingView.strings; sourceTree = "<group>"; };
-		D39AC62423FE4B5D00DCC185 /* SettingModel.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingModel.strings; sourceTree = "<group>"; };
+		D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = UserDefaults.strings; sourceTree = "<group>"; };
 		D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppDelegate.strings; sourceTree = "<group>"; };
 		D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		D3BD4EF723FFF44E00E88993 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		D3E5E3422405E45E00D73CEB /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -282,7 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				D362297423F7FFB7005A610A /* SettingView.strings */,
-				D39AC62423FE4B5D00DCC185 /* SettingModel.strings */,
+				D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */,
 				D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */,
 			);
 			path = Strings;
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */,
+				D3E5E3422405E45E00D73CEB /* UserDefaults.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -412,7 +415,7 @@
 				D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */,
 				D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */,
 				D362297523F7FFB7005A610A /* SettingView.strings in Resources */,
-				D39AC62523FE4B5D00DCC185 /* SettingModel.strings in Resources */,
+				D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */,
 				D362296E23F7E9B9005A610A /* SettingTableViewCell.xib in Resources */,
 				D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */,
 				D34894BC23F7A54700E4D758 /* NoteViewController.xib in Resources */,
@@ -607,6 +610,7 @@
 				D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */,
 				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
+				D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */,
 				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
 				D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */,
 				D349B1E123FA9BF7005F7C56 /* SettingModel.swift in Sources */,

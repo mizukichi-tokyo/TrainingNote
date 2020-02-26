@@ -11,18 +11,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-struct UserDefault {
-    static let userDefault = UserDefaults.standard
-    struct Key { static let exercise = R.string.settingModel.exercise() }
-}
-
-extension UserDefault {
-    static var exercises: [String] {
-        get { return userDefault.object(forKey: Key.exercise) as? [String] ?? [] }
-        set { userDefault.set(newValue, forKey: Key.exercise) }
-    }
-}
-
 struct SettingModelInput {
     let swipeCell: ControlEvent<IndexPath>
     let addItemTextRelay: PublishRelay<String>

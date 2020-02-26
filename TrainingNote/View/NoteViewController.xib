@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="mTG-zF-JAj" id="etS-X3-KHO"/>
                 <outlet property="barItem" destination="17n-t6-Cdq" id="WAn-Fv-EgT"/>
                 <outlet property="pickerView" destination="zON-MD-eMb" id="Oiv-Jd-Kmq"/>
                 <outlet property="repsLabel" destination="bmi-2K-96j" id="VpZ-bp-3i2"/>
@@ -88,7 +89,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="kRW-Wi-yD6">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="kRW-Wi-yD6">
                     <rect key="frame" x="18" y="386.5" width="378" height="31"/>
                     <color key="thumbTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                 </slider>
@@ -102,6 +103,9 @@
                         <constraint firstAttribute="width" secondItem="mTG-zF-JAj" secondAttribute="height" multiplier="1:1" id="Un1-ce-Uk7"/>
                     </constraints>
                     <state key="normal" image="checkmark" catalog="system"/>
+                    <connections>
+                        <action selector="addTouched:" destination="-1" eventType="touchUpInside" id="sXO-XV-cz5"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
