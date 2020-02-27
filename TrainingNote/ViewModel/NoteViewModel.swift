@@ -62,7 +62,11 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
         let modelInput = NoteModelInput(
             selectedIndex: selectedIndex,
-            weightRelay: weightRelay
+            weightRelay: weightRelay,
+            repsRelay: repsRelay,
+            selectedDate: selectedDate,
+            pickerTitle: pickerTitle,
+            addButton: input.addButton
         )
         model.setup(input: modelInput)
 
@@ -102,18 +106,6 @@ extension NoteViewModel {
                 self.selectedIndex.accept(selected.row)
             })
             .disposed(by: disposeBag)
-        
-        //        input.addButton
-        //            .subscribe(onNext: { [weak self] _ in
-        //                guard let self = self else { return }
-        //                print("tap addButton")
-        //                print(self.selectedDate!)
-        //                print(self.pickerTitle.value)
-        //                print(self.selectedIndex.value)
-        //                print(self.weightRelay.value)
-        //                print(self.repsRelay.value)
-        //            })
-        //            .disposed(by: disposeBag)
 
     }
 
@@ -132,7 +124,7 @@ extension NoteViewModel {
         model.outputs?.exerciseObservable
             .subscribe(onNext: { [weak self] exercises in
                 guard let self = self, let exercises = exercises, exercises != [] else { return }
-                let index = self.compareDefaultExersiceCount(index: self.selectedIndex.value)
+                let index = self.compareDefaultExerciseCount(index: self.selectedIndex.value)
                 self.pickerTitle.accept(exercises[index])
             })
             .disposed(by: disposeBag)
@@ -142,24 +134,13 @@ extension NoteViewModel {
         model.outputs?.selectedIndexObservable
             .subscribe(onNext: { [weak self] index in
                 guard let self = self, var index = index else { return }
-                index = self.compareDefaultExersiceCount(index: index)
+                index = self.compareDefaultExerciseCount(index: index)
                 self.selectedIndex.accept(index)
             })
             .disposed(by: disposeBag)
     }
 
-    private func defaultExersiceCount() -> Int {
-        var exersiceCount: Int = 0
-        model.outputs?.exerciseObservable
-            .subscribe(onNext: { exercises in
-                guard let exercises = exercises else { return }
-                exersiceCount = exercises.count
-            })
-            .disposed(by: disposeBag)
-        return exersiceCount
-    }
-
-    private func compareDefaultExersiceCount(index: Int) -> Int {
+    private func compareDefaultExerciseCount(index: Int) -> Int {
         var returnIndex: Int = 0
         model.outputs?.exerciseObservable
             .subscribe(onNext: { exercises in

@@ -16,6 +16,7 @@ target 'TrainingNote' do
   pod 'RxDataSources'
   pod 'MaterialComponents/Buttons'
   pod 'Alertift'
+  pod 'RxRealm'
 
   target 'TrainingNoteTests' do
     inherit! :search_paths
