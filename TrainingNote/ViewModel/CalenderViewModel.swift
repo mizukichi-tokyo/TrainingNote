@@ -17,7 +17,7 @@ struct CalenderViewModelInput {
 }
 
 protocol CalenderViewModelOutput {
-    //    var exerciseObservable: Observable<[String]?> {get}
+    var dateDriver: Driver<String> {get}
 }
 
 protocol CalenderViewModelType {
@@ -42,8 +42,19 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 }
 
 extension CalenderViewModel: CalenderViewModelOutput {
-    //    var exerciseObservable: Observable<[String]?> {
-    //        return UserDefault.userDefault.rx
-    //            .observe(Array<String>.self, UserDefault.Key.exercise)
-    //    }
+
+    var dateDriver: Driver<String> {
+        let dataRelay = BehaviorRelay<String>(value: "")
+
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        var dateString = String()
+        // DateFormatter を使用して書式とローカルを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
+        dateString = dateFormatter.string(from: date)
+
+        dataRelay.accept(dateString)
+        return dataRelay.asDriver()
+    }
+
 }

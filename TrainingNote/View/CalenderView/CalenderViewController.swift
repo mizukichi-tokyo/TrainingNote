@@ -8,11 +8,19 @@
 
 import UIKit
 import FSCalendar
+import RxSwift
+import RxCocoa
 
 class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, Injectable {
     typealias Dependency = CalenderViewModel
-
     private let viewModel: CalenderViewModel
+
+    @IBAction func moveToSetting(_ sender: Any) {
+        calenderToSetting()
+    }
+    @IBAction func moveToNote(_ sender: Any) {
+        calenderToNote()
+    }
 
     required init(with dependency: Dependency) {
         viewModel = dependency
@@ -24,33 +32,21 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     }
 
     @IBOutlet weak var dateLabel: UILabel!
-    @IBAction func moveToSetting(_ sender: Any) {
-        calenderToSetting()
-    }
-    @IBAction func moveToNote(_ sender: Any) {
-        calenderToNote()
-    }
+    private let disposeBag = DisposeBag()
 
-    var selectedDate = Date()
+    private var selectedDate = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateLabel.text = todayGet()
+
+        viewModel.outputs?.dateDriver
+            .drive(dateLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 
 }
 
 extension CalenderViewController {
-
-    func todayGet() -> String {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        var todayDate = String()
-        // DateFormatter を使用して書式とローカルを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
-        todayDate = dateFormatter.string(from: date)
-        return todayDate
-    }
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
