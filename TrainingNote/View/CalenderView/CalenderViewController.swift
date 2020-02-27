@@ -9,7 +9,20 @@
 import UIKit
 import FSCalendar
 
-class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
+class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, Injectable {
+    typealias Dependency = CalenderViewModel
+
+    private let viewModel: CalenderViewModel
+
+    required init(with dependency: Dependency) {
+        viewModel = dependency
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     @IBOutlet weak var dateLabel: UILabel!
     @IBAction func moveToSetting(_ sender: Any) {
         calenderToSetting()
@@ -28,6 +41,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 }
 
 extension CalenderViewController {
+
     func todayGet() -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -64,5 +78,13 @@ extension CalenderViewController {
         viewContoller.selectedDate = selectedDate
         viewContoller.modalPresentationStyle = .fullScreen
         present(viewContoller, animated: true, completion: nil)
+    }
+}
+
+extension CalenderViewController {
+    static func makeVC () -> CalenderViewController {
+        let viewModel = CalenderViewModel(with: CalenderViewModel.Dependency.init())
+        let viewControler = CalenderViewController(with: viewModel)
+        return viewControler
     }
 }

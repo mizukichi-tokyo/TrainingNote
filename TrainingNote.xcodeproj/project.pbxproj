@@ -38,6 +38,7 @@
 		D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5E3422405E45E00D73CEB /* UserDefaults.swift */; };
 		D3EDDA5F2408569200C618A5 /* CalenerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */; };
 		D3EDDA602408569200C618A5 /* CalenerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */; };
+		D3EDDA63240858C600C618A5 /* CalenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		D3E5E3422405E45E00D73CEB /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenerTableViewCell.swift; sourceTree = "<group>"; };
 		D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenerTableViewCell.xib; sourceTree = "<group>"; };
+		D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewModel.swift; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +236,7 @@
 		D362296523F7DC3D005A610A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */,
 				D362297123F7EB4D005A610A /* SettingViewModel.swift */,
 				D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */,
 			);
@@ -253,9 +256,9 @@
 		D362296723F7DC73005A610A /* CalenderView */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDDA61240856A800C618A5 /* Cell */,
 				D34894B123F79B4F00E4D758 /* CalenderViewController.swift */,
 				D34894B223F79B4F00E4D758 /* CalenderViewController.xib */,
+				D3EDDA61240856A800C618A5 /* Cell */,
 			);
 			path = CalenderView;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */,
 				D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */,
 				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,
+				D3EDDA63240858C600C618A5 /* CalenderViewModel.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
 				D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */,
 				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
