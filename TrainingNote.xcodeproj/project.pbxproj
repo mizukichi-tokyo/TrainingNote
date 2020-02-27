@@ -36,6 +36,8 @@
 		D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */; };
 		D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF723FFF44E00E88993 /* NoteModel.swift */; };
 		D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5E3422405E45E00D73CEB /* UserDefaults.swift */; };
+		D3EDDA5F2408569200C618A5 /* CalenerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */; };
+		D3EDDA602408569200C618A5 /* CalenerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		D3BD4EF723FFF44E00E88993 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		D3E5E3422405E45E00D73CEB /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenerTableViewCell.swift; sourceTree = "<group>"; };
+		D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenerTableViewCell.xib; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +253,7 @@
 		D362296723F7DC73005A610A /* CalenderView */ = {
 			isa = PBXGroup;
 			children = (
+				D3EDDA61240856A800C618A5 /* Cell */,
 				D34894B123F79B4F00E4D758 /* CalenderViewController.swift */,
 				D34894B223F79B4F00E4D758 /* CalenderViewController.xib */,
 			);
@@ -300,6 +305,15 @@
 				D3E5E3422405E45E00D73CEB /* UserDefaults.swift */,
 			);
 			path = Struct;
+			sourceTree = "<group>";
+		};
+		D3EDDA61240856A800C618A5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */,
+				D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +432,7 @@
 				D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */,
 				D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */,
 				D362297523F7FFB7005A610A /* SettingView.strings in Resources */,
+				D3EDDA602408569200C618A5 /* CalenerTableViewCell.xib in Resources */,
 				D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */,
 				D362296E23F7E9B9005A610A /* SettingTableViewCell.xib in Resources */,
 				D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */,
@@ -607,6 +622,7 @@
 			files = (
 				D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */,
 				D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */,
+				D3EDDA5F2408569200C618A5 /* CalenerTableViewCell.swift in Sources */,
 				D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */,
 				D362296D23F7E9B9005A610A /* SettingTableViewCell.swift in Sources */,
 				D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */,
