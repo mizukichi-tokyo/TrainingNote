@@ -10,6 +10,8 @@ import UIKit
 
 class CalenerTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var exerciseLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

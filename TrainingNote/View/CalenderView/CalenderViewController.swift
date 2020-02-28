@@ -10,6 +10,8 @@ import UIKit
 import FSCalendar
 import RxSwift
 import RxCocoa
+import RealmSwift
+import RxRealm
 
 class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, Injectable {
     typealias Dependency = CalenderViewModel
@@ -32,12 +34,35 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     }
 
     @IBOutlet weak var dateLabel: UILabel!
-    private let disposeBag = DisposeBag()
+    @IBOutlet weak var tableView: UITableView!
 
+    private let disposeBag = DisposeBag()
     private var selectedDate = Date()
+    private var records: Results<Record>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.register(
+            CalenerTableViewCell.self,
+            forCellReuseIdentifier: R.reuseIdentifier.calenderTableCell.identifier
+        )
+
+        let realm = createRealm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
+
+        Observable.changeset(from: records)
+            .subscribe(onNext: { [unowned self] _, changes in
+                if let changes = changes {
+                    self.tableView.applyChangeset(changes)
+                    print("self.tableView.applyChangeset(changes)")
+                } else {
+                    self.tableView.reloadData()
+                    print("self.tableView.reloadData()")
+                }
+            })
+            .disposed(by: disposeBag)
 
         viewModel.outputs?.dateDriver
             .drive(dateLabel.rx.text)
@@ -60,6 +85,55 @@ extension CalenderViewController {
         selectedDate = date
     }
 
+}
+
+extension CalenderViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return records.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let record = records[indexPath.row]
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.calenderTableCell.identifier)!
+        
+        cell.textLabel?.text = record.exercise + String(record.weight)
+        cell.textLabel?.textColor = UIColor.lightText
+
+        return cell
+    }
+}
+
+extension CalenderViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //        Observable.from([laps[indexPath.row]])
+        //            .subscribe(Realm.rx.delete())
+        //            .disposed(by: bag)
+    }
+}
+
+extension UITableView {
+    func applyChangeset(_ changes: RealmChangeset) {
+        beginUpdates()
+        deleteRows(at: changes.deleted.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+        insertRows(at: changes.inserted.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+        reloadRows(at: changes.updated.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+        endUpdates()
+    }
+}
+
+extension CalenderViewController {
+    func createRealm() -> Realm {
+        do {
+            return try Realm()
+        } catch let error as NSError {
+            assertionFailure("realm error: \(error)")
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            // swiftlint:disable:next force_try
+            return try! Realm(configuration: config)
+            // swiftlint:disable:previous force_try
+        }
+    }
 }
 
 extension CalenderViewController {
