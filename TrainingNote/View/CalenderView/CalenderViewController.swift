@@ -44,7 +44,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         super.viewDidLoad()
 
         tableView.register(
-            CalenerTableViewCell.self,
+            UINib(nibName: "CalenerTableViewCell", bundle: nil),
             forCellReuseIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier
         )
 
@@ -96,9 +96,12 @@ extension CalenderViewController: UITableViewDataSource {
         let record = records[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
 
-        cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps " + String(format: "% 5.1f", round(record.weight)) + " kg    " + record.exercise
-
+        cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 5.1f", round(record.weight)) + " kg"
         cell.textLabel?.textColor = UIColor.lightText
+
+        cell.detailTextLabel?.text = record.exercise
+        cell.detailTextLabel?.textColor = UIColor.lightText
+
         cell.textLabel?.font = UIFont(name: "SFMono-Regular", size: 17)
 
         return cell
