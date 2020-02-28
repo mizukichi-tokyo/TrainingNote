@@ -96,9 +96,10 @@ extension CalenderViewController: UITableViewDataSource {
         let record = records[indexPath.row]
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.calenderTableCell.identifier)!
-        
-        cell.textLabel?.text = record.exercise + String(record.weight)
+        cell.textLabel?.text = String(format: "% 4.0f", record.reps) + " reps " + String(format: "% 6.1f", round(record.weight)) + " kg " + record.exercise
+
         cell.textLabel?.textColor = UIColor.lightText
+        cell.textLabel?.font = UIFont(name: "Courier", size: 17)
 
         return cell
     }
@@ -106,9 +107,9 @@ extension CalenderViewController: UITableViewDataSource {
 
 extension CalenderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        Observable.from([laps[indexPath.row]])
-        //            .subscribe(Realm.rx.delete())
-        //            .disposed(by: bag)
+        Observable.from([records[indexPath.row]])
+            .subscribe(Realm.rx.delete())
+            .disposed(by: disposeBag)
     }
 }
 
