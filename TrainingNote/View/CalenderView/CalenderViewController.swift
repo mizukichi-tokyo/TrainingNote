@@ -96,7 +96,9 @@ extension CalenderViewController: UITableViewDataSource {
         let record = records[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
 
-        cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 5.1f", round(record.weight)) + " kg"
+        let roundWeight = round(record.weight * 10)/10
+        cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 5.1f", roundWeight) + " kg"
+
         cell.textLabel?.textColor = UIColor.lightText
 
         cell.detailTextLabel?.text = record.exercise

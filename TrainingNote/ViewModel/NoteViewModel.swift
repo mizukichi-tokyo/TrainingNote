@@ -183,7 +183,7 @@ extension NoteViewModel: NoteViewModelOutput {
     }
 
     var weightStringDriver: Driver<String> {
-        return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
+        return weightRelay.asDriver().map { $0*10}.map {round($0)}.map { $0/10}.map {"\($0.description) kg"}
     }
 
     var repsDriver: Driver<String> {
