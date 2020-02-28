@@ -45,7 +45,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
         tableView.register(
             CalenerTableViewCell.self,
-            forCellReuseIdentifier: "CustomCalenderTableCell"
+            forCellReuseIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier
         )
 
         let realm = createRealm()
@@ -94,15 +94,12 @@ extension CalenderViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let record = records[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCalenderTableCell")!
-
-        cell.textLabel?.text = "yyyyeeeeeeeessssssss"
-
-        //        cell.textLabel?.text = String(format: "% 4.0f", record.reps) + " reps " + String(format: "% 6.1f", round(record.weight)) + " kg " + record.exercise
+        cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps " + String(format: "% 5.1f", round(record.weight)) + " kg    " + record.exercise
 
         cell.textLabel?.textColor = UIColor.lightText
-        //        cell.textLabel?.font = UIFont(name: "Courier", size: 17)
+        cell.textLabel?.font = UIFont(name: "SFMono-Regular", size: 17)
 
         return cell
     }

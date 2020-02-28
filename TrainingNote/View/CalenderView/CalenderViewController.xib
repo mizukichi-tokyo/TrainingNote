@@ -67,7 +67,7 @@
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-xe-6l3">
                     <rect key="frame" x="20" y="514" width="374" height="362"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <color key="separatorColor" cocoaTouchSystemColor="lightTextColor"/>
                     <color key="sectionIndexColor" cocoaTouchSystemColor="lightTextColor"/>
                     <userDefinedRuntimeAttributes>

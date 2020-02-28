@@ -101,6 +101,7 @@
 		D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenerTableViewCell.swift; sourceTree = "<group>"; };
 		D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenerTableViewCell.xib; sourceTree = "<group>"; };
 		D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewModel.swift; sourceTree = "<group>"; };
+		D3EDDA6424092E0200C618A5 /* SFMonoRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFMonoRegular.otf; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +194,7 @@
 				D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */,
 				D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */,
 				D31FAFFF23F7639C00CECCC5 /* Info.plist */,
+				D3EDDA6424092E0200C618A5 /* SFMonoRegular.otf */,
 			);
 			path = TrainingNote;
 			sourceTree = "<group>";
