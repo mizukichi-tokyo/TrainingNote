@@ -83,6 +83,7 @@ extension CalenderViewController {
 
         dateLabel.text = dateString
         selectedDate = date
+        self.tableView.reloadData()
     }
 
 }
@@ -111,10 +112,22 @@ extension CalenderViewController: UITableViewDataSource {
 }
 
 extension CalenderViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Observable.from([records[indexPath.row]])
-            .subscribe(Realm.rx.delete())
-            .disposed(by: disposeBag)
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        Observable.from([records[indexPath.row]])
+    //            .subscribe(Realm.rx.delete())
+    //            .disposed(by: disposeBag)
+    //    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            Observable.from([records[indexPath.row]])
+                .subscribe(Realm.rx.delete())
+                .disposed(by: disposeBag)
+        }
     }
 }
 
