@@ -92,13 +92,13 @@ extension CalenderViewController {
         // DateFormatter を使用して書式とローカルを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "ja_JP"))
 
-        var selecredDateArray: [String]
-        selecredDateArray =  records.map { dateFormatter.string(from: $0.selectedDate)}
+        var selectedDateArray: [String]
+        selectedDateArray =  records.map { dateFormatter.string(from: $0.selectedDate)}
 
         var dateString = String()
         dateString = dateFormatter.string(from: date)
 
-        if selecredDateArray.contains(dateString) {
+        if selectedDateArray.contains(dateString) {
             print(date)
             return 1
         }
