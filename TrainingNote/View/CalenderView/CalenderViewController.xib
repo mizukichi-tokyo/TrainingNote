@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalenderViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
+                <outlet property="calendar" destination="7n1-GL-IBF" id="yOf-8g-PRB"/>
                 <outlet property="dateLabel" destination="ITn-cs-R2F" id="rxU-k1-0Wy"/>
                 <outlet property="tableView" destination="0FV-xe-6l3" id="IAA-2j-NG5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

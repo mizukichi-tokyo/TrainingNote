@@ -33,6 +33,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         fatalError("init(coder:) has not been implemented")
     }
 
+    @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
@@ -56,10 +57,9 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
             .subscribe(onNext: { [unowned self] _, changes in
                 if let changes = changes {
                     self.tableView.applyChangeset(changes)
-                    print("self.tableView.applyChangeset(changes)")
+                    self.calendar.reloadData()
                 } else {
                     self.tableView.reloadData()
-                    print("self.tableView.reloadData()")
                 }
             })
             .disposed(by: disposeBag)
@@ -76,14 +76,34 @@ extension CalenderViewController {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
         let dateFormatter = DateFormatter()
-        var dateString = String()
         // DateFormatter を使用して書式とローカルを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "ja_JP"))
+
+        var dateString = String()
         dateString = dateFormatter.string(from: date)
 
         dateLabel.text = dateString
         selectedDate = date
         self.tableView.reloadData()
+    }
+
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateFormatter = DateFormatter()
+        // DateFormatter を使用して書式とローカルを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "ja_JP"))
+
+        var selecredDateArray: [String]
+        selecredDateArray =  records.map { dateFormatter.string(from: $0.selectedDate)}
+
+        var dateString = String()
+        dateString = dateFormatter.string(from: date)
+
+        if selecredDateArray.contains(dateString) {
+            print(date)
+            return 1
+        }
+
+        return 0
     }
 
 }
@@ -95,6 +115,7 @@ extension CalenderViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let record = records[indexPath.row]
+
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
 
         let roundWeight = round(record.weight * 10)/10
@@ -112,11 +133,6 @@ extension CalenderViewController: UITableViewDataSource {
 }
 
 extension CalenderViewController: UITableViewDelegate {
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        Observable.from([records[indexPath.row]])
-    //            .subscribe(Realm.rx.delete())
-    //            .disposed(by: disposeBag)
-    //    }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
