@@ -40,6 +40,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private let disposeBag = DisposeBag()
     private var selectedDate = Date()
     private var records: Results<Record>!
+    private let formatter = DateStringFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,12 +76,8 @@ extension CalenderViewController {
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
 
-        let dateFormatter = DateFormatter()
-        // DateFormatter を使用して書式とローカルを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "ja_JP"))
-
         var dateString = String()
-        dateString = dateFormatter.string(from: date)
+        dateString = self.formatter.formatt(date: date)
 
         dateLabel.text = dateString
         selectedDate = date
@@ -88,15 +85,12 @@ extension CalenderViewController {
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let dateFormatter = DateFormatter()
-        // DateFormatter を使用して書式とローカルを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "ja_JP"))
 
         var selectedDateArray: [String]
-        selectedDateArray =  records.map { dateFormatter.string(from: $0.selectedDate)}
+        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
 
         var dateString = String()
-        dateString = dateFormatter.string(from: date)
+        dateString = self.formatter.formatt(date: date)
 
         if selectedDateArray.contains(dateString) {
             print(date)

@@ -31,6 +31,7 @@
 		D362297023F7EA3F005A610A /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296F23F7EA3F005A610A /* Injectable.swift */; };
 		D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297123F7EB4D005A610A /* SettingViewModel.swift */; };
 		D362297523F7FFB7005A610A /* SettingView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D362297423F7FFB7005A610A /* SettingView.strings */; };
+		D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */; };
 		D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */; };
 		D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */; };
 		D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */; };
@@ -93,6 +94,7 @@
 		D362296F23F7EA3F005A610A /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		D362297123F7EB4D005A610A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D362297423F7FFB7005A610A /* SettingView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingView.strings; sourceTree = "<group>"; };
+		D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = UserDefaults.strings; sourceTree = "<group>"; };
 		D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppDelegate.strings; sourceTree = "<group>"; };
 		D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			children = (
 				D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */,
 				D3E5E3422405E45E00D73CEB /* UserDefaults.swift */,
+				D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,
 				D3EDDA63240858C600C618A5 /* CalenderViewModel.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
+				D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */,
 				D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */,
 				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
 				D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */,

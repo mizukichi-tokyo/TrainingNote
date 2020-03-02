@@ -47,11 +47,10 @@ extension CalenderViewModel: CalenderViewModelOutput {
         let dataRelay = BehaviorRelay<String>(value: "")
 
         let date = Date()
-        let dateFormatter = DateFormatter()
         var dateString = String()
-        // DateFormatter を使用して書式とローカルを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "ja_JP"))
-        dateString = dateFormatter.string(from: date)
+
+        let formatter = DateStringFormatter()
+        dateString = formatter.formatt(date: date)
 
         dataRelay.accept(dateString)
         return dataRelay.asDriver()
