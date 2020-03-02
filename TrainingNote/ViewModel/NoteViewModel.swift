@@ -42,7 +42,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     private let weightRelay = BehaviorRelay<Float>(value: UserDefault.weight)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
-    private var selectedDate: Date?
+    private let dataStringRelay = BehaviorRelay<String>(value: "")
 
     private var pickerTitle =  BehaviorRelay<String>(value: "")
     private var selectedIndex = BehaviorRelay<Int>(value: UserDefault.selectedIndex)
@@ -80,8 +80,9 @@ extension NoteViewModel {
     private func subscribeInputs(input: NoteViewModelInput) {
 
         input.selectedDateRelay
-            .subscribe(onNext: { date in
-                self.selectedDate = date
+            .subscribe(onNext: {[weak self] date in
+                guard let self = self else { return }
+                self.acceptDate(date: date)
             })
             .disposed(by: disposeBag)
 
@@ -118,6 +119,14 @@ extension NoteViewModel {
 }
 
 extension NoteViewModel {
+
+    private func acceptDate(date: Date) {
+        var dateString = String()
+        let formatter = DateStringFormatter()
+        dateString = formatter.formatt(date: date)
+
+        dataStringRelay.accept(dateString)
+    }
 
     private func setDefaultPicker() {
         setDefaultSelectedIndex()
@@ -204,14 +213,7 @@ extension NoteViewModel: NoteViewModelOutput {
     }
 
     var dateDriver: Driver<String> {
-        let dataRelay = BehaviorRelay<String>(value: "")
-        var dateString = String()
-
-        let formatter = DateStringFormatter()
-        dateString = formatter.formatt(date: selectedDate!)
-
-        dataRelay.accept(dateString)
-        return dataRelay.asDriver()
+        return dataStringRelay.asDriver()
     }
 
     var selectedIndexDriver: Driver<Int> {

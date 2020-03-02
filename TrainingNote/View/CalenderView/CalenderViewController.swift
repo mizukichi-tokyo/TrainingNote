@@ -38,12 +38,23 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     private let disposeBag = DisposeBag()
     private var selectedDate = Date()
+    private let selectedDateRelay = BehaviorRelay<Date>(value: Date())
     private var records: Results<Record>!
     private var selectedDateRecords: Results<Record>?
     private let formatter = DateStringFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+
+    private func setup() {
+
+        let input = CalenderViewModelInput(
+            selectedDateRelay: selectedDateRelay
+        )
+
+        viewModel.setup(input: input)
 
         tableView.register(
             UINib(nibName: "CalenerTableViewCell", bundle: nil),
@@ -66,6 +77,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         viewModel.outputs?.dateStringDriver
             .drive(dateLabel.rx.text)
             .disposed(by: disposeBag)
+
     }
 
 }
@@ -120,6 +132,8 @@ extension CalenderViewController {
         self.selectedDateRecords = getSelectedDateRecords(date: selectedDate)
 
         self.tableView.reloadData()
+
+        selectedDateRelay.accept(date)
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {

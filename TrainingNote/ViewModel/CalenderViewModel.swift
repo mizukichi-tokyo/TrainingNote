@@ -13,6 +13,7 @@ import RxCocoa
 struct CalenderViewModelInput {
     //    let swipeCell: ControlEvent<IndexPath>
     //    let addItemTextRelay: PublishRelay<String>
+    let selectedDateRelay: BehaviorRelay<Date>
 }
 
 protocol CalenderViewModelOutput {
@@ -29,6 +30,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let model: CalenderModel
 
     var outputs: CalenderViewModelOutput?
+    private let dataStringRelay = BehaviorRelay<String>(value: "")
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -38,6 +40,27 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 
     func setup(input: CalenderViewModelInput) {
 
+        input.selectedDateRelay.subscribe(onNext: { [weak self] date in
+            guard let self = self else { return }
+            self.acceptDate(date: date)
+        })
+            .disposed(by: disposeBag)
+
+        let modelInput = CalenderModelInput(
+            selectedDateRelay: input.selectedDateRelay
+        )
+
+        model.setup(input: modelInput)
+
+    }
+
+    private func acceptDate(date: Date) {
+
+        var dateString = String()
+        let formatter = DateStringFormatter()
+        dateString = formatter.formatt(date: date)
+
+        dataStringRelay.accept(dateString)
     }
 
 }
@@ -45,16 +68,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 extension CalenderViewModel: CalenderViewModelOutput {
 
     var dateStringDriver: Driver<String> {
-        let dataRelay = BehaviorRelay<String>(value: "")
-
-        let date = Date()
-        var dateString = String()
-
-        let formatter = DateStringFormatter()
-        dateString = formatter.formatt(date: date)
-
-        dataRelay.accept(dateString)
-        return dataRelay.asDriver()
+        return self.dataStringRelay.asDriver()
     }
 
 }

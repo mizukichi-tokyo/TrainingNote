@@ -13,10 +13,11 @@ import RxCocoa
 struct CalenderModelInput {
     //    let swipeCell: ControlEvent<IndexPath>
     //    let addItemTextRelay: PublishRelay<String>
+    let selectedDateRelay: BehaviorRelay<Date>
 }
 
 protocol CalenderModelOutput {
-    //    var dateDriver: Driver<String> {get}
+    //        var selectedDateStringRelay: BehaviorRelay<String> {get}
 }
 
 protocol CalenderModelType {
@@ -28,6 +29,7 @@ final class CalenderModel: Injectable, CalenderModelType {
     struct Dependency {}
 
     var outputs: CalenderModelOutput?
+    private var selectedDate: Date?
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -35,6 +37,11 @@ final class CalenderModel: Injectable, CalenderModelType {
     }
 
     func setup(input: CalenderModelInput) {
+        input.selectedDateRelay.subscribe(onNext: { [weak self] date in
+            guard let self = self else { return }
+            self.selectedDate = date
+        })
+            .disposed(by: disposeBag)
 
     }
 
@@ -42,17 +49,17 @@ final class CalenderModel: Injectable, CalenderModelType {
 
 extension CalenderModel: CalenderModelOutput {
 
-    //    var dateDriver: Driver<String> {
-    //        let dataRelay = BehaviorRelay<String>(value: "")
+    //        var selectedDateStringRelay: BehaviorRelay<String> {
     //
-    //        let date = Date()
-    //        var dateString = String()
+    //            //input.selectedDateRelay に変化があったら、変化してストリングリレーに変換して返す
+    //            var dateString = String()
     //
-    //        let formatter = DateStringFormatter()
-    //        dateString = formatter.formatt(date: date)
+    //            let formatter = DateStringFormatter()
+    //            dateString = formatter.formatt(date: self.selectedDate!)
     //
-    //        dataRelay.accept(dateString)
-    //        return dataRelay.asDriver()
-    //    }
+    //            let dataRelay = BehaviorRelay<String>(value: "")
+    //            dataRelay.accept(dateString)
+    //            return dataRelay
+    //        }
 
 }
