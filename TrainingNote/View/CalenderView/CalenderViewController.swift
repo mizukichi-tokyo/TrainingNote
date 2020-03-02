@@ -51,7 +51,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         )
 
         let realm = createRealm()
-//        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //        print(Realm.Configuration.defaultConfiguration.fileURL!)
         records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
 
         Observable.changeset(from: records)
@@ -77,6 +77,7 @@ extension CalenderViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
 
         guard let selectedDateRecords = self.selectedDateRecords else { return cell }
@@ -122,6 +123,7 @@ extension CalenderViewController {
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        //        print("カレンダーの点: ", date)
         var selectedDateArray: [String]
         selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
 

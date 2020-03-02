@@ -13,7 +13,7 @@ import RxCocoa
 struct NoteViewModelInput {
     let slider: ControlProperty<Float>
     let stepper: ControlProperty<Double>
-    let selectedDate: Date?
+    let selectedDateRelay: BehaviorRelay<Date>
     let addButton: ControlEvent<Void>
     let pickerTitle: ControlEvent<[String]>
     let pickerIndex: ControlEvent<(row: Int, component: Int)>
@@ -43,6 +43,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
     private let weightRelay = BehaviorRelay<Float>(value: UserDefault.weight)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
     private var selectedDate: Date?
+
     private var pickerTitle =  BehaviorRelay<String>(value: "")
     private var selectedIndex = BehaviorRelay<Int>(value: UserDefault.selectedIndex)
 
@@ -64,7 +65,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
             selectedIndex: selectedIndex,
             weightRelay: weightRelay,
             repsRelay: repsRelay,
-            selectedDate: selectedDate,
+            selectedDateRelay: input.selectedDateRelay,
             pickerTitle: pickerTitle,
             addButton: input.addButton
         )
@@ -77,6 +78,13 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 extension NoteViewModel {
 
     private func subscribeInputs(input: NoteViewModelInput) {
+
+        input.selectedDateRelay
+            .subscribe(onNext: { date in
+                self.selectedDate = date
+            })
+            .disposed(by: disposeBag)
+
         input.slider
             .subscribe(onNext: { [weak self] slider in
                 guard let self = self else { return }
@@ -90,8 +98,6 @@ extension NoteViewModel {
                 self.repsRelay.accept(stepper)
             })
             .disposed(by: disposeBag)
-
-        selectedDate = input.selectedDate
 
         input.pickerTitle
             .subscribe(onNext: { [weak self] pickertitle in
