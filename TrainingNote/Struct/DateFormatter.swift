@@ -15,7 +15,7 @@ struct DateStringFormatter {
         dateFormatter.dateFormat = DateFormatter.dateFormat(
             fromTemplate: "M/d/yyyy",
             options: 0,
-            locale: Locale(identifier: "jp_JP")
+            locale: Locale(identifier: "ja_JP")
         )
     }
 

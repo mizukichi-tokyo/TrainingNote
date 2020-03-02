@@ -17,13 +17,6 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     typealias Dependency = CalenderViewModel
     private let viewModel: CalenderViewModel
 
-    @IBAction func moveToSetting(_ sender: Any) {
-        calenderToSetting()
-    }
-    @IBAction func moveToNote(_ sender: Any) {
-        calenderToNote()
-    }
-
     required init(with dependency: Dependency) {
         viewModel = dependency
         super.init(nibName: nil, bundle: nil)
@@ -33,6 +26,12 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         fatalError("init(coder:) has not been implemented")
     }
 
+    @IBAction func moveToSetting(_ sender: Any) {
+        calenderToSetting()
+    }
+    @IBAction func moveToNote(_ sender: Any) {
+        calenderToNote()
+    }
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -40,6 +39,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private let disposeBag = DisposeBag()
     private var selectedDate = Date()
     private var records: Results<Record>!
+    private var selectedDateRecords: Results<Record>?
     private let formatter = DateStringFormatter()
 
     override func viewDidLoad() {
@@ -53,6 +53,11 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         let realm = createRealm()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
+        //        print("records: ", records)
+
+
+        selectedDateRecords = getSelectedDateRecords(date: selectedDate)
+        print(selectedDateRecords)
 
         Observable.changeset(from: records)
             .subscribe(onNext: { [unowned self] _, changes in
@@ -68,36 +73,6 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         viewModel.outputs?.dateDriver
             .drive(dateLabel.rx.text)
             .disposed(by: disposeBag)
-    }
-
-}
-
-extension CalenderViewController {
-
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-
-        var dateString = String()
-        dateString = self.formatter.formatt(date: date)
-
-        dateLabel.text = dateString
-        selectedDate = date
-        self.tableView.reloadData()
-    }
-
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-
-        var selectedDateArray: [String]
-        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
-
-        var dateString = String()
-        dateString = self.formatter.formatt(date: date)
-
-        if selectedDateArray.contains(dateString) {
-            print(date)
-            return 1
-        }
-
-        return 0
     }
 
 }
@@ -120,14 +95,11 @@ extension CalenderViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = record.exercise
         cell.detailTextLabel?.textColor = UIColor.lightText
 
-        cell.textLabel?.font = UIFont(name: "SFMono-Regular", size: 17)
-
         return cell
     }
 }
 
 extension CalenderViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -152,6 +124,31 @@ extension UITableView {
 }
 
 extension CalenderViewController {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        var dateString = String()
+        dateString = self.formatter.formatt(date: date)
+
+        dateLabel.text = dateString
+        selectedDate = date
+        //        self.tableView.reloadData()
+    }
+
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        var selectedDateArray: [String]
+        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
+
+        var dateString = String()
+        dateString = self.formatter.formatt(date: date)
+
+        if selectedDateArray.contains(dateString) {
+            return 1
+        }
+        return 0
+    }
+
+}
+
+extension CalenderViewController {
     func createRealm() -> Realm {
         do {
             return try Realm()
@@ -163,6 +160,47 @@ extension CalenderViewController {
             // swiftlint:disable:previous force_try
         }
     }
+
+    private func getSelectedDateRecords(date: Date) -> Results<Record>? {
+        var selectedDateRecords: Results<Record>?
+        let realm = createRealm()
+
+        let predicate = NSPredicate(
+            format: "%@ =< selectedDate AND selectedDate < %@",
+            getStartAndEndOfDay(date).start as CVarArg,
+            getStartAndEndOfDay(date).end as CVarArg
+        )
+
+        selectedDateRecords = realm.objects(Record.self).filter(predicate).sorted(byKeyPath: "creationTime", ascending: false)
+        return selectedDateRecords
+    }
+
+    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
+        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
+        let end = start + 24 * 60 * 60
+        return (start, end)
+    }
+
+    //    func setSelectedDateRecord() {
+    //        var selectedDateArray: [String]
+    //        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
+    //        print("selectedDateArray", selectedDateArray)
+    //
+    //        let selectedDateString = formatter.formatt(date: selectedDate)
+    //        print("selectedDate", selectedDateString)
+    //
+    //        print(selectedDateString == selectedDateArray[0])
+    //
+    //        var boolBool: [Bool]
+    //        boolBool = selectedDateArray.map { $0 == selectedDateString}
+    //        print("boolBool: ", boolBool)
+    //
+    //        //trueの要素だけ、配列に追加する
+    //        var selectedDateRecords: Results<Record>!
+    //
+    //        selectedDateRecords = records
+    //
+    //    }
 }
 
 extension CalenderViewController {
