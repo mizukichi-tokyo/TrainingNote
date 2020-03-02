@@ -42,7 +42,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 
         input.selectedDateRelay.subscribe(onNext: { [weak self] date in
             guard let self = self else { return }
-            self.acceptDate(date: date)
+            self.dateToString(date: date)
         })
             .disposed(by: disposeBag)
 
@@ -54,7 +54,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 
     }
 
-    private func acceptDate(date: Date) {
+    private func dateToString(date: Date) {
 
         var dateString = String()
         let formatter = DateStringFormatter()

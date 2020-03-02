@@ -77,7 +77,6 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         viewModel.outputs?.dateStringDriver
             .drive(dateLabel.rx.text)
             .disposed(by: disposeBag)
-
     }
 
 }

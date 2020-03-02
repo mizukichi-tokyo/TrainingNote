@@ -82,7 +82,7 @@ extension NoteViewModel {
         input.selectedDateRelay
             .subscribe(onNext: {[weak self] date in
                 guard let self = self else { return }
-                self.acceptDate(date: date)
+                self.dateToString(date: date)
             })
             .disposed(by: disposeBag)
 
@@ -120,7 +120,7 @@ extension NoteViewModel {
 
 extension NoteViewModel {
 
-    private func acceptDate(date: Date) {
+    private func dateToString(date: Date) {
         var dateString = String()
         let formatter = DateStringFormatter()
         dateString = formatter.formatt(date: date)
