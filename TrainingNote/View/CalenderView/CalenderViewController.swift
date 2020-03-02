@@ -51,24 +51,17 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         )
 
         let realm = createRealm()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+//        print(Realm.Configuration.defaultConfiguration.fileURL!)
         records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
-        //        print("records: ", records)
-
-
-        selectedDateRecords = getSelectedDateRecords(date: selectedDate)
-        print(selectedDateRecords)
 
         Observable.changeset(from: records)
-            .subscribe(onNext: { [unowned self] _, changes in
-                if let changes = changes {
-                    self.tableView.applyChangeset(changes)
-                    self.calendar.reloadData()
-                } else {
-                    self.tableView.reloadData()
-                }
+            .subscribe(onNext: { [unowned self] _ in
+                self.calendar.reloadData()
+                self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
+
+        selectedDateRecords = getSelectedDateRecords(date: selectedDate)
 
         viewModel.outputs?.dateDriver
             .drive(dateLabel.rx.text)
@@ -79,13 +72,16 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
 extension CalenderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return records.count
+        guard let selectedDateRecords = self.selectedDateRecords else { return 0 }
+        return selectedDateRecords.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let record = records[indexPath.row]
-
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
+
+        guard let selectedDateRecords = self.selectedDateRecords else { return cell }
+
+        let record = selectedDateRecords[indexPath.row]
 
         let roundWeight = round(record.weight * 10)/10
         cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 5.1f", roundWeight) + " kg"
@@ -106,20 +102,10 @@ extension CalenderViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            Observable.from([records[indexPath.row]])
+            Observable.from([selectedDateRecords![indexPath.row]])
                 .subscribe(Realm.rx.delete())
                 .disposed(by: disposeBag)
         }
-    }
-}
-
-extension UITableView {
-    func applyChangeset(_ changes: RealmChangeset) {
-        beginUpdates()
-        deleteRows(at: changes.deleted.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-        insertRows(at: changes.inserted.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-        reloadRows(at: changes.updated.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-        endUpdates()
     }
 }
 
@@ -130,7 +116,9 @@ extension CalenderViewController {
 
         dateLabel.text = dateString
         selectedDate = date
-        //        self.tableView.reloadData()
+        self.selectedDateRecords = getSelectedDateRecords(date: selectedDate)
+
+        self.tableView.reloadData()
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
@@ -181,26 +169,6 @@ extension CalenderViewController {
         return (start, end)
     }
 
-    //    func setSelectedDateRecord() {
-    //        var selectedDateArray: [String]
-    //        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
-    //        print("selectedDateArray", selectedDateArray)
-    //
-    //        let selectedDateString = formatter.formatt(date: selectedDate)
-    //        print("selectedDate", selectedDateString)
-    //
-    //        print(selectedDateString == selectedDateArray[0])
-    //
-    //        var boolBool: [Bool]
-    //        boolBool = selectedDateArray.map { $0 == selectedDateString}
-    //        print("boolBool: ", boolBool)
-    //
-    //        //trueの要素だけ、配列に追加する
-    //        var selectedDateRecords: Results<Record>!
-    //
-    //        selectedDateRecords = records
-    //
-    //    }
 }
 
 extension CalenderViewController {
