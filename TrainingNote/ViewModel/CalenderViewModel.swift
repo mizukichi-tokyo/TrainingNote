@@ -9,7 +9,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 struct CalenderViewModelInput {
     //    let swipeCell: ControlEvent<IndexPath>
@@ -17,7 +16,7 @@ struct CalenderViewModelInput {
 }
 
 protocol CalenderViewModelOutput {
-    var dateDriver: Driver<String> {get}
+    var dateStringDriver: Driver<String> {get}
 }
 
 protocol CalenderViewModelType {
@@ -26,12 +25,14 @@ protocol CalenderViewModelType {
 }
 
 final class CalenderViewModel: Injectable, CalenderViewModelType {
-    struct Dependency {}
+    typealias Dependency = CalenderModel
+    private let model: CalenderModel
 
     var outputs: CalenderViewModelOutput?
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
+        model = dependency
         self.outputs = self
     }
 
@@ -43,7 +44,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 
 extension CalenderViewModel: CalenderViewModelOutput {
 
-    var dateDriver: Driver<String> {
+    var dateStringDriver: Driver<String> {
         let dataRelay = BehaviorRelay<String>(value: "")
 
         let date = Date()

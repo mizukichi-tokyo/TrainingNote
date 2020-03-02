@@ -17,6 +17,7 @@
 		D31FB01423F7639C00CECCC5 /* TrainingNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */; };
 		D32124A02408039C009299E3 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D321249F2408039C009299E3 /* RealmModel.swift */; };
 		D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */; };
+		D3405280240D7D3A00F0AF20 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D340527F240D7D3A00F0AF20 /* CalenderModel.swift */; };
 		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
 		D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34894A523F789E200E4D758 /* LaunchScreen.storyboard */; };
 		D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B123F79B4F00E4D758 /* CalenderViewController.swift */; };
@@ -80,6 +81,7 @@
 		D31FB01523F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D321249F2408039C009299E3 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfExerciseData.swift; sourceTree = "<group>"; };
+		D340527F240D7D3A00F0AF20 /* CalenderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
 		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D34894A523F789E200E4D758 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34894B123F79B4F00E4D758 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				D362297323F7FF7B005A610A /* Strings */,
 				D3BD4EF923FFF46700E88993 /* Struct */,
 				D362296323F7DC06005A610A /* Protocol */,
+				D340527E240D7C1900F0AF20 /* RealmSwift */,
 				D362296423F7DC37005A610A /* Model */,
 				D362296523F7DC3D005A610A /* ViewModel */,
 				D362296623F7DC48005A610A /* View */,
@@ -217,6 +220,14 @@
 			path = TrainingNoteUITests;
 			sourceTree = "<group>";
 		};
+		D340527E240D7C1900F0AF20 /* RealmSwift */ = {
+			isa = PBXGroup;
+			children = (
+				D321249F2408039C009299E3 /* RealmModel.swift */,
+			);
+			path = RealmSwift;
+			sourceTree = "<group>";
+		};
 		D362296323F7DC06005A610A /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,9 +239,9 @@
 		D362296423F7DC37005A610A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D340527F240D7D3A00F0AF20 /* CalenderModel.swift */,
 				D349B1E023FA9BF7005F7C56 /* SettingModel.swift */,
 				D3BD4EF723FFF44E00E88993 /* NoteModel.swift */,
-				D321249F2408039C009299E3 /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -638,6 +649,7 @@
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
 				D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */,
 				D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */,
+				D3405280240D7D3A00F0AF20 /* CalenderModel.swift in Sources */,
 				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
 				D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */,
 				D349B1E123FA9BF7005F7C56 /* SettingModel.swift in Sources */,

@@ -63,7 +63,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
         selectedDateRecords = getSelectedDateRecords(date: selectedDate)
 
-        viewModel.outputs?.dateDriver
+        viewModel.outputs?.dateStringDriver
             .drive(dateLabel.rx.text)
             .disposed(by: disposeBag)
     }
@@ -190,7 +190,8 @@ extension CalenderViewController {
 
 extension CalenderViewController {
     static func makeVC () -> CalenderViewController {
-        let viewModel = CalenderViewModel(with: CalenderViewModel.Dependency.init())
+        let model = CalenderModel(with: CalenderModel.Dependency.init())
+        let viewModel = CalenderViewModel(with: model)
         let viewControler = CalenderViewController(with: viewModel)
         return viewControler
     }
