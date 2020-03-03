@@ -128,8 +128,8 @@ extension CalenderViewController: UITableViewDelegate {
 extension CalenderViewController {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
-        self.tableView.reloadData()
         selectedDateRelay.accept(date)
+        self.tableView.reloadData()
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {

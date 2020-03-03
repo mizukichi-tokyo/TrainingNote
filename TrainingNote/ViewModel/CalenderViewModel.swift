@@ -38,6 +38,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let eventRelay = BehaviorRelay<Int>(value: 0)
     private let formatter = DateStringFormatter()
     private let disposeBag = DisposeBag()
+    private var records: Results<Record>!
 
     init(with dependency: Dependency) {
         model = dependency
@@ -50,6 +51,8 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
             .subscribe(onNext: { [weak self] date in
                 guard let self = self else { return }
                 self.dateStringRelay.accept(self.dateToString(date: date))
+
+                //                print(self.getSelectedDateRecords(date: date))
             })
             .disposed(by: disposeBag)
 
@@ -75,6 +78,9 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
         model.outputs?.recordsObservable
             .subscribe(onNext: { [weak self] records in
                 guard let self = self else { return }
+
+                self.records = records
+
                 var eventDateStringArray: [String] = []
                 eventDateStringArray =  records.map {
                     self.formatter.formatt(date: $0.selectedDate)
@@ -83,9 +89,14 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
             })
             .disposed(by: disposeBag)
 
+        model.selectedRecordsObservable.subscribe(onNext: { [weak self] records in
+            print("collectionssssssss:   ", records)
+        }).disposed(by: disposeBag)
+
     }
 
 }
+
 extension CalenderViewModel {
     private func dateToString(date: Date) -> String {
         var dateString = String()
@@ -93,7 +104,6 @@ extension CalenderViewModel {
         dateString = formatter.formatt(date: date)
         return dateString
     }
-
 }
 
 extension CalenderViewModel: CalenderViewModelOutput {
@@ -108,4 +118,5 @@ extension CalenderViewModel: CalenderViewModelOutput {
     var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {
         return  model.outputs!.recordsChangeObservable
     }
+
 }
