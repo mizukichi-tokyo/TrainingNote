@@ -30,9 +30,9 @@ final class CalenderModel: Injectable, CalenderModelType {
     struct Dependency {}
 
     var outputs: CalenderModelOutput?
-    private var selectedDate: Date?
     private let disposeBag = DisposeBag()
     private var records: Results<Record>!
+    private var selectedDateRecords: Results<Record>?
 
     init(with dependency: Dependency) {
         self.outputs = self
@@ -41,25 +41,15 @@ final class CalenderModel: Injectable, CalenderModelType {
     func setup(input: CalenderModelInput) {
         let realm = createRealm()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+
         records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
 
         input.selectedDateRelay.subscribe(onNext: { [weak self] date in
             guard let self = self else { return }
-            self.selectedDate = date
+            self.selectedDateRecords = self.getSelectedDateRecords(realm: realm, date: date)
         })
             .disposed(by: disposeBag)
 
-    }
-
-}
-
-extension CalenderModel: CalenderModelOutput {
-    var recordsObservable: Observable<Results<Record>> {
-        return  Observable.collection(from: records)
-    }
-
-    var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {
-        return  Observable.changeset(from: records)
     }
 
 }
@@ -76,4 +66,34 @@ extension CalenderModel {
             // swiftlint:disable:previous force_try
         }
     }
+
+    private func getSelectedDateRecords(realm: Realm, date: Date) -> Results<Record>? {
+        var selectedDateRecords: Results<Record>?
+
+        let predicate = NSPredicate(
+            format: "%@ =< selectedDate AND selectedDate < %@",
+            getStartAndEndOfDay(date).start as CVarArg,
+            getStartAndEndOfDay(date).end as CVarArg
+        )
+
+        selectedDateRecords = realm.objects(Record.self).filter(predicate).sorted(byKeyPath: "creationTime", ascending: false)
+        return selectedDateRecords
+    }
+
+    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
+        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
+        let end = start + 24 * 60 * 60
+        return (start, end)
+    }
+}
+
+extension CalenderModel: CalenderModelOutput {
+    var recordsObservable: Observable<Results<Record>> {
+        return  Observable.collection(from: records)
+    }
+
+    var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {
+        return  Observable.changeset(from: records)
+    }
+
 }

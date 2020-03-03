@@ -38,6 +38,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     private let disposeBag = DisposeBag()
     private var selectedDate = Date()
+    private var numberOfEvents: Int?
     private let selectedDateRelay = BehaviorRelay<Date>(value: Date())
     private let checkDateRelay = PublishRelay<Date>()
     private var selectedDateRecords: Results<Record>?
@@ -74,6 +75,12 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
         viewModel.outputs?.dateStringDriver
             .drive(dateLabel.rx.text)
             .disposed(by: disposeBag)
+
+        viewModel.outputs?.eventCountDriver
+            .drive( onNext: { eventCountInt in
+                self.numberOfEvents = eventCountInt
+            }).disposed(by: disposeBag)
+
     }
 
 }
@@ -127,14 +134,7 @@ extension CalenderViewController {
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         checkDateRelay.accept(date)
-
-        var count: Int?
-        viewModel.outputs?.eventCountDriver
-            .drive( onNext: { eventCountInt in
-                count = eventCountInt
-            }).disposed(by: disposeBag)
-
-        return count!
+        return numberOfEvents!
     }
 
 }
