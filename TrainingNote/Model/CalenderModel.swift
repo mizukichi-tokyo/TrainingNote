@@ -9,15 +9,15 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RealmSwift
+import RxRealm
 
 struct CalenderModelInput {
-    //    let swipeCell: ControlEvent<IndexPath>
-    //    let addItemTextRelay: PublishRelay<String>
     let selectedDateRelay: BehaviorRelay<Date>
 }
 
 protocol CalenderModelOutput {
-    //        var selectedDateStringRelay: BehaviorRelay<String> {get}
+    var recordsObservable: Observable<Results<Record>> {get}
 }
 
 protocol CalenderModelType {
@@ -48,18 +48,27 @@ final class CalenderModel: Injectable, CalenderModelType {
 }
 
 extension CalenderModel: CalenderModelOutput {
+    var recordsObservable: Observable<Results<Record>> {
+        let realm = createRealm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        var records: Results<Record>!
+        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
 
-    //        var selectedDateStringRelay: BehaviorRelay<String> {
-    //
-    //            //input.selectedDateRelay に変化があったら、変化してストリングリレーに変換して返す
-    //            var dateString = String()
-    //
-    //            let formatter = DateStringFormatter()
-    //            dateString = formatter.formatt(date: self.selectedDate!)
-    //
-    //            let dataRelay = BehaviorRelay<String>(value: "")
-    //            dataRelay.accept(dateString)
-    //            return dataRelay
-    //        }
+        return  Observable.collection(from: records)
+    }
 
+}
+
+extension CalenderModel {
+    private func createRealm() -> Realm {
+        do {
+            return try Realm()
+        } catch let error as NSError {
+            assertionFailure("realm error: \(error)")
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            // swiftlint:disable:next force_try
+            return try! Realm(configuration: config)
+            // swiftlint:disable:previous force_try
+        }
+    }
 }

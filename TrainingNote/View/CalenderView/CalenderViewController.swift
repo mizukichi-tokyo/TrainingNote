@@ -39,6 +39,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private let disposeBag = DisposeBag()
     private var selectedDate = Date()
     private let selectedDateRelay = BehaviorRelay<Date>(value: Date())
+    private let checkDateRelay = PublishRelay<Date>()
     private var records: Results<Record>!
     private var selectedDateRecords: Results<Record>?
     private let formatter = DateStringFormatter()
@@ -51,7 +52,8 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private func setup() {
 
         let input = CalenderViewModelInput(
-            selectedDateRelay: selectedDateRelay
+            selectedDateRelay: selectedDateRelay,
+            checkDateRelay: checkDateRelay
         )
 
         viewModel.setup(input: input)
@@ -123,30 +125,34 @@ extension CalenderViewController: UITableViewDelegate {
 
 extension CalenderViewController {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        var dateString = String()
-        dateString = self.formatter.formatt(date: date)
-
-        dateLabel.text = dateString
         selectedDate = date
-        self.selectedDateRecords = getSelectedDateRecords(date: selectedDate)
-
         self.tableView.reloadData()
-
         selectedDateRelay.accept(date)
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        //        print("カレンダーの点: ", date)
-        var selectedDateArray: [String]
-        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
+        checkDateRelay.accept(date)
 
-        var dateString = String()
-        dateString = self.formatter.formatt(date: date)
+        var count: Int = 0
 
-        if selectedDateArray.contains(dateString) {
-            return 1
-        }
-        return 0
+        viewModel.outputs?.eventCountDriver
+            .drive( onNext: { eventCountInt in
+                count = eventCountInt
+            }).disposed(by: disposeBag)
+
+        return count
+
+        //        var selectedDateArray: [String]
+        //        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
+        //
+        //        var dateString = String()
+        //        dateString = self.formatter.formatt(date: date)
+        //
+        //        if selectedDateArray.contains(dateString) {
+        //            return 1
+        //        }
+        //        return 0
+
     }
 
 }

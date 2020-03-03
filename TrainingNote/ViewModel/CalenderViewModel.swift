@@ -9,15 +9,16 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 struct CalenderViewModelInput {
-    //    let swipeCell: ControlEvent<IndexPath>
-    //    let addItemTextRelay: PublishRelay<String>
     let selectedDateRelay: BehaviorRelay<Date>
+    let checkDateRelay: PublishRelay<Date>
 }
 
 protocol CalenderViewModelOutput {
     var dateStringDriver: Driver<String> {get}
+    var eventCountDriver: Driver<Int> {get}
 }
 
 protocol CalenderViewModelType {
@@ -30,7 +31,10 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let model: CalenderModel
 
     var outputs: CalenderViewModelOutput?
-    private let dataStringRelay = BehaviorRelay<String>(value: "")
+    private let dateStringRelay = BehaviorRelay<String>(value: "")
+    private var eventDateStringArray: [String] = [""]
+    private let eventRelay = BehaviorRelay<Int>(value: 0)
+    private let formatter = DateStringFormatter()
     private let disposeBag = DisposeBag()
 
     init(with dependency: Dependency) {
@@ -40,10 +44,24 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 
     func setup(input: CalenderViewModelInput) {
 
-        input.selectedDateRelay.subscribe(onNext: { [weak self] date in
-            guard let self = self else { return }
-            self.dateToString(date: date)
-        })
+        input.selectedDateRelay
+            .subscribe(onNext: { [weak self] date in
+                guard let self = self else { return }
+                self.dateStringRelay.accept(self.dateToString(date: date))
+            })
+            .disposed(by: disposeBag)
+
+        input.checkDateRelay
+            .subscribe(onNext: { [weak self] date in
+                guard let self = self else { return }
+                let checkDateString = self.dateToString(date: date)
+
+                if self.eventDateStringArray.contains(checkDateString) {
+                    self.eventRelay.accept(1)
+                } else {
+                    self.eventRelay.accept(0)
+                }
+            })
             .disposed(by: disposeBag)
 
         let modelInput = CalenderModelInput(
@@ -52,23 +70,37 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
 
         model.setup(input: modelInput)
 
+        model.outputs?.recordsObservable
+            .subscribe(onNext: { [weak self] records in
+                guard let self = self else { return }
+                var eventDateStringArray: [String] = []
+                eventDateStringArray =  records.map {
+                    self.formatter.formatt(date: $0.selectedDate)
+                }
+                self.eventDateStringArray = eventDateStringArray
+            })
+            .disposed(by: disposeBag)
+
     }
 
-    private func dateToString(date: Date) {
-
+}
+extension CalenderViewModel {
+    private func dateToString(date: Date) -> String {
         var dateString = String()
         let formatter = DateStringFormatter()
         dateString = formatter.formatt(date: date)
-
-        dataStringRelay.accept(dateString)
+        return dateString
     }
 
 }
 
 extension CalenderViewModel: CalenderViewModelOutput {
-
     var dateStringDriver: Driver<String> {
-        return self.dataStringRelay.asDriver()
+        return dateStringRelay.asDriver()
+    }
+
+    var eventCountDriver: Driver<Int> {
+        return eventRelay.asDriver()
     }
 
 }
