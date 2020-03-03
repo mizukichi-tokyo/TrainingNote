@@ -18,10 +18,11 @@ struct CalenderModelInput {
 
 protocol CalenderModelOutput {
     var recordsObservable: Observable<Results<Record>> {get}
+    var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {get}
 }
 
 protocol CalenderModelType {
-    var outputs: CalenderModelOutput? { get }
+    var outputs: CalenderModelOutput? {get}
     func setup(input: CalenderModelInput)
 }
 
@@ -31,12 +32,17 @@ final class CalenderModel: Injectable, CalenderModelType {
     var outputs: CalenderModelOutput?
     private var selectedDate: Date?
     private let disposeBag = DisposeBag()
+    private var records: Results<Record>!
 
     init(with dependency: Dependency) {
         self.outputs = self
     }
 
     func setup(input: CalenderModelInput) {
+        let realm = createRealm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
+
         input.selectedDateRelay.subscribe(onNext: { [weak self] date in
             guard let self = self else { return }
             self.selectedDate = date
@@ -49,12 +55,11 @@ final class CalenderModel: Injectable, CalenderModelType {
 
 extension CalenderModel: CalenderModelOutput {
     var recordsObservable: Observable<Results<Record>> {
-        let realm = createRealm()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        var records: Results<Record>!
-        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
-
         return  Observable.collection(from: records)
+    }
+
+    var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {
+        return  Observable.changeset(from: records)
     }
 
 }

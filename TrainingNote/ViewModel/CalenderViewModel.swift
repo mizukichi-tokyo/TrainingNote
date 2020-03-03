@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RealmSwift
+import RxRealm
 
 struct CalenderViewModelInput {
     let selectedDateRelay: BehaviorRelay<Date>
@@ -19,6 +20,7 @@ struct CalenderViewModelInput {
 protocol CalenderViewModelOutput {
     var dateStringDriver: Driver<String> {get}
     var eventCountDriver: Driver<Int> {get}
+    var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {get}
 }
 
 protocol CalenderViewModelType {
@@ -103,4 +105,7 @@ extension CalenderViewModel: CalenderViewModelOutput {
         return eventRelay.asDriver()
     }
 
+    var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {
+        return  model.outputs!.recordsChangeObservable
+    }
 }

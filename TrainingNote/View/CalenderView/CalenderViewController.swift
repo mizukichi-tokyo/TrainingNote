@@ -40,7 +40,6 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private var selectedDate = Date()
     private let selectedDateRelay = BehaviorRelay<Date>(value: Date())
     private let checkDateRelay = PublishRelay<Date>()
-    private var records: Results<Record>!
     private var selectedDateRecords: Results<Record>?
     private let formatter = DateStringFormatter()
 
@@ -63,11 +62,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
             forCellReuseIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier
         )
 
-        let realm = createRealm()
-        //        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
-
-        Observable.changeset(from: records)
+        viewModel.outputs?.recordsChangeObservable
             .subscribe(onNext: { [unowned self] _ in
                 self.calendar.reloadData()
                 self.tableView.reloadData()
@@ -133,26 +128,13 @@ extension CalenderViewController {
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         checkDateRelay.accept(date)
 
-        var count: Int = 0
-
+        var count: Int?
         viewModel.outputs?.eventCountDriver
             .drive( onNext: { eventCountInt in
                 count = eventCountInt
             }).disposed(by: disposeBag)
 
-        return count
-
-        //        var selectedDateArray: [String]
-        //        selectedDateArray =  records.map { self.formatter.formatt(date: $0.selectedDate)}
-        //
-        //        var dateString = String()
-        //        dateString = self.formatter.formatt(date: date)
-        //
-        //        if selectedDateArray.contains(dateString) {
-        //            return 1
-        //        }
-        //        return 0
-
+        return count!
     }
 
 }
