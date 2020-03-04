@@ -42,7 +42,6 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private let selectedDateRelay = BehaviorRelay<Date>(value: Date())
     private let checkDateRelay = PublishRelay<Date>()
     private var selectedDateRecords: Results<Record>?
-    private let formatter = DateStringFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +69,6 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
             })
             .disposed(by: disposeBag)
 
-        selectedDateRecords = getSelectedDateRecords(date: selectedDate)
-
         viewModel.outputs?.dateStringDriver
             .drive(dateLabel.rx.text)
             .disposed(by: disposeBag)
@@ -81,7 +78,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
                 self.numberOfEvents = eventCountInt
             }).disposed(by: disposeBag)
 
-        viewModel.yyyyeees
+        viewModel.outputs?.selectedRecordsObservable
             .subscribe(onNext: { records in
                 self.selectedDateRecords = records
             })
@@ -135,48 +132,12 @@ extension CalenderViewController {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
         selectedDateRelay.accept(date)
-        //        self.selectedDateRecords = getSelectedDateRecords(date: selectedDate)
         self.tableView.reloadData()
     }
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         checkDateRelay.accept(date)
         return numberOfEvents!
-    }
-
-}
-
-extension CalenderViewController {
-    func createRealm() -> Realm {
-        do {
-            return try Realm()
-        } catch let error as NSError {
-            assertionFailure("realm error: \(error)")
-            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-            // swiftlint:disable:next force_try
-            return try! Realm(configuration: config)
-            // swiftlint:disable:previous force_try
-        }
-    }
-
-    private func getSelectedDateRecords(date: Date) -> Results<Record>? {
-        var selectedDateRecords: Results<Record>?
-        let realm = createRealm()
-
-        let predicate = NSPredicate(
-            format: "%@ =< selectedDate AND selectedDate < %@",
-            getStartAndEndOfDay(date).start as CVarArg,
-            getStartAndEndOfDay(date).end as CVarArg
-        )
-
-        selectedDateRecords = realm.objects(Record.self).filter(predicate).sorted(byKeyPath: "creationTime", ascending: false)
-        return selectedDateRecords
-    }
-
-    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
-        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
-        let end = start + 24 * 60 * 60
-        return (start, end)
     }
 
 }

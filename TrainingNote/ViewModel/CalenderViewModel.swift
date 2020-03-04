@@ -21,6 +21,7 @@ protocol CalenderViewModelOutput {
     var dateStringDriver: Driver<String> {get}
     var eventCountDriver: Driver<Int> {get}
     var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {get}
+    var selectedRecordsObservable: Observable<Results<Record>?> {get}
 }
 
 protocol CalenderViewModelType {
@@ -39,7 +40,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let formatter = DateStringFormatter()
     private let disposeBag = DisposeBag()
     private var records: Results<Record>!
-    private var selectedRecordsObservable: Observable<Results<Record>?>!
+    private var combineObservable: Observable<Results<Record>?>!
 
     init(with dependency: Dependency) {
         model = dependency
@@ -53,7 +54,6 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
                 guard let self = self else { return }
                 self.dateStringRelay.accept(self.dateToString(date: date))
 
-                //                print(self.getSelectedDateRecords(date: date))
             })
             .disposed(by: disposeBag)
 
@@ -89,18 +89,14 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
                 self.eventDateStringArray = eventDateStringArray
             })
             .disposed(by: disposeBag)
-
-        //        model.selectedRecordsObservable.subscribe(onNext: { [weak self] records in
-        //            print("collectionssssssss:   ", records)
-        //        }).disposed(by: disposeBag)
-
+//あとで消すよ
         Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
             self?.getSelectedDateRecords(records: stringElement, date: intElement)
         }
         .subscribe(onNext: { print("combine:", $0!.count) })
         .disposed(by: disposeBag)
 
-        selectedRecordsObservable = Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
+        combineObservable = Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
             self?.getSelectedDateRecords(records: stringElement, date: intElement)
         }
 
@@ -151,8 +147,8 @@ extension CalenderViewModel: CalenderViewModelOutput {
         return  model.outputs!.recordsChangeObservable
     }
 
-    var yyyyeees: Observable<Results<Record>?> {
-        return self.selectedRecordsObservable
+    var selectedRecordsObservable: Observable<Results<Record>?> {
+        return self.combineObservable
     }
 
 }
