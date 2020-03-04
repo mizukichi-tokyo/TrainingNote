@@ -81,6 +81,12 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
                 self.numberOfEvents = eventCountInt
             }).disposed(by: disposeBag)
 
+        viewModel.yyyyeees
+            .subscribe(onNext: { records in
+                self.selectedDateRecords = records
+            })
+            .disposed(by: disposeBag)
+
     }
 
 }
@@ -129,6 +135,7 @@ extension CalenderViewController {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
         selectedDateRelay.accept(date)
+        //        self.selectedDateRecords = getSelectedDateRecords(date: selectedDate)
         self.tableView.reloadData()
     }
 

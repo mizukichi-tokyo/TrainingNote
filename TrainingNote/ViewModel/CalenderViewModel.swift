@@ -39,6 +39,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let formatter = DateStringFormatter()
     private let disposeBag = DisposeBag()
     private var records: Results<Record>!
+    private var selectedRecordsObservable: Observable<Results<Record>?>!
 
     init(with dependency: Dependency) {
         model = dependency
@@ -89,10 +90,41 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
             })
             .disposed(by: disposeBag)
 
-        model.selectedRecordsObservable.subscribe(onNext: { [weak self] records in
-            print("collectionssssssss:   ", records)
-        }).disposed(by: disposeBag)
+        //        model.selectedRecordsObservable.subscribe(onNext: { [weak self] records in
+        //            print("collectionssssssss:   ", records)
+        //        }).disposed(by: disposeBag)
 
+        Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
+            self?.getSelectedDateRecords(records: stringElement, date: intElement)
+        }
+        .subscribe(onNext: { print("combine:", $0!.count) })
+        .disposed(by: disposeBag)
+
+        selectedRecordsObservable = Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
+            self?.getSelectedDateRecords(records: stringElement, date: intElement)
+        }
+
+    }
+
+    private func getSelectedDateRecords(records: Results<Record>, date: Date) -> Results<Record>? {
+
+        var selectedDateRecords: Results<Record>?
+
+        let predicate = NSPredicate(
+            format: "%@ =< selectedDate AND selectedDate < %@",
+            getStartAndEndOfDay(date).start as CVarArg,
+            getStartAndEndOfDay(date).end as CVarArg
+        )
+
+        selectedDateRecords = records.filter(predicate)
+
+        return selectedDateRecords
+    }
+
+    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
+        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
+        let end = start + 24 * 60 * 60
+        return (start, end)
     }
 
 }
@@ -117,6 +149,10 @@ extension CalenderViewModel: CalenderViewModelOutput {
 
     var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {
         return  model.outputs!.recordsChangeObservable
+    }
+
+    var yyyyeees: Observable<Results<Record>?> {
+        return self.selectedRecordsObservable
     }
 
 }

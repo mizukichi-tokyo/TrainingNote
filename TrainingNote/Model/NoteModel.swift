@@ -130,7 +130,7 @@ extension NoteModel: NoteModelOutput {
 }
 
 extension NoteModel {
-    func createRealm() -> Realm {
+    private func createRealm() -> Realm {
         do {
             return try Realm()
         } catch let error as NSError {

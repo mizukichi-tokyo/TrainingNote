@@ -48,7 +48,7 @@ final class CalenderModel: Injectable, CalenderModelType {
         input.selectedDateRelay.subscribe(onNext: { [weak self] date in
             guard let self = self else { return }
 
-            self.selectedDateRecords = self.getSelectedDateRecords(realm: realm, date: date)!
+            self.selectedDateRecords = self.getSelectedDateRecords(date: date)!
 
             print("model: ", self.selectedDateRecords!)
             print("model:END ")
@@ -70,7 +70,8 @@ extension CalenderModel {
         }
     }
 
-    private func getSelectedDateRecords(realm: Realm, date: Date) -> Results<Record>? {
+    private func getSelectedDateRecords(date: Date) -> Results<Record>? {
+        let realm = createRealm()
         var selectedDateRecords: Results<Record>?
 
         let predicate = NSPredicate(
