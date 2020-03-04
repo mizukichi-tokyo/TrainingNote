@@ -40,7 +40,6 @@ final class CalenderModel: Injectable, CalenderModelType {
 
     func setup(input: CalenderModelInput) {
         let realm = createRealm()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
 
@@ -59,28 +58,6 @@ extension CalenderModel {
             // swiftlint:disable:previous force_try
         }
     }
-
-    private func getSelectedDateRecords(records: Results<Record>, date: Date) -> Results<Record>? {
-
-        var selectedDateRecords: Results<Record>?
-
-        let predicate = NSPredicate(
-            format: "%@ =< selectedDate AND selectedDate < %@",
-            getStartAndEndOfDay(date).start as CVarArg,
-            getStartAndEndOfDay(date).end as CVarArg
-        )
-
-        selectedDateRecords = records.filter(predicate)
-
-        return selectedDateRecords
-    }
-
-    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
-        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
-        let end = start + 24 * 60 * 60
-        return (start, end)
-    }
-
 }
 
 extension CalenderModel: CalenderModelOutput {

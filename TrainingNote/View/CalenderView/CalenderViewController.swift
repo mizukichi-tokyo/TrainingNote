@@ -53,13 +53,14 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
         let input = CalenderViewModelInput(
             selectedDateRelay: selectedDateRelay,
-            checkDateRelay: checkDateRelay
+            checkDateRelay: checkDateRelay,
+            swipeCell: tableView.rx.itemDeleted
         )
 
         viewModel.setup(input: input)
 
         tableView.register(
-            UINib(nibName: "CalenerTableViewCell", bundle: nil),
+            UINib(nibName: R.string.calenderView.calenerTableViewCell(), bundle: nil),
             forCellReuseIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier
         )
 
@@ -117,14 +118,6 @@ extension CalenderViewController: UITableViewDataSource {
 extension CalenderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
-            Observable.from([selectedDateRecords![indexPath.row]])
-                .subscribe(Realm.rx.delete())
-                .disposed(by: disposeBag)
-        }
     }
 }
 

@@ -18,7 +18,6 @@
 		D32124A02408039C009299E3 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D321249F2408039C009299E3 /* RealmModel.swift */; };
 		D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */; };
 		D3405280240D7D3A00F0AF20 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D340527F240D7D3A00F0AF20 /* CalenderModel.swift */; };
-		D3405282240ED42500F0AF20 /* SectionOfRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3405281240ED42500F0AF20 /* SectionOfRecords.swift */; };
 		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
 		D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34894A523F789E200E4D758 /* LaunchScreen.storyboard */; };
 		D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B123F79B4F00E4D758 /* CalenderViewController.swift */; };
@@ -34,6 +33,7 @@
 		D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297123F7EB4D005A610A /* SettingViewModel.swift */; };
 		D362297523F7FFB7005A610A /* SettingView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D362297423F7FFB7005A610A /* SettingView.strings */; };
 		D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */; };
+		D37C0561240FF0C7009DDCAE /* CalenderView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D37C0560240FF0C7009DDCAE /* CalenderView.strings */; };
 		D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */; };
 		D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */; };
 		D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */; };
@@ -83,7 +83,6 @@
 		D321249F2408039C009299E3 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfExerciseData.swift; sourceTree = "<group>"; };
 		D340527F240D7D3A00F0AF20 /* CalenderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
-		D3405281240ED42500F0AF20 /* SectionOfRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfRecords.swift; sourceTree = "<group>"; };
 		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D34894A523F789E200E4D758 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34894B123F79B4F00E4D758 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		D362297123F7EB4D005A610A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D362297423F7FFB7005A610A /* SettingView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingView.strings; sourceTree = "<group>"; };
 		D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		D37C0560240FF0C7009DDCAE /* CalenderView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CalenderView.strings; sourceTree = "<group>"; };
 		D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = UserDefaults.strings; sourceTree = "<group>"; };
 		D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppDelegate.strings; sourceTree = "<group>"; };
 		D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
@@ -309,9 +309,10 @@
 		D362297323F7FF7B005A610A /* Strings */ = {
 			isa = PBXGroup;
 			children = (
-				D362297423F7FFB7005A610A /* SettingView.strings */,
-				D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */,
 				D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */,
+				D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */,
+				D37C0560240FF0C7009DDCAE /* CalenderView.strings */,
+				D362297423F7FFB7005A610A /* SettingView.strings */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -320,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */,
-				D3405281240ED42500F0AF20 /* SectionOfRecords.swift */,
 				D3E5E3422405E45E00D73CEB /* UserDefaults.swift */,
 				D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */,
 			);
@@ -448,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37C0561240FF0C7009DDCAE /* CalenderView.strings in Resources */,
 				D34894B423F79B4F00E4D758 /* CalenderViewController.xib in Resources */,
 				D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */,
 				D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */,
@@ -649,7 +650,6 @@
 				D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */,
 				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,
 				D3EDDA63240858C600C618A5 /* CalenderViewModel.swift in Sources */,
-				D3405282240ED42500F0AF20 /* SectionOfRecords.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
 				D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */,
 				D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */,

@@ -113,7 +113,6 @@ extension NoteViewModel {
                 self.selectedIndex.accept(selected.row)
             })
             .disposed(by: disposeBag)
-
     }
 
 }
@@ -176,7 +175,6 @@ extension NoteViewModel {
             })
             .disposed(by: disposeBag)
     }
-
 }
 
 extension NoteViewModel: NoteViewModelOutput {
@@ -198,7 +196,8 @@ extension NoteViewModel: NoteViewModelOutput {
     }
 
     var weightStringDriver: Driver<String> {
-        return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
+        return weightRelay.asDriver().map {round($0)}.map { String(format: "% 4.0f", $0)}.map {"\($0.description) kg"}
+
     }
 
     var repsDriver: Driver<String> {
@@ -219,5 +218,4 @@ extension NoteViewModel: NoteViewModelOutput {
     var selectedIndexDriver: Driver<Int> {
         return selectedIndex.asDriver()
     }
-
 }

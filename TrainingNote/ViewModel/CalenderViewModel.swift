@@ -15,6 +15,7 @@ import RxRealm
 struct CalenderViewModelInput {
     let selectedDateRelay: BehaviorRelay<Date>
     let checkDateRelay: PublishRelay<Date>
+    let swipeCell: ControlEvent<IndexPath>
 }
 
 protocol CalenderViewModelOutput {
@@ -41,7 +42,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let formatter = DateStringFormatter()
     private let disposeBag = DisposeBag()
     private var records: Results<Record>!
-    private var combineObservable: Observable<Results<Record>?>!
+    private var combineRecordsAndDate: Observable<Results<Record>?>!
     private let labelRelay = BehaviorRelay<[[String]]>(value: [[]])
 
     init(with dependency: Dependency) {
@@ -89,18 +90,23 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
             })
             .disposed(by: disposeBag)
 
-        combineObservable = Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
+        combineRecordsAndDate = Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
             self?.getSelectedDateRecords(records: stringElement, date: intElement)
         }
 
-        combineObservable
+        combineRecordsAndDate
             .subscribe(onNext: { records in
-                print("ViewModel records:")
                 self.labelRelay.accept(self.makeLabel(records: records))
             })
             .disposed(by: disposeBag)
-    }
 
+        input.swipeCell
+            .withLatestFrom(combineRecordsAndDate) { indexPath, records in
+                return records![indexPath.row]
+        }
+        .subscribe(Realm.rx.delete())
+        .disposed(by: disposeBag)
+    }
 }
 
 extension CalenderViewModel {
@@ -134,10 +140,8 @@ extension CalenderViewModel {
             let textLabelString = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 4.0f", round(record.weight)) + " kg"
             labelArray.append([textLabelString, record.exercise])
         }
-        print("LabelArray: ", labelArray)
         return labelArray
     }
-
 }
 
 extension CalenderViewModel: CalenderViewModelOutput {
@@ -154,11 +158,10 @@ extension CalenderViewModel: CalenderViewModelOutput {
     }
 
     var selectedRecordsObservable: Observable<Results<Record>?> {
-        return self.combineObservable
+        return self.combineRecordsAndDate
     }
 
     var labelDriver: Driver<[[String]]> {
         return labelRelay.asDriver()
     }
-
 }

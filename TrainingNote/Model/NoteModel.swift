@@ -50,7 +50,6 @@ final class NoteModel: Injectable, NoteModelType {
     func setup(input: NoteModelInput) {
 
         let realm = self.createRealm()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
         input.selectedDateRelay
             .subscribe(onNext: { date in
