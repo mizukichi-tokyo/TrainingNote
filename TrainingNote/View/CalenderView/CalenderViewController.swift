@@ -42,6 +42,7 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
     private let selectedDateRelay = BehaviorRelay<Date>(value: Date())
     private let checkDateRelay = PublishRelay<Date>()
     private var selectedDateRecords: Results<Record>?
+    private var labelArray = [[String]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,30 +85,29 @@ class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendar
             })
             .disposed(by: disposeBag)
 
+        viewModel.outputs?.labelDriver
+            .drive(onNext: { labelArray in
+                self.labelArray = labelArray
+            })
+            .disposed(by: disposeBag)
     }
-
 }
 
 extension CalenderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let selectedDateRecords = self.selectedDateRecords else { return 0 }
-        return selectedDateRecords.count
+        return labelArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.customCalenderTableCell.identifier)!
 
-        guard let selectedDateRecords = self.selectedDateRecords else { return cell }
+        guard labelArray.count != 0 else { return cell }
 
-        let record = selectedDateRecords[indexPath.row]
-
-        let roundWeight = round(record.weight * 10)/10
-        cell.textLabel?.text = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 5.1f", roundWeight) + " kg"
+        cell.textLabel?.text = labelArray[indexPath.row][0]
+        cell.detailTextLabel?.text = labelArray[indexPath.row][1]
 
         cell.textLabel?.textColor = UIColor.lightText
-
-        cell.detailTextLabel?.text = record.exercise
         cell.detailTextLabel?.textColor = UIColor.lightText
 
         return cell

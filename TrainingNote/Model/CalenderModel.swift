@@ -13,7 +13,6 @@ import RealmSwift
 import RxRealm
 
 struct CalenderModelInput {
-    let selectedDateRelay: BehaviorRelay<Date>
 }
 
 protocol CalenderModelOutput {
@@ -45,15 +44,6 @@ final class CalenderModel: Injectable, CalenderModelType {
 
         records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
 
-        input.selectedDateRelay.subscribe(onNext: { [weak self] date in
-            guard let self = self else { return }
-
-            self.selectedDateRecords = self.getSelectedDateRecords(date: date)!
-
-            print("model: ", self.selectedDateRecords!)
-            print("model:END ")
-        })
-            .disposed(by: disposeBag)
     }
 }
 
@@ -70,8 +60,8 @@ extension CalenderModel {
         }
     }
 
-    private func getSelectedDateRecords(date: Date) -> Results<Record>? {
-        let realm = createRealm()
+    private func getSelectedDateRecords(records: Results<Record>, date: Date) -> Results<Record>? {
+
         var selectedDateRecords: Results<Record>?
 
         let predicate = NSPredicate(
@@ -80,7 +70,7 @@ extension CalenderModel {
             getStartAndEndOfDay(date).end as CVarArg
         )
 
-        selectedDateRecords = realm.objects(Record.self).filter(predicate).sorted(byKeyPath: "creationTime", ascending: false)
+        selectedDateRecords = records.filter(predicate)
 
         return selectedDateRecords
     }
@@ -90,6 +80,7 @@ extension CalenderModel {
         let end = start + 24 * 60 * 60
         return (start, end)
     }
+
 }
 
 extension CalenderModel: CalenderModelOutput {

@@ -22,6 +22,7 @@ protocol CalenderViewModelOutput {
     var eventCountDriver: Driver<Int> {get}
     var recordsChangeObservable: Observable<(AnyRealmCollection<Record>, RealmChangeset?)> {get}
     var selectedRecordsObservable: Observable<Results<Record>?> {get}
+    var labelDriver: Driver<[[String]]> {get}
 }
 
 protocol CalenderViewModelType {
@@ -41,6 +42,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
     private let disposeBag = DisposeBag()
     private var records: Results<Record>!
     private var combineObservable: Observable<Results<Record>?>!
+    private let labelRelay = BehaviorRelay<[[String]]>(value: [[]])
 
     init(with dependency: Dependency) {
         model = dependency
@@ -70,10 +72,7 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
             })
             .disposed(by: disposeBag)
 
-        let modelInput = CalenderModelInput(
-            selectedDateRelay: input.selectedDateRelay
-        )
-
+        let modelInput = CalenderModelInput()
         model.setup(input: modelInput)
 
         model.outputs?.recordsObservable
@@ -89,38 +88,17 @@ final class CalenderViewModel: Injectable, CalenderViewModelType {
                 self.eventDateStringArray = eventDateStringArray
             })
             .disposed(by: disposeBag)
-//あとで消すよ
-        Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
-            self?.getSelectedDateRecords(records: stringElement, date: intElement)
-        }
-        .subscribe(onNext: { print("combine:", $0!.count) })
-        .disposed(by: disposeBag)
 
         combineObservable = Observable.combineLatest(model.outputs!.recordsObservable, input.selectedDateRelay) { [weak self] stringElement, intElement in
             self?.getSelectedDateRecords(records: stringElement, date: intElement)
         }
 
-    }
-
-    private func getSelectedDateRecords(records: Results<Record>, date: Date) -> Results<Record>? {
-
-        var selectedDateRecords: Results<Record>?
-
-        let predicate = NSPredicate(
-            format: "%@ =< selectedDate AND selectedDate < %@",
-            getStartAndEndOfDay(date).start as CVarArg,
-            getStartAndEndOfDay(date).end as CVarArg
-        )
-
-        selectedDateRecords = records.filter(predicate)
-
-        return selectedDateRecords
-    }
-
-    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
-        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
-        let end = start + 24 * 60 * 60
-        return (start, end)
+        combineObservable
+            .subscribe(onNext: { records in
+                print("ViewModel records:")
+                self.labelRelay.accept(self.makeLabel(records: records))
+            })
+            .disposed(by: disposeBag)
     }
 
 }
@@ -132,6 +110,34 @@ extension CalenderViewModel {
         dateString = formatter.formatt(date: date)
         return dateString
     }
+
+    private func getSelectedDateRecords(records: Results<Record>, date: Date) -> Results<Record>? {
+        var selectedDateRecords: Results<Record>?
+        let predicate = NSPredicate(
+            format: "%@ =< selectedDate AND selectedDate < %@",
+            getStartAndEndOfDay(date).start as CVarArg,
+            getStartAndEndOfDay(date).end as CVarArg
+        )
+        selectedDateRecords = records.filter(predicate)
+        return selectedDateRecords
+    }
+
+    private func getStartAndEndOfDay(_ date: Date) -> (start: Date, end: Date) {
+        let start = Calendar(identifier: .gregorian).startOfDay(for: date)
+        let end = start + 24 * 60 * 60
+        return (start, end)
+    }
+
+    private func makeLabel(records: Results<Record>? ) ->( [[String]] ) {
+        var labelArray = [[String]]()
+        for record in records! {
+            let textLabelString = String(format: "% 3.0f", record.reps) + " reps  " + String(format: "% 4.0f", round(record.weight)) + " kg"
+            labelArray.append([textLabelString, record.exercise])
+        }
+        print("LabelArray: ", labelArray)
+        return labelArray
+    }
+
 }
 
 extension CalenderViewModel: CalenderViewModelOutput {
@@ -149,6 +155,10 @@ extension CalenderViewModel: CalenderViewModelOutput {
 
     var selectedRecordsObservable: Observable<Results<Record>?> {
         return self.combineObservable
+    }
+
+    var labelDriver: Driver<[[String]]> {
+        return labelRelay.asDriver()
     }
 
 }
