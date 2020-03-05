@@ -69,7 +69,7 @@
 		891D4C9EB7945661AAF11D89 /* Pods-TrainingNote-TrainingNoteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNote-TrainingNoteUITests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNote-TrainingNoteUITests/Pods-TrainingNote-TrainingNoteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AFD0126A6E828644F4D8E4E0 /* Pods_TrainingNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrainingNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF11980B151F3F0000C95B9C /* Pods-TrainingNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNote.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNote/Pods-TrainingNote.debug.xcconfig"; sourceTree = "<group>"; };
-		D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D31FAFEE23F7639B00CECCC5 /* GymNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FAFF123F7639B00CECCC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		D31FAFEF23F7639B00CECCC5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */,
+				D31FAFEE23F7639B00CECCC5 /* GymNote.app */,
 				D31FB00423F7639C00CECCC5 /* TrainingNoteTests.xctest */,
 				D31FB00F23F7639C00CECCC5 /* TrainingNoteUITests.xctest */,
 			);
@@ -357,7 +357,7 @@
 			);
 			name = TrainingNote;
 			productName = TrainingNote;
-			productReference = D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */;
+			productReference = D31FAFEE23F7639B00CECCC5 /* GymNote.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D31FB00323F7639C00CECCC5 /* TrainingNoteTests */ = {
@@ -821,8 +821,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.TrainingNote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.GymNote;
+				PRODUCT_NAME = GymNote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -840,8 +840,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.TrainingNote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.GymNote;
+				PRODUCT_NAME = GymNote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
