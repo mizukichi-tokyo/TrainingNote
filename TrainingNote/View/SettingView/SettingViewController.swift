@@ -43,7 +43,7 @@ class SettingViewController: UIViewController, Injectable {
         setup()
     }
 
-    func setup() {
+    private func setup() {
 
         let input = SettingViewModelInput(
             swipeCell: tableView.rx.itemDeleted,
@@ -60,7 +60,7 @@ class SettingViewController: UIViewController, Injectable {
 
 extension SettingViewController {
 
-    func showAlert( addItemTextRelay: PublishRelay<String>) {
+    private func showAlert( addItemTextRelay: PublishRelay<String>) {
         var uiTextField = UITextField()
 
         let alertController = UIAlertController(

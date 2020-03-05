@@ -9,7 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalenderViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
+                <outlet property="calendar" destination="7n1-GL-IBF" id="yOf-8g-PRB"/>
                 <outlet property="dateLabel" destination="ITn-cs-R2F" id="rxU-k1-0Wy"/>
+                <outlet property="tableView" destination="0FV-xe-6l3" id="IAA-2j-NG5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +23,7 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JbT-37-MGK">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
-                        <navigationItem title="Calender" id="ob5-xq-kbt">
+                        <navigationItem title="Calendar" id="ob5-xq-kbt">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="gear" catalog="system" id="Qvm-ay-P0U">
                                 <connections>
                                     <action selector="moveToSetting:" destination="-1" id="trl-0G-x8F"/>
@@ -66,14 +68,19 @@
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-xe-6l3">
                     <rect key="frame" x="20" y="514" width="374" height="362"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <color key="separatorColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <color key="sectionIndexColor" cocoaTouchSystemColor="lightTextColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="FRc-dl-Fcc"/>
+                        <outlet property="delegate" destination="-1" id="pFF-Pc-8qJ"/>
+                    </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nah-ds-MPx" customClass="MDCFloatingButton">
                     <rect key="frame" x="319" y="751.33333333333337" width="75" height="75"/>

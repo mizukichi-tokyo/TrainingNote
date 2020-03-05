@@ -19,7 +19,7 @@
             </tableViewCellContentView>
             <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="139" y="152"/>
+            <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </tableViewCell>
     </objects>
 </document>

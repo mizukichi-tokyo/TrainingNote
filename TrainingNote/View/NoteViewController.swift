@@ -33,6 +33,7 @@ class NoteViewController: UIViewController, Injectable {
     private let viewModel: NoteViewModel
     private let disposeBag = DisposeBag()
     var selectedDate: Date?
+    private var selectedDateRelay: BehaviorRelay<Date>?
 
     required init(with dependency: Dependency) {
         viewModel = dependency
@@ -49,18 +50,18 @@ class NoteViewController: UIViewController, Injectable {
     }
 
     func setup() {
+        selectedDateRelay = BehaviorRelay<Date>(value: selectedDate!)
+
         let input = NoteViewModelInput(
             slider: slider.rx.value,
             stepper: stepper.rx.value,
-            selectedDate: selectedDate,
+            selectedDateRelay: selectedDateRelay!,
             addButton: addButton.rx.tap,
             pickerTitle: pickerView.rx.modelSelected(String.self),
             pickerIndex: pickerView.rx.itemSelected
         )
-
         viewModel.setup(input: input)
         bindOutputs()
-
     }
 
     func bindOutputs() {

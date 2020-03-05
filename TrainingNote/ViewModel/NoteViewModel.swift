@@ -13,7 +13,7 @@ import RxCocoa
 struct NoteViewModelInput {
     let slider: ControlProperty<Float>
     let stepper: ControlProperty<Double>
-    let selectedDate: Date?
+    let selectedDateRelay: BehaviorRelay<Date>
     let addButton: ControlEvent<Void>
     let pickerTitle: ControlEvent<[String]>
     let pickerIndex: ControlEvent<(row: Int, component: Int)>
@@ -42,7 +42,8 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 
     private let weightRelay = BehaviorRelay<Float>(value: UserDefault.weight)
     private let repsRelay = BehaviorRelay<Double>(value: 0)
-    private var selectedDate: Date?
+    private let dataStringRelay = BehaviorRelay<String>(value: "")
+
     private var pickerTitle =  BehaviorRelay<String>(value: "")
     private var selectedIndex = BehaviorRelay<Int>(value: UserDefault.selectedIndex)
 
@@ -64,7 +65,7 @@ final class NoteViewModel: Injectable, NoteViewModelType {
             selectedIndex: selectedIndex,
             weightRelay: weightRelay,
             repsRelay: repsRelay,
-            selectedDate: selectedDate,
+            selectedDateRelay: input.selectedDateRelay,
             pickerTitle: pickerTitle,
             addButton: input.addButton
         )
@@ -77,6 +78,14 @@ final class NoteViewModel: Injectable, NoteViewModelType {
 extension NoteViewModel {
 
     private func subscribeInputs(input: NoteViewModelInput) {
+
+        input.selectedDateRelay
+            .subscribe(onNext: {[weak self] date in
+                guard let self = self else { return }
+                self.dateToString(date: date)
+            })
+            .disposed(by: disposeBag)
+
         input.slider
             .subscribe(onNext: { [weak self] slider in
                 guard let self = self else { return }
@@ -91,8 +100,6 @@ extension NoteViewModel {
             })
             .disposed(by: disposeBag)
 
-        selectedDate = input.selectedDate
-
         input.pickerTitle
             .subscribe(onNext: { [weak self] pickertitle in
                 guard let self = self else { return }
@@ -106,12 +113,19 @@ extension NoteViewModel {
                 self.selectedIndex.accept(selected.row)
             })
             .disposed(by: disposeBag)
-
     }
 
 }
 
 extension NoteViewModel {
+
+    private func dateToString(date: Date) {
+        var dateString = String()
+        let formatter = DateStringFormatter()
+        dateString = formatter.formatt(date: date)
+
+        dataStringRelay.accept(dateString)
+    }
 
     private func setDefaultPicker() {
         setDefaultSelectedIndex()
@@ -161,7 +175,6 @@ extension NoteViewModel {
             })
             .disposed(by: disposeBag)
     }
-
 }
 
 extension NoteViewModel: NoteViewModelOutput {
@@ -183,7 +196,8 @@ extension NoteViewModel: NoteViewModelOutput {
     }
 
     var weightStringDriver: Driver<String> {
-        return weightRelay.asDriver().map {round($0)}.map {"\($0.description) kg"}
+        return weightRelay.asDriver().map {round($0)}.map { String(format: "% 4.0f", $0)}.map {"\($0.description) kg"}
+
     }
 
     var repsDriver: Driver<String> {
@@ -198,20 +212,10 @@ extension NoteViewModel: NoteViewModelOutput {
     }
 
     var dateDriver: Driver<String> {
-        let dataRelay = BehaviorRelay<String>(value: "")
-
-        let dateFormatter = DateFormatter()
-        var dateString = String()
-        // DateFormatter を使用して書式とローカルを指定する
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "M/d/yyyy", options: 0, locale: Locale(identifier: "en_US"))
-        dateString = dateFormatter.string(from: selectedDate!)
-
-        dataRelay.accept(dateString)
-        return dataRelay.asDriver()
+        return dataStringRelay.asDriver()
     }
 
     var selectedIndexDriver: Driver<Int> {
         return selectedIndex.asDriver()
     }
-
 }

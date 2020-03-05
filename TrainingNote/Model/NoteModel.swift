@@ -16,7 +16,7 @@ struct NoteModelInput {
     let selectedIndex: BehaviorRelay<Int>
     let weightRelay: BehaviorRelay<Float>
     let repsRelay: BehaviorRelay<Double>
-    let selectedDate: Date?
+    let selectedDateRelay: BehaviorRelay<Date>
     let pickerTitle: BehaviorRelay<String>
     let addButton: ControlEvent<Void>
 }
@@ -50,9 +50,12 @@ final class NoteModel: Injectable, NoteModelType {
     func setup(input: NoteModelInput) {
 
         let realm = self.createRealm()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
-        recordDate = input.selectedDate
+        input.selectedDateRelay
+            .subscribe(onNext: { date in
+                self.recordDate = date
+            })
+            .disposed(by: disposeBag)
 
         input.pickerTitle
             .observeOn(MainScheduler.asyncInstance)
@@ -126,7 +129,7 @@ extension NoteModel: NoteModelOutput {
 }
 
 extension NoteModel {
-    func createRealm() -> Realm {
+    private func createRealm() -> Realm {
         do {
             return try Realm()
         } catch let error as NSError {

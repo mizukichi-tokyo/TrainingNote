@@ -46,7 +46,6 @@ final class SettingViewModel: Injectable, SettingViewModelType {
 }
 
 extension SettingViewModel: SettingViewModelOutput {
-
     var sectionDataDriver: Driver<[SectionOfExerciseData]> {
 
         let dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
@@ -73,5 +72,4 @@ extension SettingViewModel: SettingViewModelOutput {
 
         return sectionModels
     }
-
 }
