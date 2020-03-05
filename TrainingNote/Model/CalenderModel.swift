@@ -41,7 +41,7 @@ final class CalenderModel: Injectable, CalenderModelType {
     func setup(input: CalenderModelInput) {
         let realm = createRealm()
 
-        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: false)
+        records = realm.objects(Record.self).sorted(byKeyPath: "creationTime", ascending: true)
 
     }
 }
