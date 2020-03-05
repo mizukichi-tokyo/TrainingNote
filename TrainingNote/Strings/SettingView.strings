@@ -1,8 +1,8 @@
-"alertTitle" = "Add a Exercise";
-"alertMessage" = "Input the Exercise you want to add";
+"alertTitle" = "【種目追加】";
+"alertMessage" = "新しい種目を追加";
 "alertAdd" = "add";
 "alertCancel" = "cancel";
-"placeholder" = "Input The New Exercise";
+"placeholder" = "例：ベントオーバーロー";
 "empty" = "";
 "attributedTitle" = "attributedTitle";
 "attributedMessage" = "attributedMessage";
