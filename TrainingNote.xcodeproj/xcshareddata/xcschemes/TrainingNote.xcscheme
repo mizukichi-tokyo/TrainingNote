@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D31FAFED23F7639B00CECCC5"
-               BuildableName = "TrainingNote.app"
+               BuildableName = "GymNote.app"
                BlueprintName = "TrainingNote"
                ReferencedContainer = "container:TrainingNote.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D31FAFED23F7639B00CECCC5"
-            BuildableName = "TrainingNote.app"
+            BuildableName = "GymNote.app"
             BlueprintName = "TrainingNote"
             ReferencedContainer = "container:TrainingNote.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D31FAFED23F7639B00CECCC5"
-            BuildableName = "TrainingNote.app"
+            BuildableName = "GymNote.app"
             BlueprintName = "TrainingNote"
             ReferencedContainer = "container:TrainingNote.xcodeproj">
          </BuildableReference>
@@ -93,6 +93,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "GymNote"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -15,6 +15,9 @@
 		D31FAFFB23F7639C00CECCC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */; };
 		D31FB00923F7639C00CECCC5 /* TrainingNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB00823F7639C00CECCC5 /* TrainingNoteTests.swift */; };
 		D31FB01423F7639C00CECCC5 /* TrainingNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */; };
+		D32124A02408039C009299E3 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D321249F2408039C009299E3 /* RealmModel.swift */; };
+		D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */; };
+		D3405280240D7D3A00F0AF20 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D340527F240D7D3A00F0AF20 /* CalenderModel.swift */; };
 		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
 		D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34894A523F789E200E4D758 /* LaunchScreen.storyboard */; };
 		D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B123F79B4F00E4D758 /* CalenderViewController.swift */; };
@@ -23,6 +26,22 @@
 		D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894B623F79F7500E4D758 /* SettingViewController.xib */; };
 		D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34894B923F7A54700E4D758 /* NoteViewController.swift */; };
 		D34894BC23F7A54700E4D758 /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D34894BA23F7A54700E4D758 /* NoteViewController.xib */; };
+		D349B1E123FA9BF7005F7C56 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D349B1E023FA9BF7005F7C56 /* SettingModel.swift */; };
+		D362296D23F7E9B9005A610A /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296B23F7E9B9005A610A /* SettingTableViewCell.swift */; };
+		D362296E23F7E9B9005A610A /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D362296C23F7E9B9005A610A /* SettingTableViewCell.xib */; };
+		D362297023F7EA3F005A610A /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362296F23F7EA3F005A610A /* Injectable.swift */; };
+		D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D362297123F7EB4D005A610A /* SettingViewModel.swift */; };
+		D362297523F7FFB7005A610A /* SettingView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D362297423F7FFB7005A610A /* SettingView.strings */; };
+		D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */; };
+		D37C0561240FF0C7009DDCAE /* CalenderView.strings in Resources */ = {isa = PBXBuildFile; fileRef = D37C0560240FF0C7009DDCAE /* CalenderView.strings */; };
+		D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */; };
+		D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */; };
+		D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */; };
+		D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD4EF723FFF44E00E88993 /* NoteModel.swift */; };
+		D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E5E3422405E45E00D73CEB /* UserDefaults.swift */; };
+		D3EDDA5F2408569200C618A5 /* CalenerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */; };
+		D3EDDA602408569200C618A5 /* CalenerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */; };
+		D3EDDA63240858C600C618A5 /* CalenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +69,7 @@
 		891D4C9EB7945661AAF11D89 /* Pods-TrainingNote-TrainingNoteUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNote-TrainingNoteUITests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNote-TrainingNoteUITests/Pods-TrainingNote-TrainingNoteUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AFD0126A6E828644F4D8E4E0 /* Pods_TrainingNote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrainingNote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF11980B151F3F0000C95B9C /* Pods-TrainingNote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNote.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNote/Pods-TrainingNote.debug.xcconfig"; sourceTree = "<group>"; };
-		D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D31FAFEE23F7639B00CECCC5 /* GymNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FAFF123F7639B00CECCC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +80,9 @@
 		D31FB00F23F7639C00CECCC5 /* TrainingNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainingNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNoteUITests.swift; sourceTree = "<group>"; };
 		D31FB01523F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D321249F2408039C009299E3 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfExerciseData.swift; sourceTree = "<group>"; };
+		D340527F240D7D3A00F0AF20 /* CalenderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
 		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D34894A523F789E200E4D758 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D34894B123F79B4F00E4D758 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +91,22 @@
 		D34894B623F79F7500E4D758 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		D34894B923F7A54700E4D758 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		D34894BA23F7A54700E4D758 /* NoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
+		D349B1E023FA9BF7005F7C56 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		D362296B23F7E9B9005A610A /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		D362296C23F7E9B9005A610A /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
+		D362296F23F7EA3F005A610A /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
+		D362297123F7EB4D005A610A /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		D362297423F7FFB7005A610A /* SettingView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = SettingView.strings; sourceTree = "<group>"; };
+		D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		D37C0560240FF0C7009DDCAE /* CalenderView.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CalenderView.strings; sourceTree = "<group>"; };
+		D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = UserDefaults.strings; sourceTree = "<group>"; };
+		D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = AppDelegate.strings; sourceTree = "<group>"; };
+		D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+		D3BD4EF723FFF44E00E88993 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		D3E5E3422405E45E00D73CEB /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenerTableViewCell.swift; sourceTree = "<group>"; };
+		D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenerTableViewCell.xib; sourceTree = "<group>"; };
+		D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewModel.swift; sourceTree = "<group>"; };
 		D825926584CB9ECC7FD44CD6 /* Pods-TrainingNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.debug.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E14285CB2D457CBD3B134913 /* Pods-TrainingNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrainingNoteTests.release.xcconfig"; path = "Target Support Files/Pods-TrainingNoteTests/Pods-TrainingNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,7 +178,7 @@
 		D31FAFEF23F7639B00CECCC5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */,
+				D31FAFEE23F7639B00CECCC5 /* GymNote.app */,
 				D31FB00423F7639C00CECCC5 /* TrainingNoteTests.xctest */,
 				D31FB00F23F7639C00CECCC5 /* TrainingNoteUITests.xctest */,
 			);
@@ -150,17 +188,18 @@
 		D31FAFF023F7639B00CECCC5 /* TrainingNote */ = {
 			isa = PBXGroup;
 			children = (
+				D362297323F7FF7B005A610A /* Strings */,
+				D3BD4EF923FFF46700E88993 /* Struct */,
+				D362296323F7DC06005A610A /* Protocol */,
+				D340527E240D7C1900F0AF20 /* RealmSwift */,
+				D362296423F7DC37005A610A /* Model */,
+				D362296523F7DC3D005A610A /* ViewModel */,
+				D362296623F7DC48005A610A /* View */,
 				D34894A523F789E200E4D758 /* LaunchScreen.storyboard */,
 				D31FAFF123F7639B00CECCC5 /* AppDelegate.swift */,
 				D31FAFF323F7639B00CECCC5 /* SceneDelegate.swift */,
 				D31FAFFA23F7639C00CECCC5 /* Assets.xcassets */,
 				D31FAFFF23F7639C00CECCC5 /* Info.plist */,
-				D34894B123F79B4F00E4D758 /* CalenderViewController.swift */,
-				D34894B223F79B4F00E4D758 /* CalenderViewController.xib */,
-				D34894B523F79F7500E4D758 /* SettingViewController.swift */,
-				D34894B623F79F7500E4D758 /* SettingViewController.xib */,
-				D34894B923F7A54700E4D758 /* NoteViewController.swift */,
-				D34894BA23F7A54700E4D758 /* NoteViewController.xib */,
 			);
 			path = TrainingNote;
 			sourceTree = "<group>";
@@ -181,6 +220,120 @@
 				D31FB01523F7639C00CECCC5 /* Info.plist */,
 			);
 			path = TrainingNoteUITests;
+			sourceTree = "<group>";
+		};
+		D340527E240D7C1900F0AF20 /* RealmSwift */ = {
+			isa = PBXGroup;
+			children = (
+				D321249F2408039C009299E3 /* RealmModel.swift */,
+			);
+			path = RealmSwift;
+			sourceTree = "<group>";
+		};
+		D362296323F7DC06005A610A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D362296F23F7EA3F005A610A /* Injectable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D362296423F7DC37005A610A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D340527F240D7D3A00F0AF20 /* CalenderModel.swift */,
+				D349B1E023FA9BF7005F7C56 /* SettingModel.swift */,
+				D3BD4EF723FFF44E00E88993 /* NoteModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D362296523F7DC3D005A610A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDDA62240858C600C618A5 /* CalenderViewModel.swift */,
+				D362297123F7EB4D005A610A /* SettingViewModel.swift */,
+				D3BD4EF523FFF3E700E88993 /* NoteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D362296623F7DC48005A610A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D362296723F7DC73005A610A /* CalenderView */,
+				D362296823F7DC85005A610A /* SettingView */,
+				D362296923F7DC94005A610A /* NoteView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D362296723F7DC73005A610A /* CalenderView */ = {
+			isa = PBXGroup;
+			children = (
+				D34894B123F79B4F00E4D758 /* CalenderViewController.swift */,
+				D34894B223F79B4F00E4D758 /* CalenderViewController.xib */,
+				D3EDDA61240856A800C618A5 /* Cell */,
+			);
+			path = CalenderView;
+			sourceTree = "<group>";
+		};
+		D362296823F7DC85005A610A /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				D34894B523F79F7500E4D758 /* SettingViewController.swift */,
+				D34894B623F79F7500E4D758 /* SettingViewController.xib */,
+				D362296A23F7DCFB005A610A /* Cell */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		D362296923F7DC94005A610A /* NoteView */ = {
+			isa = PBXGroup;
+			children = (
+				D34894B923F7A54700E4D758 /* NoteViewController.swift */,
+				D34894BA23F7A54700E4D758 /* NoteViewController.xib */,
+			);
+			name = NoteView;
+			sourceTree = "<group>";
+		};
+		D362296A23F7DCFB005A610A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D362296B23F7E9B9005A610A /* SettingTableViewCell.swift */,
+				D362296C23F7E9B9005A610A /* SettingTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		D362297323F7FF7B005A610A /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				D3BD4EF323FFB04F00E88993 /* AppDelegate.strings */,
+				D39AC62423FE4B5D00DCC185 /* UserDefaults.strings */,
+				D37C0560240FF0C7009DDCAE /* CalenderView.strings */,
+				D362297423F7FFB7005A610A /* SettingView.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		D3BD4EF923FFF46700E88993 /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */,
+				D3E5E3422405E45E00D73CEB /* UserDefaults.swift */,
+				D36B4E6F240CBAAF00C2AA8A /* DateFormatter.swift */,
+			);
+			path = Struct;
+			sourceTree = "<group>";
+		};
+		D3EDDA61240856A800C618A5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDDA5D2408569200C618A5 /* CalenerTableViewCell.swift */,
+				D3EDDA5E2408569200C618A5 /* CalenerTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +357,7 @@
 			);
 			name = TrainingNote;
 			productName = TrainingNote;
-			productReference = D31FAFEE23F7639B00CECCC5 /* TrainingNote.app */;
+			productReference = D31FAFEE23F7639B00CECCC5 /* GymNote.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D31FB00323F7639C00CECCC5 /* TrainingNoteTests */ = {
@@ -295,8 +448,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D37C0561240FF0C7009DDCAE /* CalenderView.strings in Resources */,
 				D34894B423F79B4F00E4D758 /* CalenderViewController.xib in Resources */,
+				D3BD4EF423FFB04F00E88993 /* AppDelegate.strings in Resources */,
 				D34894B823F79F7500E4D758 /* SettingViewController.xib in Resources */,
+				D362297523F7FFB7005A610A /* SettingView.strings in Resources */,
+				D3EDDA602408569200C618A5 /* CalenerTableViewCell.xib in Resources */,
+				D39AC62523FE4B5D00DCC185 /* UserDefaults.strings in Resources */,
+				D362296E23F7E9B9005A610A /* SettingTableViewCell.xib in Resources */,
 				D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */,
 				D34894BC23F7A54700E4D758 /* NoteViewController.xib in Resources */,
 				D31FAFFB23F7639C00CECCC5 /* Assets.xcassets in Resources */,
@@ -484,9 +643,22 @@
 			files = (
 				D34894B323F79B4F00E4D758 /* CalenderViewController.swift in Sources */,
 				D31FAFF223F7639B00CECCC5 /* AppDelegate.swift in Sources */,
+				D3EDDA5F2408569200C618A5 /* CalenerTableViewCell.swift in Sources */,
+				D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */,
+				D362296D23F7E9B9005A610A /* SettingTableViewCell.swift in Sources */,
 				D31FAFF423F7639B00CECCC5 /* SceneDelegate.swift in Sources */,
+				D3BD4EF823FFF44E00E88993 /* NoteModel.swift in Sources */,
+				D362297023F7EA3F005A610A /* Injectable.swift in Sources */,
+				D3EDDA63240858C600C618A5 /* CalenderViewModel.swift in Sources */,
 				D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */,
+				D36B4E70240CBAAF00C2AA8A /* DateFormatter.swift in Sources */,
+				D3E5E3432405E45E00D73CEB /* UserDefaults.swift in Sources */,
+				D3405280240D7D3A00F0AF20 /* CalenderModel.swift in Sources */,
 				D34894BB23F7A54700E4D758 /* NoteViewController.swift in Sources */,
+				D3BD4EF623FFF3E700E88993 /* NoteViewModel.swift in Sources */,
+				D349B1E123FA9BF7005F7C56 /* SettingModel.swift in Sources */,
+				D362297223F7EB4D005A610A /* SettingViewModel.swift in Sources */,
+				D32124A02408039C009299E3 /* RealmModel.swift in Sources */,
 				D34894B723F79F7500E4D758 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,8 +821,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.TrainingNote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.GymNote;
+				PRODUCT_NAME = GymNote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -668,8 +840,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.TrainingNote;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mizuki.kubota.GymNote;
+				PRODUCT_NAME = GymNote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

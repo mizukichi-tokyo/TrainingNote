@@ -1,0 +1,8 @@
+"alertTitle" = "【種目追加】";
+"alertMessage" = "新しい種目を追加";
+"alertAdd" = "add";
+"alertCancel" = "cancel";
+"placeholder" = "例：ベントオーバーロー";
+"empty" = "";
+"attributedTitle" = "attributedTitle";
+"attributedMessage" = "attributedMessage";

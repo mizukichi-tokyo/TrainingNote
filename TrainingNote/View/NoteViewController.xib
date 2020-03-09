@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoteViewController" customModule="TrainingNote" customModuleProvider="target">
+            <connections>
+                <outlet property="addButton" destination="mTG-zF-JAj" id="etS-X3-KHO"/>
+                <outlet property="barItem" destination="17n-t6-Cdq" id="WAn-Fv-EgT"/>
+                <outlet property="pickerView" destination="zON-MD-eMb" id="Oiv-Jd-Kmq"/>
+                <outlet property="repsLabel" destination="bmi-2K-96j" id="VpZ-bp-3i2"/>
+                <outlet property="slider" destination="kRW-Wi-yD6" id="Lsc-P0-Yah"/>
+                <outlet property="stepper" destination="7MG-iG-u0G" id="rIR-Uq-5sv"/>
+                <outlet property="timerLabel" destination="g1f-oE-zFL" id="uU0-CA-iC0"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weightLabel" destination="S1T-yZ-ZzZ" id="jfJ-PS-LFd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txT-UX-3Oy">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <navigationItem id="17n-t6-Cdq">
+                            <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="9Wl-io-WCQ">
+                                <connections>
+                                    <action selector="moveToCalender:" destination="-1" id="NJx-hg-AES"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="barPosition">
+                            <integer key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1f-oE-zFL">
+                    <rect key="frame" x="20" y="104" width="374" height="30"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Iob-Al-zjo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zON-MD-eMb" userLabel="Picker View1">
+                    <rect key="frame" x="20" y="150" width="374" height="102.5"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </pickerView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1T-yZ-ZzZ">
+                    <rect key="frame" x="20" y="268.5" width="374" height="102"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reps " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmi-2K-96j">
+                    <rect key="frame" x="20" y="432.5" width="374" height="102.5"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="kRW-Wi-yD6">
+                    <rect key="frame" x="18" y="386.5" width="378" height="31"/>
+                    <color key="thumbTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                </slider>
+                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="7MG-iG-u0G">
+                    <rect key="frame" x="160" y="567" width="94" height="32"/>
+                </stepper>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTG-zF-JAj" customClass="MDCFloatingButton">
+                    <rect key="frame" x="319" y="751.5" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="K4L-Wi-Wtw"/>
+                        <constraint firstAttribute="width" secondItem="mTG-zF-JAj" secondAttribute="height" multiplier="1:1" id="Un1-ce-Uk7"/>
+                    </constraints>
+                    <state key="normal" image="checkmark" catalog="system"/>
+                    <connections>
+                        <action selector="addTouched:" destination="-1" eventType="touchUpInside" id="sXO-XV-cz5"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="zON-MD-eMb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="3Dk-3v-32B"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kRW-Wi-yD6" secondAttribute="trailing" constant="20" id="3Li-b7-Nhy"/>
+                <constraint firstItem="zON-MD-eMb" firstAttribute="top" secondItem="g1f-oE-zFL" secondAttribute="bottom" constant="16" id="68E-nc-WNc"/>
+                <constraint firstItem="txT-UX-3Oy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8Cx-eF-a61"/>
+                <constraint firstItem="bmi-2K-96j" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.125" id="BIw-S4-SOv"/>
+                <constraint firstItem="zON-MD-eMb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="BiU-st-mjF"/>
+                <constraint firstItem="kRW-Wi-yD6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Hym-dV-V57"/>
+                <constraint firstItem="g1f-oE-zFL" firstAttribute="top" secondItem="txT-UX-3Oy" secondAttribute="bottom" constant="16" id="Mkl-Ox-M8c"/>
+                <constraint firstItem="bmi-2K-96j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Nl9-mg-KhH"/>
+                <constraint firstItem="S1T-yZ-ZzZ" firstAttribute="top" secondItem="zON-MD-eMb" secondAttribute="bottom" constant="16" id="SkB-Tt-XIP"/>
+                <constraint firstItem="kRW-Wi-yD6" firstAttribute="top" secondItem="S1T-yZ-ZzZ" secondAttribute="bottom" constant="16" id="W7g-ZW-jEg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="g1f-oE-zFL" secondAttribute="trailing" constant="20" id="Wr2-Gl-Lcc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zON-MD-eMb" secondAttribute="trailing" constant="20" id="YVz-kh-rsh"/>
+                <constraint firstItem="7MG-iG-u0G" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aGw-ic-nie"/>
+                <constraint firstItem="bmi-2K-96j" firstAttribute="top" secondItem="kRW-Wi-yD6" secondAttribute="bottom" constant="16" id="cAC-Ja-5NE"/>
+                <constraint firstItem="txT-UX-3Oy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eSK-5E-YEx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S1T-yZ-ZzZ" secondAttribute="trailing" constant="20" id="eWT-wA-jit"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zON-MD-eMb" secondAttribute="trailing" constant="20" id="gbo-Jd-o8X"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bmi-2K-96j" secondAttribute="trailing" constant="20" id="hV3-1J-f3Q"/>
+                <constraint firstItem="zON-MD-eMb" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.125" id="hq1-1l-67e"/>
+                <constraint firstItem="mTG-zF-JAj" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" multiplier="0.9" constant="20" symbolic="YES" id="lFz-1f-sx6"/>
+                <constraint firstItem="txT-UX-3Oy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mrr-ga-skm"/>
+                <constraint firstItem="S1T-yZ-ZzZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="oCX-bt-OlT"/>
+                <constraint firstItem="S1T-yZ-ZzZ" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.125" id="pVI-7f-zC5"/>
+                <constraint firstItem="g1f-oE-zFL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="s7L-AF-i7q"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mTG-zF-JAj" secondAttribute="trailing" constant="20" id="uBB-V0-r7t"/>
+                <constraint firstItem="7MG-iG-u0G" firstAttribute="top" secondItem="bmi-2K-96j" secondAttribute="bottom" constant="32" id="ym2-RH-6cB"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow.left" catalog="system" width="64" height="48"/>
+        <image name="checkmark" catalog="system" width="64" height="56"/>
+    </resources>
+</document>

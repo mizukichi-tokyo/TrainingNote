@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController" customModule="TrainingNote" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="52S-He-6yv" id="v2M-rO-hdp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,8 +21,12 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Y0-v1-3X0">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
-                        <navigationItem title="Setting" id="TdS-sG-N2a">
-                            <barButtonItem key="leftBarButtonItem" title="Item" image="plus" catalog="system" id="rMf-Br-M0Z"/>
+                        <navigationItem title="Exercises" id="TdS-sG-N2a">
+                            <barButtonItem key="leftBarButtonItem" title="Item" image="plus" catalog="system" id="rMf-Br-M0Z">
+                                <connections>
+                                    <action selector="plusButton" destination="-1" id="5RX-13-BSn"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" title="Item" image="checkmark.circle" catalog="system" id="tUx-WV-nof">
                                 <connections>
                                     <action selector="moveToCalender:" destination="-1" id="i9g-eR-MOm"/>
@@ -35,15 +40,25 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </navigationBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="52S-He-6yv">
+                    <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="separatorColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <color key="sectionIndexColor" cocoaTouchSystemColor="lightTextColor"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="52S-He-6yv" secondAttribute="bottom" id="6qQ-rX-Hw1"/>
+                <constraint firstItem="52S-He-6yv" firstAttribute="top" secondItem="5Y0-v1-3X0" secondAttribute="bottom" id="HuA-CN-InI"/>
                 <constraint firstItem="5Y0-v1-3X0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ILL-BQ-GwM"/>
                 <constraint firstItem="5Y0-v1-3X0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eZi-BE-XT1"/>
+                <constraint firstItem="52S-He-6yv" firstAttribute="trailing" secondItem="5Y0-v1-3X0" secondAttribute="trailing" id="pVt-Hx-UPY"/>
+                <constraint firstItem="52S-He-6yv" firstAttribute="leading" secondItem="5Y0-v1-3X0" secondAttribute="leading" id="qUG-a0-5bK"/>
                 <constraint firstItem="5Y0-v1-3X0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="yz6-3O-JNi"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="152"/>
+            <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
         </view>
     </objects>
     <resources>

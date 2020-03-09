@@ -1,10 +1,10 @@
 PODS:
+  - Alertift (4.1.1)
   - Differentiator (4.0.1)
   - FSCalendar (2.8.1)
-  - IQKeyboardManagerSwift (6.5.5)
-  - MaterialComponents/AnimationTiming (104.0.1)
-  - MaterialComponents/Availability (104.0.1)
-  - MaterialComponents/Buttons (104.0.1):
+  - MaterialComponents/AnimationTiming (106.0.0)
+  - MaterialComponents/Availability (106.0.0)
+  - MaterialComponents/Buttons (106.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -15,28 +15,30 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Elevation (104.0.1):
+  - MaterialComponents/Elevation (106.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (104.0.1):
+  - MaterialComponents/Ink (106.0.0):
+    - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/private/Application (104.0.1)
-  - MaterialComponents/private/Color (104.0.1)
-  - MaterialComponents/private/Math (104.0.1)
-  - MaterialComponents/Ripple (104.0.1):
+  - MaterialComponents/private/Application (106.0.0)
+  - MaterialComponents/private/Color (106.0.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Math (106.0.0)
+  - MaterialComponents/Ripple (106.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (104.0.1)
-  - MaterialComponents/ShadowLayer (104.0.1):
+  - MaterialComponents/ShadowElevations (106.0.0)
+  - MaterialComponents/ShadowLayer (106.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (104.0.1):
+  - MaterialComponents/Shapes (106.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (104.0.1):
+  - MaterialComponents/Typography (106.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -58,6 +60,9 @@ PODS:
     - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
+  - RxRealm (2.0.0):
+    - RealmSwift (~> 4.0)
+    - RxSwift (~> 5.0)
   - RxRelay (5.0.1):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
@@ -67,14 +72,15 @@ PODS:
   - SwiftLint (0.39.1)
 
 DEPENDENCIES:
+  - Alertift
   - FSCalendar
-  - IQKeyboardManagerSwift
   - MaterialComponents/Buttons
   - R.swift
   - RealmSwift
   - RxBlocking
   - RxCocoa
   - RxDataSources
+  - RxRealm
   - RxSwift
   - RxTest
   - SwiftDate
@@ -82,9 +88,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alertift
     - Differentiator
     - FSCalendar
-    - IQKeyboardManagerSwift
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -95,6 +101,7 @@ SPEC REPOS:
     - RxBlocking
     - RxCocoa
     - RxDataSources
+    - RxRealm
     - RxRelay
     - RxSwift
     - RxTest
@@ -102,10 +109,10 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Alertift: 950483ca193717cc8bb508a7dbbe34f4af321daf
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
-  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
-  MaterialComponents: 5f68750c41b8c191c605a9296586717b2f92da93
+  MaterialComponents: ded56a6a4d9efb8190613b0d40de5e47df405cee
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
@@ -115,12 +122,13 @@ SPEC CHECKSUMS:
   RxBlocking: c5e090f42d046df8b0e7752742510f349963710f
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRealm: 900f5c7e6f0a2d6527b56eaf7283f3035ec1e8ba
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
 
-PODFILE CHECKSUM: 2c58efa6c92ed06c7bbad702b0be687013662b1e
+PODFILE CHECKSUM: 253a4dfdcf5111f4a3a48cc6e4aafcc110a09922
 
 COCOAPODS: 1.8.3
