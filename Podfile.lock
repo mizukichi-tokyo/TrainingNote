@@ -2,9 +2,9 @@ PODS:
   - Alertift (4.1.1)
   - Differentiator (4.0.1)
   - FSCalendar (2.8.1)
-  - MaterialComponents/AnimationTiming (104.0.1)
-  - MaterialComponents/Availability (104.0.1)
-  - MaterialComponents/Buttons (104.0.1):
+  - MaterialComponents/AnimationTiming (106.0.0)
+  - MaterialComponents/Availability (106.0.0)
+  - MaterialComponents/Buttons (106.0.0):
     - MaterialComponents/Elevation
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
@@ -15,28 +15,30 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Elevation (104.0.1):
+  - MaterialComponents/Elevation (106.0.0):
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/Ink (104.0.1):
+  - MaterialComponents/Ink (106.0.0):
+    - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/private/Application (104.0.1)
-  - MaterialComponents/private/Color (104.0.1)
-  - MaterialComponents/private/Math (104.0.1)
-  - MaterialComponents/Ripple (104.0.1):
+  - MaterialComponents/private/Application (106.0.0)
+  - MaterialComponents/private/Color (106.0.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Math (106.0.0)
+  - MaterialComponents/Ripple (106.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/ShadowElevations (104.0.1)
-  - MaterialComponents/ShadowLayer (104.0.1):
+  - MaterialComponents/ShadowElevations (106.0.0)
+  - MaterialComponents/ShadowLayer (106.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Shapes (104.0.1):
+  - MaterialComponents/Shapes (106.0.0):
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/Typography (104.0.1):
+  - MaterialComponents/Typography (106.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
@@ -110,7 +112,7 @@ SPEC CHECKSUMS:
   Alertift: 950483ca193717cc8bb508a7dbbe34f4af321daf
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
-  MaterialComponents: 5f68750c41b8c191c605a9296586717b2f92da93
+  MaterialComponents: ded56a6a4d9efb8190613b0d40de5e47df405cee
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
