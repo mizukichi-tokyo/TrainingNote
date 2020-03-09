@@ -24,9 +24,9 @@ protocol SettingViewModelType {
 }
 
 final class SettingViewModel: Injectable, SettingViewModelType {
-    typealias Dependency = SettingModel
+    typealias Dependency = SettingModelType
+    private var model: SettingModelType
 
-    private var model: SettingModel
     var outputs: SettingViewModelOutput?
     private let disposeBag = DisposeBag()
 

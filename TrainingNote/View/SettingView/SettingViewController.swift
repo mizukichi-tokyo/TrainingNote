@@ -12,7 +12,8 @@ import RxCocoa
 import RxDataSources
 
 class SettingViewController: UIViewController, Injectable {
-    typealias Dependency = SettingViewModel
+    typealias Dependency = SettingViewModelType
+    private let viewModel: SettingViewModelType
 
     @IBOutlet private weak var tableView: UITableView!
     @IBAction func plusButton() {
@@ -22,7 +23,6 @@ class SettingViewController: UIViewController, Injectable {
         self.dismiss(animated: true, completion: nil)
     }
 
-    private let viewModel: SettingViewModel
     private var dataSource: RxTableViewSectionedReloadDataSource<SectionOfExerciseData>!
     private let addItemTextRelay = PublishRelay<String>()
     private let disposeBag = DisposeBag()
