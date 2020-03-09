@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 class NoteViewController: UIViewController, Injectable {
-    typealias Dependency = NoteViewModel
+    typealias Dependency = NoteViewModelType
+    private let viewModel: NoteViewModelType
 
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var barItem: UINavigationItem!
@@ -30,7 +31,6 @@ class NoteViewController: UIViewController, Injectable {
         self.dismiss(animated: true, completion: nil)
     }
 
-    private let viewModel: NoteViewModel
     private let disposeBag = DisposeBag()
     var selectedDate: Date?
     private var selectedDateRelay: BehaviorRelay<Date>?

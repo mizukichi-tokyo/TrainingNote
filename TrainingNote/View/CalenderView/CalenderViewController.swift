@@ -14,8 +14,8 @@ import RealmSwift
 import RxRealm
 
 class CalenderViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, Injectable {
-    typealias Dependency = CalenderViewModel
-    private let viewModel: CalenderViewModel
+    typealias Dependency = CalenderViewModelType
+    private let viewModel: CalenderViewModelType
 
     required init(with dependency: Dependency) {
         viewModel = dependency

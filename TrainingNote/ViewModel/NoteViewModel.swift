@@ -35,9 +35,9 @@ protocol NoteViewModelType {
 }
 
 final class NoteViewModel: Injectable, NoteViewModelType {
-    typealias Dependency = NoteModel
+    typealias Dependency = NoteModelType
+    private var model: NoteModelType
 
-    private var model: NoteModel
     var outputs: NoteViewModelOutput?
 
     private let weightRelay = BehaviorRelay<Float>(value: UserDefault.weight)
