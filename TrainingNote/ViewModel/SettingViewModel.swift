@@ -50,7 +50,7 @@ extension SettingViewModel: SettingViewModelOutput {
 
         let dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
 
-        model.outputs?.exerciseObservable
+        model.outputs!.exerciseObservable
             .subscribe(onNext: { [weak self] exercises in
                 guard let self = self, let exercises = exercises else { return }
                 let sectionModel = self.makeSectionModels(exercises: exercises)
