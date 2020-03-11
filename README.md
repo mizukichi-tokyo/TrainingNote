@@ -1,5 +1,5 @@
 # 作成したアプリ
-![appImage](./ReadmeImages/6.5-inch Screenshot.png)
+![appImage](./ReadmeImages/appImage.png)
 
 ## App URL
 https://apps.apple.com/jp/app/gymnote/id1501710635
