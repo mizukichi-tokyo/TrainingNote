@@ -32,8 +32,8 @@ protocol CalenderViewModelType {
 }
 
 final class CalenderViewModel: Injectable, CalenderViewModelType {
-    typealias Dependency = CalenderModel
-    private let model: CalenderModel
+    typealias Dependency = CalenderModelType
+    private let model: CalenderModelType
 
     var outputs: CalenderViewModelOutput?
     private let dateStringRelay = BehaviorRelay<String>(value: "")

@@ -17,6 +17,7 @@
 		D31FB01423F7639C00CECCC5 /* TrainingNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31FB01323F7639C00CECCC5 /* TrainingNoteUITests.swift */; };
 		D32124A02408039C009299E3 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D321249F2408039C009299E3 /* RealmModel.swift */; };
 		D32A92B623FE62CC00DF79C0 /* SectionOfExerciseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */; };
+		D33D81482416FC5B000E9D19 /* SettingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D81472416FC5B000E9D19 /* SettingViewModelTests.swift */; };
 		D3405280240D7D3A00F0AF20 /* CalenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D340527F240D7D3A00F0AF20 /* CalenderModel.swift */; };
 		D348949B23F77A8F00E4D758 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348949A23F77A8F00E4D758 /* R.generated.swift */; };
 		D34894A623F789E200E4D758 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34894A523F789E200E4D758 /* LaunchScreen.storyboard */; };
@@ -82,6 +83,7 @@
 		D31FB01523F7639C00CECCC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D321249F2408039C009299E3 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		D32A92B523FE62CC00DF79C0 /* SectionOfExerciseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionOfExerciseData.swift; sourceTree = "<group>"; };
+		D33D81472416FC5B000E9D19 /* SettingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModelTests.swift; sourceTree = "<group>"; };
 		D340527F240D7D3A00F0AF20 /* CalenderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderModel.swift; sourceTree = "<group>"; };
 		D348949A23F77A8F00E4D758 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D34894A523F789E200E4D758 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				D31FB00823F7639C00CECCC5 /* TrainingNoteTests.swift */,
 				D31FB00A23F7639C00CECCC5 /* Info.plist */,
+				D33D81472416FC5B000E9D19 /* SettingViewModelTests.swift */,
 			);
 			path = TrainingNoteTests;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D31FB00923F7639C00CECCC5 /* TrainingNoteTests.swift in Sources */,
+				D33D81482416FC5B000E9D19 /* SettingViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,7 +870,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrainingNote.app/TrainingNote";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymNote.app/GymNote";
 			};
 			name = Debug;
 		};
@@ -889,7 +893,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrainingNote.app/TrainingNote";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GymNote.app/GymNote";
 			};
 			name = Release;
 		};

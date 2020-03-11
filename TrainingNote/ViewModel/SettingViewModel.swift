@@ -24,9 +24,9 @@ protocol SettingViewModelType {
 }
 
 final class SettingViewModel: Injectable, SettingViewModelType {
-    typealias Dependency = SettingModel
+    typealias Dependency = SettingModelType
+    private var model: SettingModelType
 
-    private var model: SettingModel
     var outputs: SettingViewModelOutput?
     private let disposeBag = DisposeBag()
 
@@ -50,7 +50,7 @@ extension SettingViewModel: SettingViewModelOutput {
 
         let dataRelay = BehaviorRelay<[SectionOfExerciseData]>(value: [])
 
-        model.outputs?.exerciseObservable
+        model.outputs!.exerciseObservable
             .subscribe(onNext: { [weak self] exercises in
                 guard let self = self, let exercises = exercises else { return }
                 let sectionModel = self.makeSectionModels(exercises: exercises)
